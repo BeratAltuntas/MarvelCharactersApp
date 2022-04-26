@@ -12,7 +12,6 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     @IBOutlet var forYouCollectionView: UICollectionView!
     @IBOutlet var trendsCollectionView: UICollectionView!
     
-    var navImageView = UIImageView(image: UIImage(named: "Marvel_Logo"))
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -31,21 +30,6 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         setupNavBar()
     }
     
-    func setupNavBar(){
-        guard let navigationBar = navigationController?.navigationBar else{return}
-        
-        navigationBar.addSubview(navImageView)
-        
-        
-        
-        navImageView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            navImageView.centerXAnchor.constraint(equalTo: navigationBar.centerXAnchor),
-            navImageView.centerYAnchor.constraint(equalTo: navigationBar.centerYAnchor),
-            navImageView.widthAnchor.constraint(equalToConstant: 100),
-            navImageView.heightAnchor.constraint(equalToConstant: 40)
-        ])
-    }
 }
 
 
@@ -71,4 +55,21 @@ extension HomeViewController{
         return cell
     }
     
+}
+
+extension UIViewController{
+    
+    func setupNavBar(){
+        var navImageView = UIImageView(image: UIImage(named: "Marvel_Logo"))
+        guard let navigationBar = navigationController?.navigationBar else{return}
+        
+        navigationBar.addSubview(navImageView)
+        navImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            navImageView.centerXAnchor.constraint(equalTo: navigationBar.centerXAnchor),
+            navImageView.centerYAnchor.constraint(equalTo: navigationBar.centerYAnchor),
+            navImageView.widthAnchor.constraint(equalToConstant: 100),
+            navImageView.heightAnchor.constraint(equalToConstant: 40)
+        ])
+    }
 }

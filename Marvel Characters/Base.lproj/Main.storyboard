@@ -16,14 +16,33 @@
                     <view key="view" contentMode="scaleToFill" id="An8-by-0La">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" placeholder="Search...(Ironman,Captain America...)" translatesAutoresizingMaskIntoConstraints="NO" id="yxu-z4-vZ0">
+                                <rect key="frame" x="0.0" y="81" width="414" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1KL-eo-o02">
+                                <rect key="frame" x="0.0" y="132" width="414" height="681"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="z4b-NN-Av6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1KL-eo-o02" firstAttribute="leading" secondItem="z4b-NN-Av6" secondAttribute="leading" id="Lo2-3c-w9N"/>
+                            <constraint firstItem="1KL-eo-o02" firstAttribute="top" secondItem="yxu-z4-vZ0" secondAttribute="bottom" id="TXj-jB-4xV"/>
+                            <constraint firstItem="z4b-NN-Av6" firstAttribute="trailing" secondItem="1KL-eo-o02" secondAttribute="trailing" id="UTv-RW-qEM"/>
+                            <constraint firstItem="z4b-NN-Av6" firstAttribute="trailing" secondItem="yxu-z4-vZ0" secondAttribute="trailing" id="dHv-b0-ZGr"/>
+                            <constraint firstItem="yxu-z4-vZ0" firstAttribute="leading" secondItem="z4b-NN-Av6" secondAttribute="leading" id="gnf-i9-KfQ"/>
+                            <constraint firstItem="z4b-NN-Av6" firstAttribute="top" secondItem="yxu-z4-vZ0" secondAttribute="top" constant="7" id="jgH-4N-BnR"/>
+                            <constraint firstItem="z4b-NN-Av6" firstAttribute="bottom" secondItem="1KL-eo-o02" secondAttribute="bottom" id="rkc-QO-kfg"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1co-rP-VCh"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f5T-L9-NJQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1032" y="463"/>
+            <point key="canvasLocation" x="-1033.3333333333335" y="462.72321428571428"/>
         </scene>
         <!--Favorites View Controller-->
         <scene sceneID="Gxv-jK-tve">
