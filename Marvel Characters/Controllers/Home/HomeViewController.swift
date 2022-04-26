@@ -1,27 +1,53 @@
-//
-//  HomeViewController.swift
-//  Marvel Characters
-//
-//  Created by BERAT ALTUNTAŞ on 26.04.2022.
-//
+    //
+    //  HomeViewController.swift
+    //  Marvel Characters
+    //
+    //  Created by BERAT ALTUNTAŞ on 26.04.2022.
+    //
 
 import UIKit
 
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
-    @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var forYouCollectionView: UICollectionView!
+    @IBOutlet var trendsCollectionView: UICollectionView!
     
+    var navImageView = UIImageView(image: UIImage(named: "Marvel_Logo"))
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        navigationItem.titleView = UIImageView(image: UIImage(named: "Logo"))
         
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(UINib(nibName: "ComicsCollectionViewCell", bundle: nil) , forCellWithReuseIdentifier: "Cell")
+        forYouCollectionView.delegate = self
+        forYouCollectionView.dataSource = self
+        forYouCollectionView.tag = 0
+        forYouCollectionView.register(UINib(nibName: "ComicsCollectionViewCell", bundle: nil) , forCellWithReuseIdentifier: "Cell")
+        
+        trendsCollectionView.delegate = self
+        trendsCollectionView.dataSource = self
+        trendsCollectionView.tag = 1
+        trendsCollectionView.register(UINib(nibName: "ComicsCollectionViewCell", bundle: nil) , forCellWithReuseIdentifier: "Cell")
+        
+        setupNavBar()
+    }
+    
+    func setupNavBar(){
+        guard let navigationBar = navigationController?.navigationBar else{return}
+        
+        navigationBar.addSubview(navImageView)
+        
+        
+        
+        navImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            navImageView.centerXAnchor.constraint(equalTo: navigationBar.centerXAnchor),
+            navImageView.centerYAnchor.constraint(equalTo: navigationBar.centerYAnchor),
+            navImageView.widthAnchor.constraint(equalToConstant: 100),
+            navImageView.heightAnchor.constraint(equalToConstant: 40)
+        ])
     }
 }
+
 
 extension HomeViewController{
     
@@ -31,9 +57,17 @@ extension HomeViewController{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ComicsCollectionViewCell
-        
-        cell.titleLabel.text = "Title"
-        cell.comicScorLabel.text = "Yıldız: 3.5"
+        if collectionView.tag == forYouCollectionView.tag{
+            cell.imageView.image = UIImage(systemName: "photo")
+            cell.titleLabel.text = "Senin için Başlık"
+            cell.comicScorLabel.text = "Yıldız: 3.5"
+            
+        }else if collectionView.tag == trendsCollectionView.tag{
+            cell.imageView.image = UIImage(systemName: "photo.fill")
+            cell.titleLabel.text = "Trend Başlık"
+            cell.comicScorLabel.text = "Yıldız: 3.5"
+            
+        }
         return cell
     }
     
