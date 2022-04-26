@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F4073EE92817861900381C98 /* ComicsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4073EE72817861900381C98 /* ComicsCollectionViewCell.swift */; };
+		F4073EEA2817861900381C98 /* ComicsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4073EE82817861900381C98 /* ComicsCollectionViewCell.xib */; };
+		F4073EED28178EF600381C98 /* ComicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4073EEC28178EF600381C98 /* ComicModel.swift */; };
+		F4073EEF28178F3400381C98 /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4073EEE28178F3400381C98 /* CharacterModel.swift */; };
 		F40AC2B028176FBF00C9C346 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2AF28176FBF00C9C346 /* AppDelegate.swift */; };
 		F40AC2B228176FBF00C9C346 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2B128176FBF00C9C346 /* SceneDelegate.swift */; };
 		F40AC2B728176FBF00C9C346 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F40AC2B528176FBF00C9C346 /* Main.storyboard */; };
@@ -24,6 +28,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F4073EE72817861900381C98 /* ComicsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsCollectionViewCell.swift; sourceTree = "<group>"; };
+		F4073EE82817861900381C98 /* ComicsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComicsCollectionViewCell.xib; sourceTree = "<group>"; };
+		F4073EEC28178EF600381C98 /* ComicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicModel.swift; sourceTree = "<group>"; };
+		F4073EEE28178F3400381C98 /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
 		F40AC2AC28176FBF00C9C346 /* Marvel Characters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Marvel Characters.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F40AC2AF28176FBF00C9C346 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F40AC2B128176FBF00C9C346 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,10 +61,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F4073EE6281785FA00381C98 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F4073EE72817861900381C98 /* ComicsCollectionViewCell.swift */,
+				F4073EE82817861900381C98 /* ComicsCollectionViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		F4073EEB28178EAB00381C98 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F4073EEC28178EF600381C98 /* ComicModel.swift */,
+				F4073EEE28178F3400381C98 /* CharacterModel.swift */,
+			);
+			name = Models;
+			path = "Marvel Characters";
+			sourceTree = "<group>";
+		};
 		F40AC2A328176FBF00C9C346 = {
 			isa = PBXGroup;
 			children = (
 				F40AC2AE28176FBF00C9C346 /* Marvel Characters */,
+				F4073EEB28178EAB00381C98 /* Models */,
 				F40AC2AD28176FBF00C9C346 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -94,6 +122,7 @@
 		F40AC2C42817717500C9C346 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				F4073EE6281785FA00381C98 /* Cell */,
 				F40AC2C82817721B00C9C346 /* HomeViewController.swift */,
 				F40AC2CA2817722E00C9C346 /* HomeViewControllerModel.swift */,
 			);
@@ -207,6 +236,7 @@
 			files = (
 				F40AC2BC28176FC300C9C346 /* LaunchScreen.storyboard in Resources */,
 				F40AC2B928176FC300C9C346 /* Assets.xcassets in Resources */,
+				F4073EEA2817861900381C98 /* ComicsCollectionViewCell.xib in Resources */,
 				F40AC2B728176FBF00C9C346 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,12 +250,15 @@
 			files = (
 				F40AC2D12817726600C9C346 /* FavoritesViewControllerModel.swift in Sources */,
 				F40AC2D52817728C00C9C346 /* UserViewController.swift in Sources */,
+				F4073EE92817861900381C98 /* ComicsCollectionViewCell.swift in Sources */,
 				F40AC2DB2817735F00C9C346 /* TabBarViewController.swift in Sources */,
 				F40AC2CF2817725000C9C346 /* SearchViewControllerModel.swift in Sources */,
+				F4073EEF28178F3400381C98 /* CharacterModel.swift in Sources */,
 				F40AC2D72817729D00C9C346 /* UserViewControllerModel.swift in Sources */,
 				F40AC2D32817727A00C9C346 /* FavoritesViewController.swift in Sources */,
 				F40AC2CD2817724600C9C346 /* SearchViewController.swift in Sources */,
 				F40AC2B028176FBF00C9C346 /* AppDelegate.swift in Sources */,
+				F4073EED28178EF600381C98 /* ComicModel.swift in Sources */,
 				F40AC2CB2817722E00C9C346 /* HomeViewControllerModel.swift in Sources */,
 				F40AC2B228176FBF00C9C346 /* SceneDelegate.swift in Sources */,
 				F40AC2C92817721B00C9C346 /* HomeViewController.swift in Sources */,

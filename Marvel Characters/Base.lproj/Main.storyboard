@@ -4,16 +4,16 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Search View Controller-->
         <scene sceneID="926-tK-Wwj">
             <objects>
-                <viewController id="5cd-Xo-fGL" sceneMemberID="viewController">
+                <viewController id="5cd-Xo-fGL" customClass="SearchViewController" customModule="Marvel_Characters" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="An8-by-0La">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -26,10 +26,10 @@
             </objects>
             <point key="canvasLocation" x="-1032" y="463"/>
         </scene>
-        <!--View Controller-->
+        <!--Favorites View Controller-->
         <scene sceneID="Gxv-jK-tve">
             <objects>
-                <viewController id="eBd-cd-GNM" sceneMemberID="viewController">
+                <viewController id="eBd-cd-GNM" customClass="FavoritesViewController" customModule="Marvel_Characters" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uW2-2j-0Oz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -42,10 +42,10 @@
             </objects>
             <point key="canvasLocation" x="-132" y="463"/>
         </scene>
-        <!--View Controller-->
+        <!--User View Controller-->
         <scene sceneID="VZp-wB-E4U">
             <objects>
-                <viewController id="lyq-VP-h6L" sceneMemberID="viewController">
+                <viewController id="lyq-VP-h6L" customClass="UserViewController" customModule="Marvel_Characters" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4DN-mQ-AIt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -58,21 +58,81 @@
             </objects>
             <point key="canvasLocation" x="828" y="463"/>
         </scene>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="T1S-CE-QP9">
             <objects>
-                <viewController id="fV9-7s-0SY" sceneMemberID="viewController">
+                <viewController id="fV9-7s-0SY" customClass="HomeViewController" customModule="Marvel_Characters" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="m23-OR-p2F">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LmE-Vd-ooV">
+                                <rect key="frame" x="0.0" y="88" width="414" height="275"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Senin için" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31K-O0-8HD">
+                                        <rect key="frame" x="0.0" y="1" width="414" height="44"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="37"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7oZ-PF-2WS">
+                                        <rect key="frame" x="0.0" y="52" width="414" height="216"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vzf-Td-RN4">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="IrI-U5-D8D">
+                                                <rect key="frame" x="10" y="10" width="128" height="128"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="uxn-8c-qZm">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </collectionViewCellContentView>
+                                            </collectionViewCell>
+                                        </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="fV9-7s-0SY" id="oac-I8-ay9"/>
+                                            <outlet property="delegate" destination="fV9-7s-0SY" id="Ffu-gO-sFq"/>
+                                        </connections>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="7oZ-PF-2WS" firstAttribute="top" secondItem="31K-O0-8HD" secondAttribute="bottom" constant="7" id="FAd-bk-YKj"/>
+                                    <constraint firstAttribute="trailing" secondItem="7oZ-PF-2WS" secondAttribute="trailing" id="IvE-3v-zH1"/>
+                                    <constraint firstAttribute="bottom" secondItem="7oZ-PF-2WS" secondAttribute="bottom" constant="7" id="Ksu-H5-q7z"/>
+                                    <constraint firstItem="31K-O0-8HD" firstAttribute="top" secondItem="LmE-Vd-ooV" secondAttribute="top" constant="1" id="ZhI-u4-vih"/>
+                                    <constraint firstItem="31K-O0-8HD" firstAttribute="leading" secondItem="LmE-Vd-ooV" secondAttribute="leading" id="a2M-tf-ftg"/>
+                                    <constraint firstItem="7oZ-PF-2WS" firstAttribute="leading" secondItem="LmE-Vd-ooV" secondAttribute="leading" id="gN4-hy-pBm"/>
+                                    <constraint firstAttribute="trailing" secondItem="31K-O0-8HD" secondAttribute="trailing" id="h8J-eT-tqm"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Senin için" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hlk-oL-4lc" userLabel="Trend">
+                                <rect key="frame" x="45" y="622" width="324" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="38"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="50m-dO-nP5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="LmE-Vd-ooV" firstAttribute="top" secondItem="50m-dO-nP5" secondAttribute="top" id="5tc-Ed-oGo"/>
+                            <constraint firstItem="50m-dO-nP5" firstAttribute="bottom" secondItem="LmE-Vd-ooV" secondAttribute="bottom" constant="450" id="FWt-VT-IAD"/>
+                            <constraint firstItem="50m-dO-nP5" firstAttribute="trailing" secondItem="LmE-Vd-ooV" secondAttribute="trailing" id="P5z-nE-YwC"/>
+                            <constraint firstItem="LmE-Vd-ooV" firstAttribute="leading" secondItem="50m-dO-nP5" secondAttribute="leading" id="RSs-qk-QCa"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gdD-Xd-u4V"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="POB-jp-V4V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1978" y="463"/>
+            <point key="canvasLocation" x="-1978.2608695652175" y="462.72321428571428"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="DfQ-a6-7SW">
