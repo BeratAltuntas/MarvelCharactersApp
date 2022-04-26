@@ -8,5 +8,6 @@
 import Foundation
 
 class HomeViewControllerModel{
-    
+        // current date and time
+        
 }
