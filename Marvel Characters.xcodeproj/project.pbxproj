@@ -28,6 +28,9 @@
 		F41C364128180949000EA083 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41C364028180949000EA083 /* Config.swift */; };
 		F456CBDE281821A4002B30EB /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F456CBDC281821A4002B30EB /* SearchTableViewCell.swift */; };
 		F456CBDF281821A4002B30EB /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F456CBDD281821A4002B30EB /* SearchTableViewCell.xib */; };
+		F456CBE328184168002B30EB /* FavoritesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F456CBE128184168002B30EB /* FavoritesCollectionViewCell.swift */; };
+		F456CBE428184168002B30EB /* FavoritesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F456CBE228184168002B30EB /* FavoritesCollectionViewCell.xib */; };
+		F456CBE628184FA1002B30EB /* FavoriteCellFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F456CBE528184FA1002B30EB /* FavoriteCellFlowLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +57,9 @@
 		F41C364028180949000EA083 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		F456CBDC281821A4002B30EB /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		F456CBDD281821A4002B30EB /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
+		F456CBE128184168002B30EB /* FavoritesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCollectionViewCell.swift; sourceTree = "<group>"; };
+		F456CBE228184168002B30EB /* FavoritesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesCollectionViewCell.xib; sourceTree = "<group>"; };
+		F456CBE528184FA1002B30EB /* FavoriteCellFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCellFlowLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +144,7 @@
 		F40AC2C52817718000C9C346 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
+				F456CBE028184145002B30EB /* FavoritesCell */,
 				F40AC2D22817727A00C9C346 /* FavoritesViewController.swift */,
 				F40AC2D02817726600C9C346 /* FavoritesViewControllerModel.swift */,
 			);
@@ -191,6 +198,16 @@
 				F456CBDD281821A4002B30EB /* SearchTableViewCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		F456CBE028184145002B30EB /* FavoritesCell */ = {
+			isa = PBXGroup;
+			children = (
+				F456CBE128184168002B30EB /* FavoritesCollectionViewCell.swift */,
+				F456CBE228184168002B30EB /* FavoritesCollectionViewCell.xib */,
+				F456CBE528184FA1002B30EB /* FavoriteCellFlowLayout.swift */,
+			);
+			path = FavoritesCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,6 +270,7 @@
 			files = (
 				F40AC2BC28176FC300C9C346 /* LaunchScreen.storyboard in Resources */,
 				F40AC2B928176FC300C9C346 /* Assets.xcassets in Resources */,
+				F456CBE428184168002B30EB /* FavoritesCollectionViewCell.xib in Resources */,
 				F4073EEA2817861900381C98 /* ComicsCollectionViewCell.xib in Resources */,
 				F40AC2B728176FBF00C9C346 /* Main.storyboard in Resources */,
 				F456CBDF281821A4002B30EB /* SearchTableViewCell.xib in Resources */,
@@ -272,10 +290,12 @@
 				F4073EE92817861900381C98 /* ComicsCollectionViewCell.swift in Sources */,
 				F40AC2DB2817735F00C9C346 /* TabBarViewController.swift in Sources */,
 				F40AC2CF2817725000C9C346 /* SearchViewControllerModel.swift in Sources */,
+				F456CBE328184168002B30EB /* FavoritesCollectionViewCell.swift in Sources */,
 				F4073EEF28178F3400381C98 /* CharacterModel.swift in Sources */,
 				F40AC2D72817729D00C9C346 /* UserViewControllerModel.swift in Sources */,
 				F40AC2D32817727A00C9C346 /* FavoritesViewController.swift in Sources */,
 				F40AC2CD2817724600C9C346 /* SearchViewController.swift in Sources */,
+				F456CBE628184FA1002B30EB /* FavoriteCellFlowLayout.swift in Sources */,
 				F40AC2B028176FBF00C9C346 /* AppDelegate.swift in Sources */,
 				F4073EED28178EF600381C98 /* ComicModel.swift in Sources */,
 				F40AC2CB2817722E00C9C346 /* HomeViewControllerModel.swift in Sources */,

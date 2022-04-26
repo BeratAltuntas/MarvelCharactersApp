@@ -7,23 +7,29 @@
 
 import UIKit
 
-class FavoritesViewController: UIViewController {
+class FavoritesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
+    @IBOutlet var favoritesCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavBar()
+        favoritesCollectionView.register(UINib(nibName: "FavoritesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FavoriteCell")
+        
+        favoritesCollectionView.collectionViewLayout = FavoriteCellFlowLayout(sutunSayisi: 2, minSutunAraligi: 15, minSatirAraligi: 15)
+    }
+}
 
-        // Do any additional setup after loading the view.
+extension FavoritesViewController{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 12
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteCell", for: indexPath) as! FavoritesCollectionViewCell
+        cell.favoritesImageView.image = UIImage(named: "Marvel_Logo")
+        cell.characterNameLabel.text = "Iron Man \(indexPath.row)"
+        return cell
     }
-    */
-
+    
+    
 }
