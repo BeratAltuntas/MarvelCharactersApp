@@ -31,5 +31,11 @@ extension FavoritesViewController{
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let viewController = storyboard?.instantiateViewController(withIdentifier: "CharacterPage") as? ContentPageViewController{
+            navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
     
 }
+

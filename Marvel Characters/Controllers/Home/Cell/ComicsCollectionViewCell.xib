@@ -23,13 +23,13 @@
                             <constraint firstAttribute="height" constant="165" id="jVt-GT-Ffy"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WnC-fb-0MC">
-                        <rect key="frame" x="0.0" y="166.5" width="116" height="21.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WnC-fb-0MC">
+                        <rect key="frame" x="0.0" y="165" width="116" height="21.5"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Puan: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ip-5z-cp4">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Puan: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ip-5z-cp4">
                         <rect key="frame" x="0.0" y="197" width="116" height="19"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                         <nil key="textColor"/>
@@ -46,8 +46,8 @@
                 <constraint firstAttribute="bottom" secondItem="3ip-5z-cp4" secondAttribute="bottom" id="V8T-fC-qiR"/>
                 <constraint firstItem="djj-T7-6di" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="beh-bU-3le"/>
                 <constraint firstItem="WnC-fb-0MC" firstAttribute="top" secondItem="djj-T7-6di" secondAttribute="bottom" id="mLg-nH-DCZ"/>
-                <constraint firstItem="3ip-5z-cp4" firstAttribute="top" secondItem="WnC-fb-0MC" secondAttribute="bottom" constant="9" id="p7l-Es-xa7"/>
                 <constraint firstItem="djj-T7-6di" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="q4P-Wd-Mfd"/>
+                <constraint firstItem="3ip-5z-cp4" firstAttribute="top" secondItem="WnC-fb-0MC" secondAttribute="bottom" constant="10.5" id="tE1-Dn-myB"/>
                 <constraint firstAttribute="trailing" secondItem="djj-T7-6di" secondAttribute="trailing" id="xqS-Cl-gao"/>
             </constraints>
             <size key="customSize" width="268" height="194"/>

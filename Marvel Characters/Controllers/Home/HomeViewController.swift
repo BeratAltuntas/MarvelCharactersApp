@@ -29,7 +29,6 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         
         setupNavBar()
     }
-    
 }
 
 
@@ -54,13 +53,16 @@ extension HomeViewController{
         }
         return cell
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let viewController = storyboard?.instantiateViewController(withIdentifier: "CharacterPage") as? ContentPageViewController{
+            navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
 }
 
 extension UIViewController{
-    
     func setupNavBar(){
-        var navImageView = UIImageView(image: UIImage(named: "Marvel_Logo"))
+        let navImageView = UIImageView(image: UIImage(named: "Marvel_Logo"))
         guard let navigationBar = navigationController?.navigationBar else{return}
         
         navigationBar.addSubview(navImageView)

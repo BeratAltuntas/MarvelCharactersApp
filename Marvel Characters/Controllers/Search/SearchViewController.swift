@@ -1,9 +1,9 @@
-//
-//  SearchViewController.swift
-//  Marvel Characters
-//
-//  Created by BERAT ALTUNTAŞ on 26.04.2022.
-//
+    //
+    //  SearchViewController.swift
+    //  Marvel Characters
+    //
+    //  Created by BERAT ALTUNTAŞ on 26.04.2022.
+    //
 
 import UIKit
 
@@ -11,7 +11,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet var tableView:UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupNavBar()
     }
 }
@@ -28,6 +27,8 @@ extension SearchViewController{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // yeni sayfaya geç
+        if let viewController = storyboard?.instantiateViewController(withIdentifier: "CharacterPage") as? ContentPageViewController{
+            navigationController?.pushViewController(viewController, animated: true)
+        }
     }
 }
