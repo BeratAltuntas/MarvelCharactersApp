@@ -25,6 +25,7 @@
 		F40AC2D52817728C00C9C346 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2D42817728C00C9C346 /* UserViewController.swift */; };
 		F40AC2D72817729D00C9C346 /* UserViewControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2D62817729D00C9C346 /* UserViewControllerModel.swift */; };
 		F40AC2DB2817735F00C9C346 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2DA2817735F00C9C346 /* TabBarViewController.swift */; };
+		F41C364128180949000EA083 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41C364028180949000EA083 /* Config.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		F40AC2D42817728C00C9C346 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		F40AC2D62817729D00C9C346 /* UserViewControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewControllerModel.swift; sourceTree = "<group>"; };
 		F40AC2DA2817735F00C9C346 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		F41C364028180949000EA083 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 				F40AC2B128176FBF00C9C346 /* SceneDelegate.swift */,
 				F40AC2B828176FC300C9C346 /* Assets.xcassets */,
 				F40AC2BD28176FC300C9C346 /* Info.plist */,
+				F41C364028180949000EA083 /* Config.swift */,
 			);
 			name = SupportingFiles;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 			files = (
 				F40AC2D12817726600C9C346 /* FavoritesViewControllerModel.swift in Sources */,
 				F40AC2D52817728C00C9C346 /* UserViewController.swift in Sources */,
+				F41C364128180949000EA083 /* Config.swift in Sources */,
 				F4073EE92817861900381C98 /* ComicsCollectionViewCell.swift in Sources */,
 				F40AC2DB2817735F00C9C346 /* TabBarViewController.swift in Sources */,
 				F40AC2CF2817725000C9C346 /* SearchViewControllerModel.swift in Sources */,

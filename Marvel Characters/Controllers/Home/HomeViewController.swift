@@ -8,8 +8,11 @@
 import UIKit
 
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
+    
     @IBOutlet var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         navigationItem.titleView = UIImageView(image: UIImage(named: "Logo"))
@@ -18,6 +21,9 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "ComicsCollectionViewCell", bundle: nil) , forCellWithReuseIdentifier: "Cell")
     }
+}
+
+extension HomeViewController{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
@@ -26,8 +32,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ComicsCollectionViewCell
         
-        cell.titleLabel.text = "title"
-        cell.comicScorLabel.text = "3.5"
+        cell.titleLabel.text = "Title"
+        cell.comicScorLabel.text = "Yıldız: 3.5"
         return cell
     }
     
