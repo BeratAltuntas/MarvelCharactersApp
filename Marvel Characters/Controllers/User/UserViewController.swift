@@ -7,23 +7,38 @@
 
 import UIKit
 
-class UserViewController: UIViewController {
+class UserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet var tableView:UITableView!
+    @IBOutlet var largeProfileImageView: UIImageView!
+    @IBOutlet weak var miniProfileImageView:UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    var iconList = [UIImage]()
+    var dummyPersonList = ["Berat Altuntaş", "21", "Erkek", "Kayseri / Türkiye"]
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupNavBar()
+        nameLabel.text = dummyPersonList[0]
+        iconList.append(UIImage(named: "calender-icon-black")!)
+        iconList.append(UIImage(named: "gender-icon-red")!)
+        iconList.append(UIImage(named: "location-icon-black")!)
+        
+        miniProfileImageView.layer.cornerRadius = CGFloat((miniProfileImageView.frame.width)/2)
         // Do any additional setup after loading the view.
     }
-    
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension UserViewController{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
     }
-    */
-
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BiographyCell",for: indexPath)
+        cell.textLabel?.text = dummyPersonList[indexPath.row+1]
+        cell.imageView?.image = iconList[indexPath.row]
+        
+        return cell
+    }
 }
