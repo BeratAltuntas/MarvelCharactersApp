@@ -15,7 +15,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+        setupNavBar()
         
         forYouCollectionView.delegate = self
         forYouCollectionView.dataSource = self
@@ -26,8 +26,28 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         trendsCollectionView.dataSource = self
         trendsCollectionView.tag = 1
         trendsCollectionView.register(UINib(nibName: "ComicsCollectionViewCell", bundle: nil) , forCellWithReuseIdentifier: "Cell")
+        let keys = Config()
+        let urlStr = "https://gateway.marvel.com/v1/public/characters?"+keys.keysWithHash
         
-        setupNavBar()
+        if let url = URL(string: urlStr){
+            if let data = try? Data(contentsOf: url){
+                parse(json: data)
+                return
+            }
+        }
+        
+    }
+    func parse(json: Data){
+        let decoder = JSONDecoder()
+        if let jsonChars = try? decoder.decode(CharacterModel.self, from: json)
+        {
+            debugPrint( jsonChars.data?.results)
+            
+        }
+        else{
+            print("hata")
+        }
+        
     }
 }
 
