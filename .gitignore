@@ -2,9 +2,12 @@
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
+Marvel*Characters/Config.swift
+
+Config.swift
+config.swift
 ## User settings
 xcuserdata/
-Marvel*Characters/Config.swift
 
 ## compatibility with Xcode 8 and earlier (ignoring not required starting Xcode 9)
 *.xcscmblueprint
