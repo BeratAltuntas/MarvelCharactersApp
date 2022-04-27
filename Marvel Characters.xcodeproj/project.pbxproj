@@ -10,7 +10,6 @@
 		F4073EE92817861900381C98 /* ComicsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4073EE72817861900381C98 /* ComicsCollectionViewCell.swift */; };
 		F4073EEA2817861900381C98 /* ComicsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4073EE82817861900381C98 /* ComicsCollectionViewCell.xib */; };
 		F4073EED28178EF600381C98 /* ComicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4073EEC28178EF600381C98 /* ComicModel.swift */; };
-		F4073EEF28178F3400381C98 /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4073EEE28178F3400381C98 /* CharacterModel.swift */; };
 		F40AC2B028176FBF00C9C346 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2AF28176FBF00C9C346 /* AppDelegate.swift */; };
 		F40AC2B228176FBF00C9C346 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2B128176FBF00C9C346 /* SceneDelegate.swift */; };
 		F40AC2B728176FBF00C9C346 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F40AC2B528176FBF00C9C346 /* Main.storyboard */; };
@@ -25,6 +24,7 @@
 		F40AC2D52817728C00C9C346 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2D42817728C00C9C346 /* UserViewController.swift */; };
 		F40AC2D72817729D00C9C346 /* UserViewControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2D62817729D00C9C346 /* UserViewControllerModel.swift */; };
 		F40AC2DB2817735F00C9C346 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2DA2817735F00C9C346 /* TabBarViewController.swift */; };
+		F42FA4F728195EDE003309EF /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FA4F628195EDE003309EF /* CharacterModel.swift */; };
 		F456CBDE281821A4002B30EB /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F456CBDC281821A4002B30EB /* SearchTableViewCell.swift */; };
 		F456CBDF281821A4002B30EB /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F456CBDD281821A4002B30EB /* SearchTableViewCell.xib */; };
 		F456CBE328184168002B30EB /* FavoritesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F456CBE128184168002B30EB /* FavoritesCollectionViewCell.swift */; };
@@ -38,7 +38,6 @@
 		F4073EE72817861900381C98 /* ComicsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsCollectionViewCell.swift; sourceTree = "<group>"; };
 		F4073EE82817861900381C98 /* ComicsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComicsCollectionViewCell.xib; sourceTree = "<group>"; };
 		F4073EEC28178EF600381C98 /* ComicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicModel.swift; sourceTree = "<group>"; };
-		F4073EEE28178F3400381C98 /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
 		F40AC2AC28176FBF00C9C346 /* Marvel Characters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Marvel Characters.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F40AC2AF28176FBF00C9C346 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F40AC2B128176FBF00C9C346 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +54,7 @@
 		F40AC2D42817728C00C9C346 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		F40AC2D62817729D00C9C346 /* UserViewControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewControllerModel.swift; sourceTree = "<group>"; };
 		F40AC2DA2817735F00C9C346 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		F42FA4F628195EDE003309EF /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
 		F456CBDC281821A4002B30EB /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		F456CBDD281821A4002B30EB /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
 		F456CBE128184168002B30EB /* FavoritesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				F4073EEC28178EF600381C98 /* ComicModel.swift */,
-				F4073EEE28178F3400381C98 /* CharacterModel.swift */,
+				F42FA4F628195EDE003309EF /* CharacterModel.swift */,
 			);
 			name = Models;
 			path = "Marvel Characters";
@@ -300,10 +300,10 @@
 				F4A02F9D281953B30070A4A3 /* config.swift in Sources */,
 				F456CBE9281853C3002B30EB /* ContentPageViewController.swift in Sources */,
 				F4073EE92817861900381C98 /* ComicsCollectionViewCell.swift in Sources */,
+				F42FA4F728195EDE003309EF /* CharacterModel.swift in Sources */,
 				F40AC2DB2817735F00C9C346 /* TabBarViewController.swift in Sources */,
 				F40AC2CF2817725000C9C346 /* SearchViewControllerModel.swift in Sources */,
 				F456CBE328184168002B30EB /* FavoritesCollectionViewCell.swift in Sources */,
-				F4073EEF28178F3400381C98 /* CharacterModel.swift in Sources */,
 				F40AC2D72817729D00C9C346 /* UserViewControllerModel.swift in Sources */,
 				F40AC2D32817727A00C9C346 /* FavoritesViewController.swift in Sources */,
 				F40AC2CD2817724600C9C346 /* SearchViewController.swift in Sources */,
