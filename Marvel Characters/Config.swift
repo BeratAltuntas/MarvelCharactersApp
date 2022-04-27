@@ -5,6 +5,7 @@
     //  Created by BERAT ALTUNTAŞ on 26.04.2022.
     //
 
+
 import Foundation
 struct Config{
     let publicApiKey = "f5bb77ddfb04fec5fc5bf4a95b78f048"
