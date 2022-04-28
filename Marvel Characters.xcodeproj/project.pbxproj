@@ -16,7 +16,7 @@
 		F40AC2B928176FC300C9C346 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F40AC2B828176FC300C9C346 /* Assets.xcassets */; };
 		F40AC2BC28176FC300C9C346 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F40AC2BA28176FC300C9C346 /* LaunchScreen.storyboard */; };
 		F40AC2C92817721B00C9C346 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2C82817721B00C9C346 /* HomeViewController.swift */; };
-		F40AC2CB2817722E00C9C346 /* HomeViewControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2CA2817722E00C9C346 /* HomeViewControllerModel.swift */; };
+		F40AC2CB2817722E00C9C346 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2CA2817722E00C9C346 /* HomeViewModel.swift */; };
 		F40AC2CD2817724600C9C346 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2CC2817724600C9C346 /* SearchViewController.swift */; };
 		F40AC2CF2817725000C9C346 /* SearchViewControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2CE2817725000C9C346 /* SearchViewControllerModel.swift */; };
 		F40AC2D12817726600C9C346 /* FavoritesViewControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2D02817726600C9C346 /* FavoritesViewControllerModel.swift */; };
@@ -31,6 +31,9 @@
 		F456CBE428184168002B30EB /* FavoritesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F456CBE228184168002B30EB /* FavoritesCollectionViewCell.xib */; };
 		F456CBE628184FA1002B30EB /* FavoriteCellFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F456CBE528184FA1002B30EB /* FavoriteCellFlowLayout.swift */; };
 		F456CBE9281853C3002B30EB /* ContentPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F456CBE8281853C2002B30EB /* ContentPageViewController.swift */; };
+		F47598F72819BA9B00FCF94E /* UIViewController+NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47598F62819BA9B00FCF94E /* UIViewController+NavBar.swift */; };
+		F47598F92819BD3600FCF94E /* UICollectionView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47598F82819BD3600FCF94E /* UICollectionView+Register.swift */; };
+		F47598FB2819C45700FCF94E /* UICollectionViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47598FA2819C45700FCF94E /* UICollectionViewCell+Extension.swift */; };
 		F4A02F9D281953B30070A4A3 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A02F9C281953B30070A4A3 /* config.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,7 +49,7 @@
 		F40AC2BB28176FC300C9C346 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F40AC2BD28176FC300C9C346 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F40AC2C82817721B00C9C346 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		F40AC2CA2817722E00C9C346 /* HomeViewControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerModel.swift; sourceTree = "<group>"; };
+		F40AC2CA2817722E00C9C346 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		F40AC2CC2817724600C9C346 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		F40AC2CE2817725000C9C346 /* SearchViewControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewControllerModel.swift; sourceTree = "<group>"; };
 		F40AC2D02817726600C9C346 /* FavoritesViewControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewControllerModel.swift; sourceTree = "<group>"; };
@@ -61,6 +64,9 @@
 		F456CBE228184168002B30EB /* FavoritesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesCollectionViewCell.xib; sourceTree = "<group>"; };
 		F456CBE528184FA1002B30EB /* FavoriteCellFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCellFlowLayout.swift; sourceTree = "<group>"; };
 		F456CBE8281853C2002B30EB /* ContentPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentPageViewController.swift; sourceTree = "<group>"; };
+		F47598F62819BA9B00FCF94E /* UIViewController+NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+NavBar.swift"; sourceTree = "<group>"; };
+		F47598F82819BD3600FCF94E /* UICollectionView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Register.swift"; sourceTree = "<group>"; };
+		F47598FA2819C45700FCF94E /* UICollectionViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Extension.swift"; sourceTree = "<group>"; };
 		F4A02F9C281953B30070A4A3 /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,6 +120,7 @@
 		F40AC2AE28176FBF00C9C346 /* Marvel Characters */ = {
 			isa = PBXGroup;
 			children = (
+				F47598F52819BA5700FCF94E /* Extensions */,
 				F40AC2D9281772BE00C9C346 /* SupportingFiles */,
 				F40AC2D8281772A900C9C346 /* Views */,
 				F40AC2C32817710D00C9C346 /* Controllers */,
@@ -140,7 +147,7 @@
 			children = (
 				F4073EE6281785FA00381C98 /* Cell */,
 				F40AC2C82817721B00C9C346 /* HomeViewController.swift */,
-				F40AC2CA2817722E00C9C346 /* HomeViewControllerModel.swift */,
+				F40AC2CA2817722E00C9C346 /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -219,6 +226,16 @@
 				F456CBE8281853C2002B30EB /* ContentPageViewController.swift */,
 			);
 			path = ContentPage;
+			sourceTree = "<group>";
+		};
+		F47598F52819BA5700FCF94E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F47598F62819BA9B00FCF94E /* UIViewController+NavBar.swift */,
+				F47598F82819BD3600FCF94E /* UICollectionView+Register.swift */,
+				F47598FA2819C45700FCF94E /* UICollectionViewCell+Extension.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,12 +322,15 @@
 				F40AC2CF2817725000C9C346 /* SearchViewControllerModel.swift in Sources */,
 				F456CBE328184168002B30EB /* FavoritesCollectionViewCell.swift in Sources */,
 				F40AC2D72817729D00C9C346 /* UserViewControllerModel.swift in Sources */,
+				F47598FB2819C45700FCF94E /* UICollectionViewCell+Extension.swift in Sources */,
 				F40AC2D32817727A00C9C346 /* FavoritesViewController.swift in Sources */,
+				F47598F92819BD3600FCF94E /* UICollectionView+Register.swift in Sources */,
 				F40AC2CD2817724600C9C346 /* SearchViewController.swift in Sources */,
 				F456CBE628184FA1002B30EB /* FavoriteCellFlowLayout.swift in Sources */,
 				F40AC2B028176FBF00C9C346 /* AppDelegate.swift in Sources */,
+				F47598F72819BA9B00FCF94E /* UIViewController+NavBar.swift in Sources */,
 				F4073EED28178EF600381C98 /* ComicModel.swift in Sources */,
-				F40AC2CB2817722E00C9C346 /* HomeViewControllerModel.swift in Sources */,
+				F40AC2CB2817722E00C9C346 /* HomeViewModel.swift in Sources */,
 				F456CBDE281821A4002B30EB /* SearchTableViewCell.swift in Sources */,
 				F40AC2B228176FBF00C9C346 /* SceneDelegate.swift in Sources */,
 				F40AC2C92817721B00C9C346 /* HomeViewController.swift in Sources */,

@@ -5,4 +5,10 @@
 //  Created by BERAT ALTUNTAŞ on 27.04.2022.
 //
 
-import Foundation
+import UIKit
+
+extension UICollectionViewCell {
+    static var identifier: String {
+        String(describing: Self.self)
+    }
+}

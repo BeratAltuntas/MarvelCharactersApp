@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class UserViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet var tableView:UITableView!
     @IBOutlet var largeProfileImageView: UIImageView!

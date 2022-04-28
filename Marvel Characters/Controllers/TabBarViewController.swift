@@ -7,23 +7,29 @@
 
 import UIKit
 
-class TabBarViewController: UITabBarController {
-
+final class TabBarViewController: UITabBarController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        setupViews()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setupViews() {
+        guard let viewControllers = viewControllers else { return }
+        for viewController in viewControllers {
+            var childViewController: UIViewController?
+            if let navigationController = viewController as? UINavigationController {
+                childViewController = navigationController.viewControllers.first
+            } else {
+                childViewController = viewController
+            }
+            switch childViewController {
+            case let viewController as HomeViewController:
+                let viewModel = HomeViewModel()
+                viewController.viewModel = viewModel
+            default:
+                break
+            }
+        }
     }
-    */
-
 }
