@@ -4,7 +4,7 @@
 //
 //  Created by BERAT ALTUNTAŞ on 26.04.2022.
 //
-
+import Kingfisher
 import UIKit
 
 final class ComicsCollectionViewCell: UICollectionViewCell {
@@ -17,34 +17,16 @@ final class ComicsCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func setupCell(imageName: String?, title: String?, score: String?){
-        var urlImg: String = ""
-        var data = Data()
+    func setupCell(imageName: String?, title: String?, price: Double){
         if let imgName = imageName, imgName != nil {
-            urlImg = imgName.replacingOccurrences(of: "http", with: "https") + "/portrait_medium.jpg"
-            data = downloadImage(from: URL(string: urlImg)!)
-            print(String(data: data, encoding: .utf8))
+            let urlImgStr = imgName.replacingOccurrences(of: "http", with: "https") + "/portrait_medium.jpg"
+            imageView.kf.setImage(with: URL(string: urlImgStr))
+        }else{
+            imageView.image = UIImage(named: "Marvel_Logo")
         }
-        
-        imageView.image = UIImage(data: data)
         titleLabel.text = title
-        comicScoreLabel.text = score
+        comicScoreLabel.text = "Fiyatı: \(price)$"
     }
-}
-
-func getImageData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-    URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
-}
-
-func downloadImage(from url: URL)-> Data {
-    var dataImage = Data()
-    
-    getImageData(from: url) { data, response, error in
-        guard let data = data, error == nil else { return }
-        dataImage = data
-        print(String(data: data, encoding: .utf8))
-    }
-    return dataImage
 }
 
 class NibView: UIView {
@@ -59,9 +41,7 @@ class NibView: UIView {
     }
 
     func fromNib() {
-        if let contentView = Bundle.main.loadNibNamed(String(describing: type(of: self)),
-                                                      owner: self,
-                                                      options: nil)?.first as? UIView {
+        if let contentView = Bundle.main.loadNibNamed(String(describing: type(of: self)), owner: self, options: nil)?.first as? UIView {
             addSubview(contentView)
             contentView.frame = self.bounds
         }

@@ -12,6 +12,7 @@ protocol HomeViewModelProtocol {
     var delegate: HomeViewModelDelegate? { get set }
     var comics: [Result]? { get }
     func load()
+    func loadCellContent(collectionView: UICollectionView, Id: String,tag: [Int], index: IndexPath)-> UICollectionViewCell
 }
 
 protocol HomeViewModelDelegate: AnyObject {
@@ -39,8 +40,7 @@ final class HomeViewModel {
             guard let httpResponse = response as? HTTPURLResponse,
                   (200...299).contains(httpResponse.statusCode) else {
                 return
-            }
-            
+            }            
             do {
                 if let data = data, let comicSummary = try JSONDecoder().decode(ComicModel?.self, from: data) {
                     self.comic = comicSummary
@@ -73,5 +73,22 @@ extension HomeViewModel: HomeViewModelProtocol {
         delegate?.setupCollectionViews()
         delegate?.setupNavigationBar()
         fetchData()
+    }
+    
+    func loadCellContent(collectionView: UICollectionView,Id: String,tag: [Int],index: IndexPath)-> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Id, for: index) as! ComicsCollectionViewCell
+        var image = comicList?[index.row].thumbnail?.path!
+        if collectionView.tag == tag[0] {
+            if ((image?.contains("image_not_available")) != nil) {
+                image = comicList?[index.row].images?.first?.path ?? nil
+            }
+            if let price = comicList?[index.row].prices?[0].price, price != nil{
+                cell.setupCell(imageName: image, title: comicList?[index.row].title, price: price)
+            }
+        } else if collectionView.tag == tag[1] {
+            
+        }
+        
+        return cell
     }
 }

@@ -6,5 +6,6 @@ target 'Marvel Characters' do
   use_frameworks!
 
   # Pods for Marvel Characters
-
+  pod 'Kingfisher', '~> 7.0'
+  
 end

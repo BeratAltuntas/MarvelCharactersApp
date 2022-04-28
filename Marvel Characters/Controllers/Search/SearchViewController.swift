@@ -27,7 +27,7 @@ extension SearchViewController{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let viewController = storyboard?.instantiateViewController(withIdentifier: "CharacterPage") as? ContentPageViewController{
+        if let viewController = storyboard?.instantiateViewController(withIdentifier: "ContentPage") as? ContentPageViewController{
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
