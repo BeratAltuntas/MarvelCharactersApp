@@ -7,13 +7,7 @@
 import UIKit
 import Kingfisher
 
-extension HomeViewController {
-    private enum Constant {
-        static let cellIdentifier = "ContentPage"
-        static let forYouCollectionViewTag = 0
-        static let trendsCollectionViewTag = 1
-    }
-}
+
 
 final class HomeViewController: BaseViewController {
     
@@ -52,9 +46,15 @@ extension HomeViewController: UICollectionViewDataSource {
     // MARK: - UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let viewController = storyboard?.instantiateViewController(withIdentifier: Constant.cellIdentifier) as? ContentPageViewController{
-            navigationController?.pushViewController(viewController, animated: true)
+//        if let viewController = storyboard?.instantiateViewController(withIdentifier: Constant.cellIdentifier) as? CharacterPageViewController{
+//            navigationController?.pushViewController(viewController, animated: true)
+//        }
+        if collectionView.tag == Constant.forYouCollectionViewTag {
+            performSegue(withIdentifier: Constant.homeToComicPageSegueID, sender: self)
+        } else if collectionView.tag == Constant.trendsCollectionViewTag {
+            performSegue(withIdentifier: Constant.homeToCharPageSegueID, sender: self)
         }
+        
     }
 }
 // MARK: - HomeViewModelDelegate
@@ -73,5 +73,9 @@ extension HomeViewController: HomeViewModelDelegate {
     
     func setupNavigationBar() {
         setupNavBar()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        viewModel.prepareToOpenPage(segue: segue)
     }
 }

@@ -32,7 +32,7 @@ extension FavoritesViewController{
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let viewController = storyboard?.instantiateViewController(withIdentifier: "ContentPage") as? ContentPageViewController{
+        if let viewController = storyboard?.instantiateViewController(withIdentifier: "ContentPage") as? CharacterPageViewController{
             navigationController?.pushViewController(viewController, animated: true)
         }
     }

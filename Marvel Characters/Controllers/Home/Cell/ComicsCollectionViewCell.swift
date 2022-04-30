@@ -17,7 +17,7 @@ final class ComicsCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func setupCell(imageName: String?, title: String?, price: Double){
+    func setupCell(imageName: String?, title: String?, subtitle: String?){
         if let imgName = imageName, imgName != nil {
             let urlImgStr = imgName.replacingOccurrences(of: "http", with: "https") + "/portrait_medium.jpg"
             imageView.kf.setImage(with: URL(string: urlImgStr))
@@ -25,7 +25,7 @@ final class ComicsCollectionViewCell: UICollectionViewCell {
             imageView.image = UIImage(named: "Marvel_Logo")
         }
         titleLabel.text = title
-        comicScoreLabel.text = "Fiyatı: \(price)$"
+        comicScoreLabel.text = " \(subtitle ?? "Belirsiz") "
     }
 }
 

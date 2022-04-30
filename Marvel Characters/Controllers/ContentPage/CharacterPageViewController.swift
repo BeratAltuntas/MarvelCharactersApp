@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import WebKit
 
-class ContentPageViewController: UIViewController {
+final class CharacterPageViewController: BaseViewController {
 
+    var character: CharacterModel?
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
   
 

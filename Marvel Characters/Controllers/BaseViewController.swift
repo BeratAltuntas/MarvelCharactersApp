@@ -22,3 +22,14 @@ class BaseViewController: UIViewController {
         ])
     }
 }
+
+extension BaseViewController {
+    public enum Constant {
+        static let cellIdentifier = "ContentPage"
+        static let forYouCollectionViewTag = 0
+        static let trendsCollectionViewTag = 1
+        
+        static let homeToCharPageSegueID = "HomeToChar"
+        static let homeToComicPageSegueID = "HomeToComic"
+    }
+}

@@ -23,31 +23,25 @@ struct CharacterModelDataClass: Codable {
 struct CharacterModelResult: Codable {
     let id: Int?
     let name, resultDescription: String?
-    let modified: Date?
+    let modified: String?
     let thumbnail: CharacterModelThumbnail?
     let resourceURI: String?
     let comics, series: CharacterModelComics?
     let stories: CharacterModelStories?
     let events: CharacterModelComics?
     let urls: [CharacterModelURLElement]?
-    
-    enum CharacterModelCodingKeys: String, CodingKey {
-        case id, name
-        case resultDescription = "description"
-        case modified, thumbnail, resourceURI, comics, series, stories, events, urls
-    }
 }
 
-    // MARK: - Comics
+    // MARK: - Characters
 struct CharacterModelComics: Codable {
     let available: Int?
     let collectionURI: String?
-    let items: [CharacterModelComicsItem]?
+    let items: [CharacterModelSeriesItem]?
     let returned: Int?
 }
 
-    // MARK: - ComicsItem
-struct CharacterModelComicsItem: Codable {
+    // MARK: - CharactersItem
+struct CharacterModelSeriesItem: Codable {
     let resourceURI: String?
     let name: String?
 }
@@ -64,39 +58,16 @@ struct CharacterModelStories: Codable {
 struct CharacterModelStoriesItem: Codable {
     let resourceURI: String?
     let name: String?
-    let type: CharacterModelItemType?
-}
-
-enum CharacterModelItemType: String, Codable {
-    case cover = "cover"
-    case empty = ""
-    case interiorStory = "interiorStory"
+    let type: String?
 }
 
     // MARK: - Thumbnail
 struct CharacterModelThumbnail: Codable {
     let path: String?
-    let thumbnailExtension: CharacterModelExtension?
-    
-    enum CharacterModelCodingKeys: String, CodingKey {
-        case path
-        case thumbnailExtension = "extension"
-    }
+    let thumbnailExtension: String?
 }
-
-enum CharacterModelExtension: String, Codable {
-    case gif = "gif"
-    case jpg = "jpg"
-}
-
     // MARK: - URLElement
 struct CharacterModelURLElement: Codable {
-    let type: CharacterModelURLType?
+    let type: String?
     let url: String?
-}
-
-enum CharacterModelURLType: String, Codable {
-    case comiclink = "comiclink"
-    case detail = "detail"
-    case wiki = "wiki"
 }
