@@ -18,7 +18,7 @@ final class ComicsCollectionViewCell: UICollectionViewCell {
     }
     
     func setupCell(imageName: String?, title: String?, subtitle: String?){
-        if let imgName = imageName, imgName != nil {
+        if let imgName = imageName{
             let urlImgStr = imgName.replacingOccurrences(of: "http", with: "https") + "/portrait_medium.jpg"
             imageView.kf.setImage(with: URL(string: urlImgStr))
         }else{

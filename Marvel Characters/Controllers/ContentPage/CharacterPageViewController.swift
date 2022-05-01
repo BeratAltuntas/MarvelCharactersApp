@@ -12,8 +12,5 @@ final class CharacterPageViewController: BaseViewController {
     var character: CharacterModelResult?
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(character?.name)
     }
-  
-
 }

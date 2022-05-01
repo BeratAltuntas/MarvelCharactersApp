@@ -5,7 +5,6 @@
 //  Created by BERAT ALTUNTAŞ on 26.04.2022.
 //
 import UIKit
-import Kingfisher
 
 final class HomeViewController: BaseViewController {
     
@@ -22,6 +21,10 @@ final class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.load()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        viewModel.prepareToOpenPage(segue: segue, index: indexOfSelectedCollectionCell)
     }
 }
 
@@ -57,6 +60,7 @@ extension HomeViewController: UICollectionViewDelegate {
         }
     }
 }
+
 // MARK: - HomeViewModelDelegate
 extension HomeViewController: HomeViewModelDelegate {
     func setupCollectionViews() {
@@ -73,9 +77,5 @@ extension HomeViewController: HomeViewModelDelegate {
     
     func setupNavigationBar() {
         setupNavBar()
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        viewModel.prepareToOpenPage(segue: segue, index: indexOfSelectedCollectionCell)
     }
 }

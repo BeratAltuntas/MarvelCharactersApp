@@ -7,11 +7,26 @@
 
 import UIKit
 
-class ComicPageViewController: BaseViewController {
+final class ComicPageViewController: BaseViewController {
 
+    @IBOutlet weak var imageViewBanner: UIImageView!
+    @IBOutlet weak var labelTitle: UILabel!
+    @IBOutlet weak var labelSubtitle: UILabel!
+    @IBOutlet weak var labelDescription: UILabel!
+    @IBOutlet weak var tableViewCharacter: UITableView!
+    @IBOutlet weak var tableViewWriter: UITableView!
+    
+    var viewModel: ComicPageViewModelProtocol! {
+        didSet {
+            viewModel.delegate = self
+        }
+    }
     var comic: ComicModelResult?
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(comic?.title)
     }
+}
+
+extension ComicPageViewController: ComicPageViewModelDelegate {
+    
 }

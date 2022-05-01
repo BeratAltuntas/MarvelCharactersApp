@@ -7,8 +7,6 @@
 
 import Foundation
 import UIKit
-import SwiftUI
-import simd
 
 protocol HomeViewModelProtocol {
     var delegate: HomeViewModelDelegate? { get set }
