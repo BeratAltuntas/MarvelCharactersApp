@@ -71,7 +71,6 @@
         <!--Character Page View Controller-->
         <scene sceneID="Wrp-jw-OaJ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nlf-Tm-KYY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="ContentPage" id="Wq8-or-nZg" customClass="CharacterPageViewController" customModule="Marvel_Characters" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hf4-8B-o6h">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -81,13 +80,14 @@
                     </view>
                     <navigationItem key="navigationItem" id="yeu-Ez-ec2"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nlf-Tm-KYY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1978" y="1513"/>
         </scene>
-        <!--View Controller-->
+        <!--Comic Page View Controller-->
         <scene sceneID="yQw-7m-Yrz">
             <objects>
-                <viewController id="qMN-1X-JpL" sceneMemberID="viewController">
+                <viewController id="qMN-1X-JpL" customClass="ComicPageViewController" customModule="Marvel_Characters" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Eqt-Bb-ly7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -515,8 +515,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="toU-Q0-3t1"/>
-        <segue reference="x2M-Hu-jiJ"/>
+        <segue reference="dy5-gc-3eI"/>
+        <segue reference="uQC-9R-U3W"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="heart" catalog="system" width="128" height="109"/>

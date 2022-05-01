@@ -7,15 +7,17 @@
 
 import Foundation
 import UIKit
+import SwiftUI
+import simd
 
 protocol HomeViewModelProtocol {
     var delegate: HomeViewModelDelegate? { get set }
-    var comics: [Result]? { get }
+    var comics: [ComicModelResult]? { get }
     var characters: [CharacterModelResult]? { get }
     
     func load()
     func loadCellContent(collectionView: UICollectionView, Id: String,tag: [Int], index: IndexPath)-> UICollectionViewCell
-    func prepareToOpenPage(segue: UIStoryboardSegue)
+    func prepareToOpenPage(segue: UIStoryboardSegue, index: Int)
 }
 
 protocol HomeViewModelDelegate: AnyObject {
@@ -28,12 +30,12 @@ final class HomeViewModel {
     weak var delegate: HomeViewModelDelegate?
         
     private var comic: ComicModel?
-    private var comicList: [Result]?
+    private var comicList: [ComicModelResult]?
     
     private var character: CharacterModel?
     private var characterList: [CharacterModelResult]?
     
-    func fetchComics(completionHandler: @escaping ([Result]) -> Void) {
+    func fetchComics(completionHandler: @escaping ([ComicModelResult]) -> Void) {
         let urlStr = Config.comicMainUrl+String(Config.keysWithHash)
         let url = URL(string: urlStr)
         
@@ -108,7 +110,7 @@ extension HomeViewModel: HomeViewModelProtocol {
         get { characterList }
     }
 
-    var comics: [Result]? {
+    var comics: [ComicModelResult]? {
         get { comicList }
     }
     
@@ -148,10 +150,24 @@ extension HomeViewModel: HomeViewModelProtocol {
         return cell
     }
     
-    func prepareToOpenPage(segue segue: UIStoryboardSegue) {
-        if segue.identifier == "HomeToChar"{
+    func prepareToOpenPage(segue: UIStoryboardSegue,index: Int) {
+        if segue.identifier == Constant.homeToCharPageSegueID {
             let targetVC = segue.destination as! CharacterPageViewController
-            
+            targetVC.character = characterList?[index]
+        } else if segue.identifier == Constant.homeToComicPageSegueID {
+            let targetVC = segue.destination as! ComicPageViewController
+            targetVC.comic = comicList?[index]
         }
+    }
+}
+
+extension HomeViewModel {
+    public enum Constant {
+        static let cellIdentifier = "ContentPage"
+        static let forYouCollectionViewTag = 0
+        static let trendsCollectionViewTag = 1
+        
+        static let homeToCharPageSegueID = "HomeToChar"
+        static let homeToComicPageSegueID = "HomeToComic"
     }
 }

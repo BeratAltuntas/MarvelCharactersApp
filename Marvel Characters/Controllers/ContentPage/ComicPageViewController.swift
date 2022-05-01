@@ -6,12 +6,12 @@
 //
 
 import UIKit
-import WebKit
 
-class ComicPageViewController: UIViewController {
+class ComicPageViewController: BaseViewController {
 
+    var comic: ComicModelResult?
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(comic?.title)
     }
 }

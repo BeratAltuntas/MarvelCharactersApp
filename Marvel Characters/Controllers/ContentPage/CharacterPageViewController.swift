@@ -6,14 +6,13 @@
 //
 
 import UIKit
-import WebKit
 
 final class CharacterPageViewController: BaseViewController {
 
-    var character: CharacterModel?
+    var character: CharacterModelResult?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(character?.name)
     }
   
 

@@ -7,13 +7,12 @@
 import UIKit
 import Kingfisher
 
-
-
 final class HomeViewController: BaseViewController {
     
     @IBOutlet private weak var forYouCollectionView: UICollectionView!
     @IBOutlet private weak var trendsCollectionView: UICollectionView!
     
+    lazy var indexOfSelectedCollectionCell: Int = 0
     var viewModel: HomeViewModelProtocol! {
         didSet {
             viewModel.delegate = self
@@ -50,11 +49,12 @@ extension HomeViewController: UICollectionViewDelegate {
 //            navigationController?.pushViewController(viewController, animated: true)
 //        }
         if collectionView.tag == Constant.forYouCollectionViewTag {
+            indexOfSelectedCollectionCell = indexPath.row
             performSegue(withIdentifier: Constant.homeToComicPageSegueID, sender: self)
         } else if collectionView.tag == Constant.trendsCollectionViewTag {
+            indexOfSelectedCollectionCell = indexPath.row
             performSegue(withIdentifier: Constant.homeToCharPageSegueID, sender: self)
         }
-        
     }
 }
 // MARK: - HomeViewModelDelegate
@@ -76,6 +76,6 @@ extension HomeViewController: HomeViewModelDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        viewModel.prepareToOpenPage(segue: segue)
+        viewModel.prepareToOpenPage(segue: segue, index: indexOfSelectedCollectionCell)
     }
 }

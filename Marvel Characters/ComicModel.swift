@@ -5,17 +5,17 @@ struct ComicModel: Codable {
     let code: Int?
     let status, copyright, attributionText, attributionHTML: String?
     let etag: String?
-    let data: DataClass?
+    let data: ComicModelDataClass?
 }
 
 // MARK: - DataClass
-struct DataClass: Codable {
+struct ComicModelDataClass: Codable {
     let offset, limit, total, count: Int?
-    let results: [Result]?
+    let results: [ComicModelResult]?
 }
 
 // MARK: - Result
-struct Result: Codable {
+struct ComicModelResult: Codable {
     let id, digitalID: Int?
     let title: String?
     let issueNumber: Int?
@@ -25,60 +25,60 @@ struct Result: Codable {
     let issn, format: String?
     let pageCount: Int?
     let resourceURI: String?
-    let urls: [URLElement]?
-    let series: Series?
-    let variants: [Series]?
-    let dates: [DateElement]?
-    let prices: [Price]?
-    let thumbnail: Thumbnail?
-    let images: [Images]?
-    let creators, characters, stories, events: Characters?
+    let urls: [ComicModelURLElement]?
+    let series: ComicModelSeries?
+    let variants: [ComicModelSeries]?
+    let dates: [ComicModelDateElement]?
+    let prices: [ComicModelPrice]?
+    let thumbnail: ComicModelThumbnail?
+    let images: [ComicModelImages]?
+    let creators, characters, stories, events: ComicModelCharacters?
 }
 
 // MARK: - Characters
-struct Characters: Codable {
+struct ComicModelCharacters: Codable {
     let available: Int?
     let collectionURI: String?
-    let items: [Item]?
+    let items: [ComicModelItem]?
     let returned: Int?
 }
 
 // MARK: - Item
-struct Item: Codable {
+struct ComicModelItem: Codable {
     let resourceURI: String?
     let name, role, type: String?
 }
 
 // MARK: - DateElement
-struct DateElement: Codable {
+struct ComicModelDateElement: Codable {
     let type: String?
     let date: String?
 }
 
 // MARK: - Price
-struct Price: Codable {
+struct ComicModelPrice: Codable {
     let type: String?
     let price: Double?
 }
 
 // MARK: - Series
-struct Series: Codable {
+struct ComicModelSeries: Codable {
     let resourceURI: String?
     let name: String?
 }
 
 // MARK: - Thumbnail
-struct Thumbnail: Codable {
+struct ComicModelThumbnail: Codable {
     let path: String?
     let thumbnailExtension: String?
 }
 
-struct Images: Codable {
+struct ComicModelImages: Codable {
     let path: String?
     let imagesExtension: String?
 }
 // MARK: - URLElement
-struct URLElement: Codable {
+struct ComicModelURLElement: Codable {
     let type: String?
     let url: String?
 }

@@ -158,13 +158,13 @@
 		F40AC2C32817710D00C9C346 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F47598F62819BA9B00FCF94E /* BaseViewController.swift */,
 				F456CBE72818539B002B30EB /* ContentPage */,
 				F40AC2C42817717500C9C346 /* Home */,
 				F40AC2C62817719200C9C346 /* Search */,
 				F40AC2C52817718000C9C346 /* Favorites */,
 				F40AC2C7281771BF00C9C346 /* User */,
 				F40AC2DA2817735F00C9C346 /* TabBarViewController.swift */,
+				F47598F62819BA9B00FCF94E /* BaseViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
