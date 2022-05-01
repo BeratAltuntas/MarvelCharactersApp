@@ -1,9 +1,9 @@
-//
-//  HomeViewController.swift
-//  Marvel Characters
-//
-//  Created by BERAT ALTUNTAŞ on 26.04.2022.
-//
+    //
+    //  HomeViewController.swift
+    //  Marvel Characters
+    //
+    //  Created by BERAT ALTUNTAŞ on 26.04.2022.
+    //
 import UIKit
 
 final class HomeViewController: BaseViewController {
@@ -48,9 +48,9 @@ extension HomeViewController: UICollectionViewDataSource {
     // MARK: - UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        if let viewController = storyboard?.instantiateViewController(withIdentifier: Constant.cellIdentifier) as? CharacterPageViewController{
-//            navigationController?.pushViewController(viewController, animated: true)
-//        }
+            //        if let viewController = storyboard?.instantiateViewController(withIdentifier: Constant.cellIdentifier) as? CharacterPageViewController{
+            //            navigationController?.pushViewController(viewController, animated: true)
+            //        }
         if collectionView.tag == Constant.forYouCollectionViewTag {
             indexOfSelectedCollectionCell = indexPath.row
             performSegue(withIdentifier: Constant.homeToComicPageSegueID, sender: self)
@@ -61,7 +61,7 @@ extension HomeViewController: UICollectionViewDelegate {
     }
 }
 
-// MARK: - HomeViewModelDelegate
+    // MARK: - HomeViewModelDelegate
 extension HomeViewController: HomeViewModelDelegate {
     func setupCollectionViews() {
         forYouCollectionView.tag = Constant.forYouCollectionViewTag
