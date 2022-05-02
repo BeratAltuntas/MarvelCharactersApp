@@ -65,8 +65,6 @@ extension ComicPageViewController: ComicPageViewModelDelegate {
         if let chars = comic?.characters?.items, let writers = comic?.creators?.items {
             tableViewCharList = chars
             tableViewWriterList = writers
-            print(chars)
-            print(writers)
         }
     }
     
@@ -82,7 +80,6 @@ extension ComicPageViewController: UITableViewDataSource {
         if tableView.tag == ComicPageConstant.charsTableViewTag {
             return tableViewCharList?.count ?? 0
         } else if tableView.tag == ComicPageConstant.writersTableViewTag {
-            print(tableViewWriterList?.count)
             return tableViewWriterList?.count ?? 0
         }
         return 0
