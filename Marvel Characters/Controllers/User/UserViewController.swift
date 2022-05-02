@@ -5,6 +5,7 @@
     //  Created by BERAT ALTUNTAŞ on 26.04.2022.
     //
 import FirebaseAuth
+import GoogleSignIn
 import UIKit
 
 class UserViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
@@ -19,7 +20,7 @@ class UserViewController: BaseViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         if Auth.auth().currentUser == nil{
-            
+            signIn()
         } else {
             setupNavBar()
             nameLabel.text = dummyPersonList[0]
@@ -44,5 +45,7 @@ extension UserViewController{
         cell.imageView?.image = iconList[indexPath.row]
         
         return cell
+    }
+    func signIn() {
     }
 }
