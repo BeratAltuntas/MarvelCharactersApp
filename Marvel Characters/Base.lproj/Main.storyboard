@@ -19,17 +19,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" placeholder="Search...(Ironman,Captain America...)" translatesAutoresizingMaskIntoConstraints="NO" id="yxu-z4-vZ0">
-                                <rect key="frame" x="0.0" y="88" width="414" height="51"/>
+                                <rect key="frame" x="0.0" y="88" width="324" height="55"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="5cd-Xo-fGL" id="sjF-D0-MTC"/>
                                 </connections>
                             </searchBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1KL-eo-o02">
-                                <rect key="frame" x="0.0" y="139" width="414" height="674"/>
+                                <rect key="frame" x="0.0" y="143" width="414" height="670"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vgL-43-ZOx">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="674"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="670"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <connections>
                                             <outlet property="dataSource" destination="5cd-Xo-fGL" id="zNC-O4-n5X"/>
@@ -45,17 +45,34 @@
                                     <constraint firstAttribute="bottom" secondItem="vgL-43-ZOx" secondAttribute="bottom" id="VQ1-Sc-C9n"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8J0-bq-uvb">
+                                <rect key="frame" x="324" y="88" width="90" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="b2V-wj-xR4"/>
+                                    <constraint firstAttribute="width" constant="90" id="uBm-lE-UPm"/>
+                                </constraints>
+                                <buttonConfiguration key="configuration" style="plain" title="Çizgi Roman">
+                                    <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
+                                    <color key="baseForegroundColor" name="TabBarColorActive"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="buttonChangeType_TUI:" destination="5cd-Xo-fGL" eventType="touchUpInside" id="9Dp-WL-ZN9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="z4b-NN-Av6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="z4b-NN-Av6" firstAttribute="trailing" secondItem="8J0-bq-uvb" secondAttribute="trailing" id="29Y-5h-R2L"/>
+                            <constraint firstItem="8J0-bq-uvb" firstAttribute="leading" secondItem="yxu-z4-vZ0" secondAttribute="trailing" id="79n-nO-xhO"/>
+                            <constraint firstItem="8J0-bq-uvb" firstAttribute="top" secondItem="yxu-z4-vZ0" secondAttribute="top" id="KEe-VA-ven"/>
                             <constraint firstItem="1KL-eo-o02" firstAttribute="leading" secondItem="z4b-NN-Av6" secondAttribute="leading" id="Lo2-3c-w9N"/>
                             <constraint firstItem="1KL-eo-o02" firstAttribute="top" secondItem="yxu-z4-vZ0" secondAttribute="bottom" id="TXj-jB-4xV"/>
                             <constraint firstItem="z4b-NN-Av6" firstAttribute="trailing" secondItem="1KL-eo-o02" secondAttribute="trailing" id="UTv-RW-qEM"/>
-                            <constraint firstItem="z4b-NN-Av6" firstAttribute="trailing" secondItem="yxu-z4-vZ0" secondAttribute="trailing" id="dHv-b0-ZGr"/>
                             <constraint firstItem="yxu-z4-vZ0" firstAttribute="leading" secondItem="z4b-NN-Av6" secondAttribute="leading" id="gnf-i9-KfQ"/>
                             <constraint firstItem="z4b-NN-Av6" firstAttribute="top" secondItem="yxu-z4-vZ0" secondAttribute="top" id="jgH-4N-BnR"/>
                             <constraint firstItem="z4b-NN-Av6" firstAttribute="bottom" secondItem="1KL-eo-o02" secondAttribute="bottom" id="rkc-QO-kfg"/>
+                            <constraint firstItem="8J0-bq-uvb" firstAttribute="bottom" secondItem="yxu-z4-vZ0" secondAttribute="bottom" id="ylB-fh-Rwl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1co-rP-VCh"/>
@@ -715,8 +732,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="toU-Q0-3t1"/>
-        <segue reference="x2M-Hu-jiJ"/>
+        <segue reference="w1f-Qh-Lzj"/>
+        <segue reference="jVx-ze-HrX"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Marvel_Logo" width="400" height="160.5"/>

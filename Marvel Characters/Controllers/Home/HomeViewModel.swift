@@ -23,10 +23,11 @@ protocol HomeViewModelDelegate: AnyObject {
     func reloadCollectionViews()
     func setupNavigationBar()
 }
+
     // MARK: - ViewModel
 final class HomeViewModel {
     weak var delegate: HomeViewModelDelegate?
-        
+    
     private var comic: ComicModel?
     private var comicList: [ComicModelResult]?
     
@@ -102,12 +103,13 @@ final class HomeViewModel {
         }
     }
 }
-// MARK: - ModelProtocol
+
+    // MARK: - ModelProtocol
 extension HomeViewModel: HomeViewModelProtocol {
     var characters: [CharacterModelResult]? {
         get { characterList }
     }
-
+    
     var comics: [ComicModelResult]? {
         get { comicList }
     }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchTableViewCell: UITableViewCell {
+final class SearchTableViewCell: UITableViewCell {
 
     @IBOutlet var characterImageView: UIImageView!
     @IBOutlet weak var characterName: UILabel!
@@ -15,13 +15,12 @@ class SearchTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
+    func setupCell(imageName: String?, characterName: String?, characterDesc: String?) {
+        
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-    
 }

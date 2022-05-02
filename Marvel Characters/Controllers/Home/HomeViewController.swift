@@ -38,6 +38,25 @@ final class HomeViewController: BaseViewController {
     }
 }
 
+    // MARK: - HomeViewModelDelegate
+extension HomeViewController: HomeViewModelDelegate {
+    func setupCollectionViews() {
+        forYouCollectionView.tag = HomeConstant.forYouCollectionViewTag
+        forYouCollectionView.register(cell: ComicsCollectionViewCell.self)
+        trendsCollectionView.tag = HomeConstant.trendsCollectionViewTag
+        trendsCollectionView.register(cell: ComicsCollectionViewCell.self)
+    }
+    
+    func reloadCollectionViews(){
+        forYouCollectionView.reloadData()
+        trendsCollectionView.reloadData()
+    }
+    
+    func setupNavigationBar() {
+        setupNavBar()
+    }
+}
+
     // MARK: - UICollectionViewDataSource
 extension HomeViewController: UICollectionViewDataSource {
     
@@ -58,9 +77,6 @@ extension HomeViewController: UICollectionViewDataSource {
     // MARK: - UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            //        if let viewController = storyboard?.instantiateViewController(withIdentifier: Constant.cellIdentifier) as? CharacterPageViewController{
-            //            navigationController?.pushViewController(viewController, animated: true)
-            //        }
         if collectionView.tag == HomeConstant.forYouCollectionViewTag {
             indexOfSelectedCollectionCell = indexPath.row
             performSegue(withIdentifier: HomeConstant.homeToComicPageSegueID, sender: self)
@@ -68,24 +84,5 @@ extension HomeViewController: UICollectionViewDelegate {
             indexOfSelectedCollectionCell = indexPath.row
             performSegue(withIdentifier: HomeConstant.homeToCharPageSegueID, sender: self)
         }
-    }
-}
-
-    // MARK: - HomeViewModelDelegate
-extension HomeViewController: HomeViewModelDelegate {
-    func setupCollectionViews() {
-        forYouCollectionView.tag = HomeConstant.forYouCollectionViewTag
-        forYouCollectionView.register(cell: ComicsCollectionViewCell.self)
-        trendsCollectionView.tag = HomeConstant.trendsCollectionViewTag
-        trendsCollectionView.register(cell: ComicsCollectionViewCell.self)
-    }
-    
-    func reloadCollectionViews(){
-        forYouCollectionView.reloadData()
-        trendsCollectionView.reloadData()
-    }
-    
-    func setupNavigationBar() {
-        setupNavBar()
     }
 }
