@@ -5,6 +5,15 @@
     //  Created by BERAT ALTUNTAŞ on 26.04.2022.
     //
 import UIKit
+enum HomeConstant {
+    static let cellIdentifier = "ContentPage"
+    static let forYouCollectionViewTag = 0
+    static let trendsCollectionViewTag = 1
+    
+    static let homeToCharPageSegueID = "HomeToChar"
+    static let homeToComicPageSegueID = "HomeToComic"
+}
+
 
 final class HomeViewController: BaseViewController {
     
@@ -41,7 +50,7 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return viewModel.loadCellContent(collectionView: collectionView,Id: ComicsCollectionViewCell.identifier,tag: [Constant.forYouCollectionViewTag,Constant.trendsCollectionViewTag], index: indexPath)
+        return viewModel.loadCellContent(collectionView: collectionView,Id: ComicsCollectionViewCell.identifier,tag: [HomeConstant.forYouCollectionViewTag,HomeConstant.trendsCollectionViewTag], index: indexPath)
     }
 }
 
@@ -51,12 +60,12 @@ extension HomeViewController: UICollectionViewDelegate {
             //        if let viewController = storyboard?.instantiateViewController(withIdentifier: Constant.cellIdentifier) as? CharacterPageViewController{
             //            navigationController?.pushViewController(viewController, animated: true)
             //        }
-        if collectionView.tag == Constant.forYouCollectionViewTag {
+        if collectionView.tag == HomeConstant.forYouCollectionViewTag {
             indexOfSelectedCollectionCell = indexPath.row
-            performSegue(withIdentifier: Constant.homeToComicPageSegueID, sender: self)
-        } else if collectionView.tag == Constant.trendsCollectionViewTag {
+            performSegue(withIdentifier: HomeConstant.homeToComicPageSegueID, sender: self)
+        } else if collectionView.tag == HomeConstant.trendsCollectionViewTag {
             indexOfSelectedCollectionCell = indexPath.row
-            performSegue(withIdentifier: Constant.homeToCharPageSegueID, sender: self)
+            performSegue(withIdentifier: HomeConstant.homeToCharPageSegueID, sender: self)
         }
     }
 }
@@ -64,9 +73,9 @@ extension HomeViewController: UICollectionViewDelegate {
     // MARK: - HomeViewModelDelegate
 extension HomeViewController: HomeViewModelDelegate {
     func setupCollectionViews() {
-        forYouCollectionView.tag = Constant.forYouCollectionViewTag
+        forYouCollectionView.tag = HomeConstant.forYouCollectionViewTag
         forYouCollectionView.register(cell: ComicsCollectionViewCell.self)
-        trendsCollectionView.tag = Constant.trendsCollectionViewTag
+        trendsCollectionView.tag = HomeConstant.trendsCollectionViewTag
         trendsCollectionView.register(cell: ComicsCollectionViewCell.self)
     }
     

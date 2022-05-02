@@ -7,20 +7,19 @@
 
 import Foundation
 import UIKit
+
 // MARK: - ComicPageViewModelProtocol
 protocol ComicPageViewModelProtocol {
     var delegate: ComicPageViewModelDelegate? { get set }
     
-    func loadCharAttiributes(comic: ComicModelResult?)
+    func loadComicAttiributes(comic: ComicModelResult?)
 }
+
 // MARK: - ComicPageViewModelDelegate
 protocol ComicPageViewModelDelegate: AnyObject {
-    var imageViewBannerModel: UIImageView? { get set }
-    var labelTitleModel: UILabel? { get set }
-    var labelSubtitleModel: UILabel? { get set }
-    var labelDescriptionModel: UILabel? { get set }
-    var tableViewCharactersModel: UITableView? { get set }
-    var tableViewWritersModel: UITableView? { get set }
+    func setupTableViews()
+    func setupUI()
+    
 }
 
 // MARK: - ComicPageViewModel
@@ -28,11 +27,12 @@ final class ComicPageViewModel {
     weak var delegate: ComicPageViewModelDelegate?
 
 }
+
 // MARK: - Extension ComicPageViewModel
 extension ComicPageViewModel: ComicPageViewModelProtocol {
-    func loadCharAttiributes(comic: ComicModelResult?) {
-        delegate?.labelTitleModel?.text = comic?.title
-        delegate?.labelSubtitleModel?.text = comic?.resultDescription
+    func loadComicAttiributes(comic: ComicModelResult?) {
+        delegate?.setupTableViews()
+        delegate?.setupUI()
     }
 }
 

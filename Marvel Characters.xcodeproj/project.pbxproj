@@ -232,6 +232,24 @@
 			name = SupportingFiles;
 			sourceTree = "<group>";
 		};
+		F44E04A3281FE194005AB85E /* CharacterPage */ = {
+			isa = PBXGroup;
+			children = (
+				F456CBE8281853C2002B30EB /* CharacterPageViewController.swift */,
+				F46DF71D281EA9A7002C786E /* CharacterPageModel.swift */,
+			);
+			path = CharacterPage;
+			sourceTree = "<group>";
+		};
+		F44E04A4281FE1A1005AB85E /* ComicPage */ = {
+			isa = PBXGroup;
+			children = (
+				F43FB82C281D7A32000D50ED /* ComicPageViewController.swift */,
+				F46DF71F281EA9B1002C786E /* ComicPageModel.swift */,
+			);
+			path = ComicPage;
+			sourceTree = "<group>";
+		};
 		F456CBDB2818216F002B30EB /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -254,10 +272,8 @@
 		F456CBE72818539B002B30EB /* ContentPage */ = {
 			isa = PBXGroup;
 			children = (
-				F456CBE8281853C2002B30EB /* CharacterPageViewController.swift */,
-				F46DF71D281EA9A7002C786E /* CharacterPageModel.swift */,
-				F43FB82C281D7A32000D50ED /* ComicPageViewController.swift */,
-				F46DF71F281EA9B1002C786E /* ComicPageModel.swift */,
+				F44E04A4281FE1A1005AB85E /* ComicPage */,
+				F44E04A3281FE194005AB85E /* CharacterPage */,
 			);
 			path = ContentPage;
 			sourceTree = "<group>";

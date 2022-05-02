@@ -23,7 +23,7 @@ protocol HomeViewModelDelegate: AnyObject {
     func reloadCollectionViews()
     func setupNavigationBar()
 }
-
+    // MARK: - ViewModel
 final class HomeViewModel {
     weak var delegate: HomeViewModelDelegate?
         
@@ -102,7 +102,7 @@ final class HomeViewModel {
         }
     }
 }
-
+// MARK: - ModelProtocol
 extension HomeViewModel: HomeViewModelProtocol {
     var characters: [CharacterModelResult]? {
         get { characterList }
@@ -149,23 +149,13 @@ extension HomeViewModel: HomeViewModelProtocol {
     }
     
     func prepareToOpenPage(segue: UIStoryboardSegue,index: Int) {
-        if segue.identifier == Constant.homeToCharPageSegueID {
+        if segue.identifier == HomeConstant.homeToCharPageSegueID {
             let targetVC = segue.destination as! CharacterPageViewController
             targetVC.character = characterList?[index]
-        } else if segue.identifier == Constant.homeToComicPageSegueID {
+        } else if segue.identifier == HomeConstant.homeToComicPageSegueID {
             let targetVC = segue.destination as! ComicPageViewController
             targetVC.comic = comicList?[index]
         }
     }
 }
 
-extension HomeViewModel {
-    public enum Constant {
-        static let cellIdentifier = "ContentPage"
-        static let forYouCollectionViewTag = 0
-        static let trendsCollectionViewTag = 1
-        
-        static let homeToCharPageSegueID = "HomeToChar"
-        static let homeToComicPageSegueID = "HomeToComic"
-    }
-}

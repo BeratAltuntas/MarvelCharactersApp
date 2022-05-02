@@ -24,6 +24,7 @@ struct ComicModelResult: Codable {
     let isbn, upc, diamondCode, ean: String?
     let issn, format: String?
     let pageCount: Int?
+    let textObjects: [ComicModelTextObject]
     let resourceURI: String?
     let urls: [ComicModelURLElement]?
     let series: ComicModelSeries?
@@ -33,6 +34,13 @@ struct ComicModelResult: Codable {
     let thumbnail: ComicModelThumbnail?
     let images: [ComicModelImages]?
     let creators, characters, stories, events: ComicModelCharacters?
+    
+}
+// MARK: - TextObject
+struct ComicModelTextObject: Codable {
+    let type: String?
+    let language: String?
+    let text: String?
 }
 
 // MARK: - Characters
