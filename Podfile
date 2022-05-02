@@ -7,5 +7,6 @@ target 'Marvel Characters' do
 
   # Pods for Marvel Characters
   pod 'Kingfisher', '~> 7.0'
+  pod 'Firebase/Auth'
   
 end

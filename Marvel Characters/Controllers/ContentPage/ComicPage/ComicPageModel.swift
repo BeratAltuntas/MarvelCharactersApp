@@ -19,7 +19,7 @@ protocol ComicPageViewModelProtocol {
 protocol ComicPageViewModelDelegate: AnyObject {
     func setupTableViews()
     func setupUI()
-    
+    func reloadTableViews()
 }
 
 // MARK: - ComicPageViewModel

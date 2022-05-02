@@ -33,6 +33,7 @@ final class HomeViewController: BaseViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         viewModel.prepareToOpenPage(segue: segue, index: indexOfSelectedCollectionCell)
     }
 }

@@ -23,10 +23,14 @@ final class TabBarViewController: UITabBarController {
             } else {
                 childViewController = viewController
             }
+            
             switch childViewController {
             case let viewController as HomeViewController:
                 let viewModel = HomeViewModel()
                 viewController.viewModel = viewModel
+//            case let viewController as ComicPageViewController:
+//                let viewModel = ComicPageViewModel()
+//                viewController.viewModel = viewModel
             default:
                 break
             }

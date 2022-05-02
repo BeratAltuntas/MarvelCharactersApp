@@ -1,14 +1,14 @@
-//
-//  UserViewController.swift
-//  Marvel Characters
-//
-//  Created by BERAT ALTUNTAŞ on 26.04.2022.
-//
-
+    //
+    //  UserViewController.swift
+    //  Marvel Characters
+    //
+    //  Created by BERAT ALTUNTAŞ on 26.04.2022.
+    //
+import FirebaseAuth
 import UIKit
 
 class UserViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
     @IBOutlet var tableView:UITableView!
     @IBOutlet var largeProfileImageView: UIImageView!
     @IBOutlet weak var miniProfileImageView:UIImageView!
@@ -18,14 +18,18 @@ class UserViewController: BaseViewController, UITableViewDataSource, UITableView
     var dummyPersonList = ["Berat Altuntaş", "21", "Erkek", "Kayseri / Türkiye"]
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavBar()
-        nameLabel.text = dummyPersonList[0]
-        iconList.append(UIImage(named: "calender-icon-black")!)
-        iconList.append(UIImage(named: "gender-icon-red")!)
-        iconList.append(UIImage(named: "location-icon-black")!)
-        
-        miniProfileImageView.layer.cornerRadius = CGFloat((miniProfileImageView.frame.width)/2)
-        // Do any additional setup after loading the view.
+        if Auth.auth().currentUser == nil{
+            
+        } else {
+            setupNavBar()
+            nameLabel.text = dummyPersonList[0]
+            iconList.append(UIImage(named: "calender-icon-black")!)
+            iconList.append(UIImage(named: "gender-icon-red")!)
+            iconList.append(UIImage(named: "location-icon-black")!)
+            
+            miniProfileImageView.layer.cornerRadius = CGFloat((miniProfileImageView.frame.width)/2)
+            
+        }
     }
 }
 

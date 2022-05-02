@@ -149,11 +149,13 @@ extension HomeViewModel: HomeViewModelProtocol {
     }
     
     func prepareToOpenPage(segue: UIStoryboardSegue,index: Int) {
+        
         if segue.identifier == HomeConstant.homeToCharPageSegueID {
             let targetVC = segue.destination as! CharacterPageViewController
             targetVC.character = characterList?[index]
         } else if segue.identifier == HomeConstant.homeToComicPageSegueID {
             let targetVC = segue.destination as! ComicPageViewController
+            targetVC.viewModel = ComicPageViewModel()
             targetVC.comic = comicList?[index]
         }
     }

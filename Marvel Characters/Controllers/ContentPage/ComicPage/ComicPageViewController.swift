@@ -16,25 +16,26 @@ enum ComicPageConstant {
 
 final class ComicPageViewController: BaseViewController {
     
-    @IBOutlet weak var imageViewBanner: UIImageView?
-    @IBOutlet weak var labelTitle: UILabel?
-    @IBOutlet weak var labelSubtitle: UILabel?
-    @IBOutlet weak var labelDescription: UILabel?
-    @IBOutlet weak var tableViewCharacter: UITableView?
-    @IBOutlet weak var tableViewWriter: UITableView?
+    @IBOutlet weak var imageViewBanner: UIImageView!
+    @IBOutlet weak var labelTitle: UILabel!
+    @IBOutlet weak var labelSubtitle: UILabel!
+    @IBOutlet weak var labelDescription: UILabel!
+    @IBOutlet weak var tableViewCharacter: UITableView!
+    @IBOutlet weak var tableViewWriter: UITableView!
     
     var viewModel: ComicPageViewModelProtocol! {
         didSet {
             viewModel.delegate = self
         }
     }
-    var tableViewCharList: [ComicModelItem]!
-    var tableViewWriterList: [ComicModelItem]!
+    var tableViewCharList: [ComicModelItem]?
+    var tableViewWriterList: [ComicModelItem]?
     var comic: ComicModelResult?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.loadComicAttiributes(comic: comic)
+        reloadTableViews()
     }
 }
 
@@ -57,16 +58,18 @@ extension ComicPageViewController: ComicPageViewModelDelegate {
         if let resDescription = comic?.resultDescription {
             labelDescription?.text = resDescription
         } else {
-            if (comic?.textObjects[0].text) != nil {
+            if comic?.textObjects.count ?? 0 > 0 {
                 labelDescription?.text = comic?.textObjects[0].text
             }
         }
         if let chars = comic?.characters?.items, let writers = comic?.creators?.items {
-            tableViewCharList.append(contentsOf: chars)
-            tableViewWriterList.append(contentsOf: writers)
+            tableViewCharList = chars
+            tableViewWriterList = writers
+            print(chars)
+            print(writers)
         }
-        reloadTableViews()
     }
+    
     func reloadTableViews(){
         tableViewCharacter?.reloadData()
         tableViewWriter?.reloadData()
@@ -77,23 +80,25 @@ extension ComicPageViewController: ComicPageViewModelDelegate {
 extension ComicPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView.tag == ComicPageConstant.charsTableViewTag {
-            return tableViewCharList.count
+            return tableViewCharList?.count ?? 0
         } else if tableView.tag == ComicPageConstant.writersTableViewTag {
-            return tableViewWriterList.count
+            print(tableViewWriterList?.count)
+            return tableViewWriterList?.count ?? 0
         }
         return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = UITableViewCell()
         if tableView.tag == ComicPageConstant.charsTableViewTag {
-            cell = tableView.dequeueReusableCell(withIdentifier: ComicPageConstant.tableViewCharIdentifier)!
+            let cell = tableView.dequeueReusableCell(withIdentifier: ComicPageConstant.tableViewCharIdentifier)!
             cell.textLabel?.text = (comic?.characters?.items?[indexPath.row].name ?? "") + (comic?.characters?.items?[indexPath.row].role ?? "")
+            return cell
         } else if tableView.tag == ComicPageConstant.writersTableViewTag {
             let cell = tableView.dequeueReusableCell(withIdentifier: ComicPageConstant.tableViewWriterIdentifier)!
-            cell.textLabel?.text = (comic?.characters?.items?[indexPath.row].name ?? "") + (comic?.creators?.items?[indexPath.row].role ?? "")
+            cell.textLabel?.text = (comic?.creators?.items?[indexPath.row].name ?? "") + (comic?.creators?.items?[indexPath.row].role ?? "")
+            return cell
         }
-        return cell
+        return UITableViewCell()
     }
 }
 
