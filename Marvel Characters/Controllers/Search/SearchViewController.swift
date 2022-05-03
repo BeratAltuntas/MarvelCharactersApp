@@ -14,6 +14,13 @@ enum SearchViewConstant {
     static let searchToChar = "SearchToChar"
 }
 
+enum SearchingCatagories {
+    static let cizgiRoman = "Çizgi Roman"
+    static let karakter = "Karakter"
+    static let yazar = "Yazar"
+}
+
+// MARK: - SearchViewController
 final class SearchViewController: BaseViewController {
     weak var viewModel: SearchViewModel! {
         didSet {
@@ -22,6 +29,8 @@ final class SearchViewController: BaseViewController {
     }
     var comic: [ComicModelResult]?
     var character: [CharacterModelResult]?
+    var counterButtonTextChanger = 0
+    
     @IBOutlet var tableView:UITableView!
     
     override func viewDidLoad() {
@@ -29,11 +38,7 @@ final class SearchViewController: BaseViewController {
         setupNavBar()
     }
     @IBAction func buttonChangeType_TUI(_ sender: UIButton) {
-        if sender.titleLabel?.text == "Çizgi Roman" {
-            sender.setTitle("Karakter", for: .normal)
-        } else if sender.titleLabel?.text == "Karakter" {
-            sender.setTitle("Çizgi Roman", for: .normal)
-        }
+        changeButtonTitle(sender)
     }
 }
 
@@ -49,6 +54,28 @@ extension SearchViewController: SearchViewModelDelegate {
     
     func setupNavigationBar() {
         setupNavBar()
+    }
+    
+    func changeButtonTitle(_ sender: UIButton) {
+        switch counterButtonTextChanger {
+        case 0:
+            sender.setTitle(SearchingCatagories.karakter, for: .normal)
+            break
+        case 1:
+            sender.setTitle(SearchingCatagories.yazar, for: .normal)
+            break
+            
+        case 2:
+            sender.setTitle(SearchingCatagories.cizgiRoman, for: .normal)
+            break
+        default:
+            break
+        }
+        if counterButtonTextChanger < 2 {
+            counterButtonTextChanger += 1
+        } else {
+            counterButtonTextChanger = 0
+        }
     }
 }
 

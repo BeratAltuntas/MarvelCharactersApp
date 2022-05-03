@@ -53,13 +53,13 @@ extension ComicPageViewController: ComicPageViewModelDelegate {
         } else {
             imageViewBanner?.image = UIImage(named: "Marvel_Logo")
         }
-        labelTitle?.text = "\(comic?.title ?? "İsimsiz")  # \(comic?.issueNumber ?? 1)"
+        labelTitle?.text = comic?.title ?? "İsimsiz"
         labelSubtitle?.text = "Çizgi Roman sayısı: \(comic?.stories?.available ?? 1)"
         if let resDescription = comic?.resultDescription {
-            labelDescription?.text = resDescription
+            labelDescription?.text = "\(comic?.title ?? "").\n\(resDescription)"
         } else {
             if comic?.textObjects.count ?? 0 > 0 {
-                labelDescription?.text = comic?.textObjects[0].text
+                labelDescription?.text = "\(comic?.title ?? "").\n\(comic?.textObjects[0].text ?? "")"
             }
         }
         if let chars = comic?.characters?.items, let writers = comic?.creators?.items {

@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+    // MARK: - HomeViewModelProtocol
 protocol HomeViewModelProtocol {
     var delegate: HomeViewModelDelegate? { get set }
     var comics: [ComicModelResult]? { get }
@@ -17,14 +18,14 @@ protocol HomeViewModelProtocol {
     func loadCellContent(collectionView: UICollectionView, Id: String,tag: [Int], index: IndexPath)-> UICollectionViewCell
     func prepareToOpenPage(segue: UIStoryboardSegue, index: Int)
 }
-
+    // MARK: - HomeViewModelDelegate
 protocol HomeViewModelDelegate: AnyObject {
     func setupCollectionViews()
     func reloadCollectionViews()
     func setupNavigationBar()
 }
 
-    // MARK: - ViewModel
+    // MARK: - HomeViewModel
 final class HomeViewModel {
     weak var delegate: HomeViewModelDelegate?
     
@@ -59,8 +60,8 @@ final class HomeViewModel {
         })
         task.resume()
     }
+    
     func fetchCharacters(completionHandler: @escaping ([CharacterModelResult]) -> Void) {
-        
         let urlStr = Config.characterMainUrl+String(Config.keysWithHash)
         let url = URL(string: urlStr)
         let task = URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
@@ -104,7 +105,7 @@ final class HomeViewModel {
     }
 }
 
-    // MARK: - ModelProtocol
+    // MARK: - HomeViewModelProtocol
 extension HomeViewModel: HomeViewModelProtocol {
     var characters: [CharacterModelResult]? {
         get { characterList }
@@ -151,7 +152,6 @@ extension HomeViewModel: HomeViewModelProtocol {
     }
     
     func prepareToOpenPage(segue: UIStoryboardSegue,index: Int) {
-        
         if segue.identifier == HomeConstant.homeToCharPageSegueID {
             let targetVC = segue.destination as! CharacterPageViewController
             targetVC.character = characterList?[index]
