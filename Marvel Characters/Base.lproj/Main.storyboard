@@ -101,14 +101,14 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1800"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Marvel_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="xay-VV-ppN">
-                                                <rect key="frame" x="1" y="161" width="413" height="388"/>
+                                                <rect key="frame" x="1" y="0.0" width="413" height="388"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="388" id="txd-9d-Rfl"/>
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cAe-2q-9CT">
-                                                <rect key="frame" x="0.0" y="549" width="414" height="100"/>
+                                                <rect key="frame" x="0.0" y="388" width="414" height="100"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Iron Man" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BG7-QR-PSW">
                                                         <rect key="frame" x="15" y="29" width="384" height="28"/>
@@ -154,26 +154,26 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tanım" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yji-CY-czL">
-                                                <rect key="frame" x="10" y="694" width="394" height="33"/>
+                                                <rect key="frame" x="10" y="533" width="394" height="33"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="28"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="12" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="onU-WI-Qpz">
-                                                <rect key="frame" x="10" y="727" width="394" height="122"/>
+                                                <rect key="frame" x="10" y="566" width="394" height="122"/>
                                                 <string key="text">Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Karakterin bulunduğu Çizgi Romanlar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8L9-3k-V4t">
-                                                <rect key="frame" x="10" y="894" width="394" height="26"/>
+                                                <rect key="frame" x="10" y="733" width="394" height="26"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="lfi-dL-6a0" userLabel="Character Table View">
-                                                <rect key="frame" x="10" y="930" width="394" height="270"/>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="lfi-dL-6a0" userLabel="Character Table View">
+                                                <rect key="frame" x="10" y="769" width="394" height="270"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="270" id="g2h-fF-39y"/>
@@ -194,13 +194,13 @@
                                                 </connections>
                                             </tableView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Karakterin bulunduğu Seriler" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAt-H3-2Zy">
-                                                <rect key="frame" x="10" y="1245" width="394" height="27"/>
+                                                <rect key="frame" x="10" y="1084" width="394" height="27"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="caT-Q5-mJW">
-                                                <rect key="frame" x="10" y="1282" width="394" height="270"/>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="caT-Q5-mJW">
+                                                <rect key="frame" x="10" y="1121" width="394" height="270"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="270" id="6vD-kz-1iE"/>
@@ -217,13 +217,13 @@
                                                 </prototypes>
                                             </tableView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Karakterin bulunduğu Hikayeler" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hD-Q6-kYF">
-                                                <rect key="frame" x="10" y="1597" width="394" height="27"/>
+                                                <rect key="frame" x="10" y="1436" width="394" height="27"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="r8P-90-hpf">
-                                                <rect key="frame" x="10" y="1634" width="394" height="156"/>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="r8P-90-hpf">
+                                                <rect key="frame" x="10" y="1473" width="394" height="317"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Qdt-AF-GiR">
@@ -258,6 +258,7 @@
                                             <constraint firstAttribute="trailing" secondItem="r8P-90-hpf" secondAttribute="trailing" constant="10" id="arD-XS-bEq"/>
                                             <constraint firstAttribute="trailing" secondItem="caT-Q5-mJW" secondAttribute="trailing" constant="10" id="byw-gl-nwM"/>
                                             <constraint firstItem="3hD-Q6-kYF" firstAttribute="leading" secondItem="H73-VR-Wpz" secondAttribute="leading" constant="10" id="ciZ-mE-lxT"/>
+                                            <constraint firstItem="xay-VV-ppN" firstAttribute="top" secondItem="H73-VR-Wpz" secondAttribute="top" id="eG2-Qn-brx"/>
                                             <constraint firstItem="onU-WI-Qpz" firstAttribute="leading" secondItem="H73-VR-Wpz" secondAttribute="leading" constant="10" id="eb3-ex-6hK"/>
                                             <constraint firstItem="caT-Q5-mJW" firstAttribute="top" secondItem="rAt-H3-2Zy" secondAttribute="bottom" constant="10" id="hhK-zt-Jc1"/>
                                             <constraint firstAttribute="trailing" secondItem="yji-CY-czL" secondAttribute="trailing" constant="10" id="iTR-2S-Jnc"/>
@@ -266,7 +267,6 @@
                                             <constraint firstItem="8L9-3k-V4t" firstAttribute="leading" secondItem="H73-VR-Wpz" secondAttribute="leading" constant="10" id="n32-Nc-Vg8"/>
                                             <constraint firstItem="3hD-Q6-kYF" firstAttribute="top" secondItem="caT-Q5-mJW" secondAttribute="bottom" constant="45" id="pyE-0P-z1S"/>
                                             <constraint firstItem="8L9-3k-V4t" firstAttribute="top" secondItem="onU-WI-Qpz" secondAttribute="bottom" constant="45" id="stF-HO-mEL"/>
-                                            <constraint firstItem="xay-VV-ppN" firstAttribute="top" secondItem="H73-VR-Wpz" secondAttribute="top" id="uM0-xh-3de"/>
                                             <constraint firstAttribute="bottom" secondItem="r8P-90-hpf" secondAttribute="bottom" constant="10" id="wHB-br-jUK"/>
                                             <constraint firstItem="r8P-90-hpf" firstAttribute="top" secondItem="3hD-Q6-kYF" secondAttribute="bottom" constant="10" id="xlu-we-eLR"/>
                                             <constraint firstItem="lfi-dL-6a0" firstAttribute="top" secondItem="8L9-3k-V4t" secondAttribute="bottom" constant="10" id="ylR-db-aX9"/>
@@ -930,8 +930,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="w1f-Qh-Lzj"/>
-        <segue reference="jVx-ze-HrX"/>
+        <segue reference="toU-Q0-3t1"/>
+        <segue reference="x2M-Hu-jiJ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Marvel_Logo" width="400" height="160.5"/>

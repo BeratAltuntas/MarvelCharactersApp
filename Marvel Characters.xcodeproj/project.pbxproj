@@ -26,6 +26,7 @@
 		F40AC2D72817729D00C9C346 /* UserViewControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2D62817729D00C9C346 /* UserViewControllerModel.swift */; };
 		F40AC2DB2817735F00C9C346 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2DA2817735F00C9C346 /* TabBarViewController.swift */; };
 		F42FA4F728195EDE003309EF /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FA4F628195EDE003309EF /* CharacterModel.swift */; };
+		F433FE46282275A50067102C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F433FE45282275A50067102C /* NetworkManager.swift */; };
 		F43FB82D281D7A32000D50ED /* ComicPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43FB82C281D7A32000D50ED /* ComicPageViewController.swift */; };
 		F44E04A6281FF880005AB85E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F44E04A5281FF880005AB85E /* GoogleService-Info.plist */; };
 		F456CBDE281821A4002B30EB /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F456CBDC281821A4002B30EB /* SearchTableViewCell.swift */; };
@@ -66,6 +67,7 @@
 		F40AC2D62817729D00C9C346 /* UserViewControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewControllerModel.swift; sourceTree = "<group>"; };
 		F40AC2DA2817735F00C9C346 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		F42FA4F628195EDE003309EF /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
+		F433FE45282275A50067102C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		F43FB82C281D7A32000D50ED /* ComicPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicPageViewController.swift; sourceTree = "<group>"; };
 		F44E04A5281FF880005AB85E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F456CBDC281821A4002B30EB /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 		F40AC2AE28176FBF00C9C346 /* Marvel Characters */ = {
 			isa = PBXGroup;
 			children = (
+				F433FE442822758E0067102C /* Manager */,
 				F47598F52819BA5700FCF94E /* Extensions */,
 				F40AC2D9281772BE00C9C346 /* SupportingFiles */,
 				F40AC2D8281772A900C9C346 /* Views */,
@@ -233,6 +236,14 @@
 				F44E04A5281FF880005AB85E /* GoogleService-Info.plist */,
 			);
 			name = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		F433FE442822758E0067102C /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				F433FE45282275A50067102C /* NetworkManager.swift */,
+			);
+			name = Manager;
 			sourceTree = "<group>";
 		};
 		F44E04A3281FE194005AB85E /* CharacterPage */ = {
@@ -414,6 +425,7 @@
 				F4A02F9D281953B30070A4A3 /* config.swift in Sources */,
 				F456CBE9281853C3002B30EB /* CharacterPageViewController.swift in Sources */,
 				F4073EE92817861900381C98 /* ComicsCollectionViewCell.swift in Sources */,
+				F433FE46282275A50067102C /* NetworkManager.swift in Sources */,
 				F42FA4F728195EDE003309EF /* CharacterModel.swift in Sources */,
 				F40AC2DB2817735F00C9C346 /* TabBarViewController.swift in Sources */,
 				F40AC2CF2817725000C9C346 /* SearchViewModel.swift in Sources */,

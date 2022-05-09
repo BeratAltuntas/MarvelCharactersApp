@@ -15,9 +15,9 @@ enum SearchViewConstant {
 }
 
 enum SearchingCatagories {
-    static let cizgiRoman = "Çizgi Roman"
-    static let karakter = "Karakter"
-    static let yazar = "Yazar"
+    static let comicTitle = "Çizgi Roman"
+    static let charTitle = "Karakter"
+    static let writerTitle = "Yazar"
 }
 
 // MARK: - SearchViewController
@@ -29,9 +29,9 @@ final class SearchViewController: BaseViewController {
     }
     var comic: [ComicModelResult]?
     var character: [CharacterModelResult]?
-    var counterButtonTextChanger = 0
+    var counterButtonTextChanger: Int = .zero
     
-    @IBOutlet var tableView:UITableView!
+    @IBOutlet private var tableView:UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,14 +59,14 @@ extension SearchViewController: SearchViewModelDelegate {
     func changeButtonTitle(_ sender: UIButton) {
         switch counterButtonTextChanger {
         case 0:
-            sender.setTitle(SearchingCatagories.karakter, for: .normal)
+            sender.setTitle(SearchingCatagories.charTitle, for: .normal)
             break
         case 1:
-            sender.setTitle(SearchingCatagories.yazar, for: .normal)
+            sender.setTitle(SearchingCatagories.writerTitle, for: .normal)
             break
             
         case 2:
-            sender.setTitle(SearchingCatagories.cizgiRoman, for: .normal)
+            sender.setTitle(SearchingCatagories.comicTitle, for: .normal)
             break
         default:
             break
@@ -74,7 +74,7 @@ extension SearchViewController: SearchViewModelDelegate {
         if counterButtonTextChanger < 2 {
             counterButtonTextChanger += 1
         } else {
-            counterButtonTextChanger = 0
+            counterButtonTextChanger = .zero
         }
     }
 }

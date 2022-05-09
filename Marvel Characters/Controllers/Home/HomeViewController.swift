@@ -5,6 +5,7 @@
     //  Created by BERAT ALTUNTAŞ on 26.04.2022.
     //
 import UIKit
+
 enum HomeConstant {
     static let cellIdentifier = "ContentPage"
     static let forYouCollectionViewTag = 0

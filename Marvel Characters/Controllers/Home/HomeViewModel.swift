@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-
     // MARK: - HomeViewModelProtocol
 protocol HomeViewModelProtocol {
     var delegate: HomeViewModelDelegate? { get set }
@@ -62,28 +61,34 @@ final class HomeViewModel {
     }
     
     func fetchCharacters(completionHandler: @escaping ([CharacterModelResult]) -> Void) {
-        let urlStr = Config.characterMainUrl+String(Config.keysWithHash)
-        let url = URL(string: urlStr)
-        let task = URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-            if let error = error {
-                print(error)
-                return
-            }
-            guard let httpResponse = response as? HTTPURLResponse,
-                  (200...299).contains(httpResponse.statusCode) else {
-                return
-            }
-            do {
-                if let data = data, let characterSummary = try JSONDecoder().decode(CharacterModel?.self, from: data) {
-                    self.character = characterSummary
-                    completionHandler(characterSummary.data!.results!)
-                }
-            }
-            catch{
-                print("JSON decode failed: \(error)")
-            }
-        })
-        task.resume()
+        
+        NetworkManager.shared.fetchData(endPoint: Config.characterMainUrl, type: CharacterModel?.self) { Result<,error> in
+            
+        }
+        
+        
+//        let urlStr = Config.characterMainUrl + String(Config.keysWithHash)
+//        let url = URL(string: urlStr)
+//        let task = URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+//            if let error = error {
+//                print(error)
+//                return
+//            }
+//            guard let httpResponse = response as? HTTPURLResponse,
+//                  (200...299).contains(httpResponse.statusCode) else {
+//                return
+//            }
+//            do {
+//                if let data = data, let characterSummary = try JSONDecoder().decode(CharacterModel?.self, from: data) {
+//                    self.character = characterSummary
+//                    completionHandler(characterSummary.data!.results!)
+//                }
+//            }
+//            catch{
+//                print("JSON decode failed: \(error)")
+//            }
+//        })
+//        task.resume()
     }
     
     func fetchComicData() {
@@ -123,6 +128,7 @@ extension HomeViewModel: HomeViewModelProtocol {
     }
     
     func loadCellContent(collectionView: UICollectionView,Id: String,tag: [Int],index: IndexPath)-> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Id, for: index) as! ComicsCollectionViewCell
         
         if collectionView.tag == tag[0] {
@@ -145,7 +151,6 @@ extension HomeViewModel: HomeViewModelProtocol {
                     }
                 }
             }
-            
             cell.setupCell(imageName: image, title: title, subtitle: subtitle)
         }
         return cell
