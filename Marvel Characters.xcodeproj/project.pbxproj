@@ -20,10 +20,10 @@
 		F40AC2CB2817722E00C9C346 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2CA2817722E00C9C346 /* HomeViewModel.swift */; };
 		F40AC2CD2817724600C9C346 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2CC2817724600C9C346 /* SearchViewController.swift */; };
 		F40AC2CF2817725000C9C346 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2CE2817725000C9C346 /* SearchViewModel.swift */; };
-		F40AC2D12817726600C9C346 /* FavoritesViewControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2D02817726600C9C346 /* FavoritesViewControllerModel.swift */; };
+		F40AC2D12817726600C9C346 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2D02817726600C9C346 /* FavoritesViewModel.swift */; };
 		F40AC2D32817727A00C9C346 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2D22817727A00C9C346 /* FavoritesViewController.swift */; };
 		F40AC2D52817728C00C9C346 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2D42817728C00C9C346 /* UserViewController.swift */; };
-		F40AC2D72817729D00C9C346 /* UserViewControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2D62817729D00C9C346 /* UserViewControllerModel.swift */; };
+		F40AC2D72817729D00C9C346 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2D62817729D00C9C346 /* UserViewModel.swift */; };
 		F40AC2DB2817735F00C9C346 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC2DA2817735F00C9C346 /* TabBarViewController.swift */; };
 		F42FA4F728195EDE003309EF /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FA4F628195EDE003309EF /* CharacterModel.swift */; };
 		F433FE46282275A50067102C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F433FE45282275A50067102C /* NetworkManager.swift */; };
@@ -61,10 +61,10 @@
 		F40AC2CA2817722E00C9C346 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		F40AC2CC2817724600C9C346 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		F40AC2CE2817725000C9C346 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
-		F40AC2D02817726600C9C346 /* FavoritesViewControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewControllerModel.swift; sourceTree = "<group>"; };
+		F40AC2D02817726600C9C346 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		F40AC2D22817727A00C9C346 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		F40AC2D42817728C00C9C346 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
-		F40AC2D62817729D00C9C346 /* UserViewControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewControllerModel.swift; sourceTree = "<group>"; };
+		F40AC2D62817729D00C9C346 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		F40AC2DA2817735F00C9C346 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		F42FA4F628195EDE003309EF /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
 		F433FE45282275A50067102C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -193,7 +193,7 @@
 			children = (
 				F456CBE028184145002B30EB /* FavoritesCell */,
 				F40AC2D22817727A00C9C346 /* FavoritesViewController.swift */,
-				F40AC2D02817726600C9C346 /* FavoritesViewControllerModel.swift */,
+				F40AC2D02817726600C9C346 /* FavoritesViewModel.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -212,7 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				F40AC2D42817728C00C9C346 /* UserViewController.swift */,
-				F40AC2D62817729D00C9C346 /* UserViewControllerModel.swift */,
+				F40AC2D62817729D00C9C346 /* UserViewModel.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -420,7 +420,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F40AC2D12817726600C9C346 /* FavoritesViewControllerModel.swift in Sources */,
+				F40AC2D12817726600C9C346 /* FavoritesViewModel.swift in Sources */,
 				F40AC2D52817728C00C9C346 /* UserViewController.swift in Sources */,
 				F4A02F9D281953B30070A4A3 /* config.swift in Sources */,
 				F456CBE9281853C3002B30EB /* CharacterPageViewController.swift in Sources */,
@@ -430,7 +430,7 @@
 				F40AC2DB2817735F00C9C346 /* TabBarViewController.swift in Sources */,
 				F40AC2CF2817725000C9C346 /* SearchViewModel.swift in Sources */,
 				F456CBE328184168002B30EB /* FavoritesCollectionViewCell.swift in Sources */,
-				F40AC2D72817729D00C9C346 /* UserViewControllerModel.swift in Sources */,
+				F40AC2D72817729D00C9C346 /* UserViewModel.swift in Sources */,
 				F47598FB2819C45700FCF94E /* UICollectionViewCell+Extension.swift in Sources */,
 				F43FB82D281D7A32000D50ED /* ComicPageViewController.swift in Sources */,
 				F40AC2D32817727A00C9C346 /* FavoritesViewController.swift in Sources */,
