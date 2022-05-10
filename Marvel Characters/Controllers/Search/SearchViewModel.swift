@@ -21,7 +21,7 @@ final class SearchViewModel {
     weak var delegate: SearchViewModelDelegate?
 }
 
-    // MARK: - SearchViewModel: Protocol
+    // MARK: - SearchViewModelExtension
 extension SearchViewModel: SearchViewModelProtocol {
     
 }

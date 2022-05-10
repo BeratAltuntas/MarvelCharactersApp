@@ -79,7 +79,7 @@ final class HomeViewModel {
     }
 }
 
-    // MARK: - HomeViewModelProtocol
+    // MARK: - HomeViewModelExtension
 extension HomeViewModel: HomeViewModelProtocol {
     var characters: [CharacterModelResult]? {
         get { characterList }
