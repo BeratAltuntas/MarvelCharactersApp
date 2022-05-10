@@ -5,11 +5,11 @@ struct ComicModel: Codable {
     let code: Int?
     let status, copyright, attributionText, attributionHTML: String?
     let etag: String?
-    let data: ComicModelDataClass?
+    let data: ComicModelData?
 }
 
 // MARK: - DataClass
-struct ComicModelDataClass: Codable {
+struct ComicModelData: Codable {
     let offset, limit, total, count: Int?
     let results: [ComicModelResult]?
 }

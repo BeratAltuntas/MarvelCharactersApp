@@ -35,60 +35,29 @@ final class HomeViewModel {
     private var characterList: [CharacterModelResult]?
     
     func fetchComics(completionHandler: @escaping ([ComicModelResult]) -> Void) {
-        let urlStr = Config.comicMainUrl+String(Config.keysWithHash)
-        let url = URL(string: urlStr)
         
-        let task = URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-            if let error = error {
-                print(error)
-                return
-            }
-            guard let httpResponse = response as? HTTPURLResponse,
-                  (200...299).contains(httpResponse.statusCode) else {
-                return
-            }
+        NetworkManager.shared.fetchData(endPoint: Config.comicMainUrl, type: ComicModel?.self) { comicFetchedData in
             do {
-                if let data = data, let comicSummary = try JSONDecoder().decode(ComicModel?.self, from: data) {
-                    self.comic = comicSummary
-                    completionHandler(comicSummary.data!.results!)
-                }
+                self.comic = try comicFetchedData.get()
+                completionHandler(try comicFetchedData.get().data!.results!)
             }
-            catch{
-                print("JSON decode failed: \(error)")
+            catch {
+                print("error: \(error)")
             }
-        })
-        task.resume()
+        }
     }
     
     func fetchCharacters(completionHandler: @escaping ([CharacterModelResult]) -> Void) {
         
-        NetworkManager.shared.fetchData(endPoint: Config.characterMainUrl, type: CharacterModel?.self) { Result<,error> in
-            
+        NetworkManager.shared.fetchData(endPoint: Config.characterMainUrl, type: CharacterModel?.self) { fetchedData in
+            do {
+                self.character = try fetchedData.get()
+                completionHandler(try fetchedData.get().data!.results!)
+            }
+            catch {
+                print("error:\(error)")
+            }
         }
-        
-        
-//        let urlStr = Config.characterMainUrl + String(Config.keysWithHash)
-//        let url = URL(string: urlStr)
-//        let task = URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-//            if let error = error {
-//                print(error)
-//                return
-//            }
-//            guard let httpResponse = response as? HTTPURLResponse,
-//                  (200...299).contains(httpResponse.statusCode) else {
-//                return
-//            }
-//            do {
-//                if let data = data, let characterSummary = try JSONDecoder().decode(CharacterModel?.self, from: data) {
-//                    self.character = characterSummary
-//                    completionHandler(characterSummary.data!.results!)
-//                }
-//            }
-//            catch{
-//                print("JSON decode failed: \(error)")
-//            }
-//        })
-//        task.resume()
     }
     
     func fetchComicData() {
