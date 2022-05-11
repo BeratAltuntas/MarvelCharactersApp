@@ -4,12 +4,11 @@
 //
 //  Created by BERAT ALTUNTAŞ on 26.04.2022.
 //
-
 import UIKit
 
 // MARK: - FavoritesViewController
 class FavoritesViewController: BaseViewController {
-
+	weak var viewModel: FavoriteViewModel!
     @IBOutlet var favoritesCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -28,6 +28,15 @@ final class TabBarViewController: UITabBarController {
 			case let viewController as HomeViewController:
 				let viewModel = HomeViewModel()
 				viewController.viewModel = viewModel
+			case let viewController as SearchViewController:
+				let viewModel = SearchViewModel()
+				viewController.viewModel = viewModel
+			case let viewController as FavoritesViewController:
+				let viewModel = FavoriteViewModel()
+				viewController.viewModel = viewModel
+			case let viewController as UserViewController:
+				let viewModel = UserViewModel()
+				viewController.viewModel = viewModel
 			default:
 				break
 			}
