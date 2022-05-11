@@ -7,7 +7,8 @@
 
 import UIKit
 
-class FavoritesViewController: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+// MARK: - FavoritesViewController
+class FavoritesViewController: BaseViewController {
 
     @IBOutlet var favoritesCollectionView: UICollectionView!
     override func viewDidLoad() {
@@ -19,10 +20,14 @@ class FavoritesViewController: BaseViewController, UICollectionViewDataSource, U
     }
 }
 
-extension FavoritesViewController{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
-    }
+// MARK: - FavoriteViewModelDelegate
+extension FavoritesViewController: FavoriteViewModelDelegate {
+	
+}
+
+// MARK: - UICollectionViewDataSource
+extension FavoritesViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { 6 }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteCell", for: indexPath) as! FavoritesCollectionViewCell
@@ -30,12 +35,13 @@ extension FavoritesViewController{
         cell.characterNameLabel.text = "Iron Man \(indexPath.row)"
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let viewController = storyboard?.instantiateViewController(withIdentifier: "ContentPage") as? CharacterPageViewController{
-            navigationController?.pushViewController(viewController, animated: true)
-        }
-    }
-    
 }
 
+// MARK: - UICollectionViewDelegate
+extension FavoritesViewController: UICollectionViewDelegate {
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		if let viewController = storyboard?.instantiateViewController(withIdentifier: "ContentPage") as? CharacterPageViewController{
+			navigationController?.pushViewController(viewController, animated: true)
+		}
+	}
+}
