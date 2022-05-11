@@ -11,7 +11,12 @@ import UIKit
 // MARK: - UserViewController
 class UserViewController: BaseViewController {
 	static let biographyCellCount = 3
-	weak var viewModel: UserViewModel!
+	weak var viewModel: UserViewModel! {
+		didSet {
+			viewModel.delegate = self
+		}
+	}
+	
 	@IBOutlet var tableView:UITableView!
 	@IBOutlet var largeProfileImageView: UIImageView!
 	@IBOutlet weak var miniProfileImageView:UIImageView!
@@ -33,6 +38,12 @@ class UserViewController: BaseViewController {
 		}
 	}
 }
+
+// MARK: - UserViewModelDelegate
+extension UserViewController: UserViewModelDelegate {
+	
+}
+
 
 // MARK: - UITableViewDataSource
 extension UserViewController: UITableViewDataSource {

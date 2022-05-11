@@ -60,6 +60,8 @@ extension ComicPageViewController: ComicPageViewModelDelegate {
 		} else {
 			if comic?.textObjects.count ?? 0 > 0 {
 				labelDescription?.text = "\(comic?.title ?? "").\n\(comic?.textObjects[0].text ?? "")"
+			} else {
+				labelDescription?.text = "İçerik bilgisi bulunmuyor."
 			}
 		}
 		if let chars = comic?.characters?.items, let writers = comic?.creators?.items {
@@ -78,9 +80,16 @@ extension ComicPageViewController: ComicPageViewModelDelegate {
 extension ComicPageViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if tableView.tag == ComicPageConstant.charsTableViewTag {
-			return tableViewCharList?.count ?? 0
+			if let count = tableViewCharList?.count {
+				//tableView.heightAnchor.constraint(equalToConstant: CGFloat(count * 43)).isActive = true
+				return count
+			}
+			
 		} else if tableView.tag == ComicPageConstant.writersTableViewTag {
-			return tableViewWriterList?.count ?? 0
+			if let count = tableViewWriterList?.count {
+				//tableView.heightAnchor.constraint(equalToConstant: CGFloat(count * 43)).isActive = true
+				return count
+			}
 		}
 		return 0
 	}
@@ -88,11 +97,11 @@ extension ComicPageViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		if tableView.tag == ComicPageConstant.charsTableViewTag {
 			let cell = tableView.dequeueReusableCell(withIdentifier: ComicPageConstant.tableViewCharIdentifier)!
-			cell.textLabel?.text = (comic?.characters?.items?[indexPath.row].name ?? "") + (comic?.characters?.items?[indexPath.row].role ?? "")
+			cell.textLabel?.text = (comic?.characters?.items?[indexPath.row].name ?? "Karakter bilgisi bulunmuyor.") + (comic?.characters?.items?[indexPath.row].role ?? "")
 			return cell
 		} else if tableView.tag == ComicPageConstant.writersTableViewTag {
 			let cell = tableView.dequeueReusableCell(withIdentifier: ComicPageConstant.tableViewWriterIdentifier)!
-			cell.textLabel?.text = (comic?.creators?.items?[indexPath.row].name ?? "") + (comic?.creators?.items?[indexPath.row].role ?? "")
+			cell.textLabel?.text = (comic?.creators?.items?[indexPath.row].name ?? "Yazar bilgisi bulunmuyor.") + (comic?.creators?.items?[indexPath.row].role ?? "")
 			return cell
 		}
 		return UITableViewCell()

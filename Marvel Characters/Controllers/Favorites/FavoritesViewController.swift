@@ -8,7 +8,11 @@ import UIKit
 
 // MARK: - FavoritesViewController
 class FavoritesViewController: BaseViewController {
-	weak var viewModel: FavoriteViewModel!
+	weak var viewModel: FavoriteViewModel! {
+		didSet {
+			viewModel.delegate = self
+		}
+	}
     @IBOutlet var favoritesCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
