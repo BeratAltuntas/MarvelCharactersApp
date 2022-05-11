@@ -1,28 +1,28 @@
-    //
-    //  FavoritesViewControllerModel.swift
-    //  Marvel Characters
-    //
-    //  Created by BERAT ALTUNTAŞ on 26.04.2022.
-    //
+//
+//  FavoritesViewControllerModel.swift
+//  Marvel Characters
+//
+//  Created by BERAT ALTUNTAŞ on 26.04.2022.
+//
 
 import Foundation
-    // MARK: - FavoriteViewModelProtocol
+// MARK: - FavoriteViewModelProtocol
 protocol FavoriteViewModelProtocol {
-    var delegate: FavoriteViewModelDelegate? { get set }
+	var delegate: FavoriteViewModelDelegate? { get set }
 }
 
-    // MARK: - FavoriteViewModelDelegate
+// MARK: - FavoriteViewModelDelegate
 protocol FavoriteViewModelDelegate: AnyObject {
-    
+	
 }
 
-    // MARK: - FavoriteViewModel
+// MARK: - FavoriteViewModel
 final class FavoriteViewModel {
-    weak var delegate: FavoriteViewModelDelegate?
+	weak var delegate: FavoriteViewModelDelegate?
 }
 
-    // MARK: - FavoriteViewModelExtension
+// MARK: - FavoriteViewModelExtension
 extension FavoriteViewModel: FavoriteViewModelProtocol {
-    
-    
+	
+	
 }

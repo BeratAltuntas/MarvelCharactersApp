@@ -1,27 +1,27 @@
-    //
-    //  CharacterPageModel.swift
-    //  Marvel Characters
-    //
-    //  Created by BERAT ALTUNTAŞ on 1.05.2022.
-    //
+//
+//  CharacterPageModel.swift
+//  Marvel Characters
+//
+//  Created by BERAT ALTUNTAŞ on 1.05.2022.
+//
 
 import Foundation
 
-    // MARK: - CharacterPageViewModelProtocol
+// MARK: - CharacterPageViewModelProtocol
 protocol CharacterPageViewModelProtocol {
-    var delegate: CharacterPageViewModelDelegate? { get set }
+	var delegate: CharacterPageViewModelDelegate? { get set }
 }
 
-    // MARK: - CharacterPageViewModelDelegate
+// MARK: - CharacterPageViewModelDelegate
 protocol CharacterPageViewModelDelegate: AnyObject {
 }
 
-    // MARK: - CharacterPageViewModel
+// MARK: - CharacterPageViewModel
 final class CharacterPageViewModel {
-    weak var delegate: CharacterPageViewModelDelegate?
+	weak var delegate: CharacterPageViewModelDelegate?
 }
 
-    // MARK: - Extension CharacterPageViewModel
+// MARK: - Extension CharacterPageViewModel
 extension CharacterPageViewModel: CharacterPageViewModelProtocol {
-    
+	
 }
