@@ -17,6 +17,7 @@ protocol HomeViewModelProtocol {
 	func loadCellContent(collectionView: UICollectionView, Id: String,tag: [Int], index: IndexPath)-> UICollectionViewCell
 	func prepareToOpenPage(segue: UIStoryboardSegue, index: Int)
 }
+
 // MARK: - HomeViewModelDelegate
 protocol HomeViewModelDelegate: AnyObject {
 	func setupCollectionViews()
@@ -128,7 +129,9 @@ extension HomeViewModel: HomeViewModelProtocol {
 	func prepareToOpenPage(segue: UIStoryboardSegue,index: Int) {
 		if segue.identifier == HomeConstant.homeToCharPageSegueID {
 			let targetVC = segue.destination as! CharacterPageViewController
+			targetVC.viewModel = CharacterPageViewModel()
 			targetVC.character = characterList?[index]
+			
 		} else if segue.identifier == HomeConstant.homeToComicPageSegueID {
 			let targetVC = segue.destination as! ComicPageViewController
 			targetVC.viewModel = ComicPageViewModel()

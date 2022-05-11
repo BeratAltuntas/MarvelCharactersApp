@@ -7,22 +7,27 @@
 
 import Foundation
 // MARK: - FavoriteViewModelProtocol
-protocol FavoriteViewModelProtocol {
-	var delegate: FavoriteViewModelDelegate? { get set }
+protocol FavoritesViewModelProtocol {
+	var delegate: FavoritesViewModelDelegate? { get set }
+	
+	func loadScreen()
 }
 
 // MARK: - FavoriteViewModelDelegate
-protocol FavoriteViewModelDelegate: AnyObject {
-	
+protocol FavoritesViewModelDelegate: AnyObject {
+	func SetupUI()
+	func SetupCell()
 }
 
 // MARK: - FavoriteViewModel
-final class FavoriteViewModel {
-	weak var delegate: FavoriteViewModelDelegate?
+final class FavoritesViewModel {
+	weak var delegate: FavoritesViewModelDelegate?
 }
 
 // MARK: - FavoriteViewModelExtension
-extension FavoriteViewModel: FavoriteViewModelProtocol {
-	
-	
+extension FavoritesViewModel: FavoritesViewModelProtocol {
+	func loadScreen() {
+		delegate?.SetupCell()
+		delegate?.SetupUI()
+	}
 }

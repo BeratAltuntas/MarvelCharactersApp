@@ -6,26 +6,36 @@
 //
 import UIKit
 
+
+enum CellProperties {
+	static let cellNibName = "FavoritesCollectionViewCell"
+	static let favoritesCellIdentifier = "FavoriteCell"
+}
+
 // MARK: - FavoritesViewController
 class FavoritesViewController: BaseViewController {
-	weak var viewModel: FavoriteViewModel! {
+	weak var viewModel: FavoritesViewModel! {
 		didSet {
 			viewModel.delegate = self
 		}
 	}
+	
     @IBOutlet var favoritesCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavBar()
-        favoritesCollectionView.register(UINib(nibName: "FavoritesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FavoriteCell")
-        
-        favoritesCollectionView.collectionViewLayout = FavoriteCellFlowLayout(sutunSayisi: 2, minSutunAraligi: 15, minSatirAraligi: 15)
+		viewModel.loadScreen()
     }
 }
 
 // MARK: - FavoriteViewModelDelegate
-extension FavoritesViewController: FavoriteViewModelDelegate {
-	
+extension FavoritesViewController: FavoritesViewModelDelegate {
+	func SetupUI() {
+		setupNavBar()
+	}
+	func SetupCell() {
+		favoritesCollectionView.register(UINib(nibName: "FavoritesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FavoriteCell")
+		favoritesCollectionView.collectionViewLayout = FavoriteCellFlowLayout(ColumnCount: 2, MinColumnSpace: 15, MinRowSpace: 15)
+	}
 }
 
 // MARK: - UICollectionViewDataSource

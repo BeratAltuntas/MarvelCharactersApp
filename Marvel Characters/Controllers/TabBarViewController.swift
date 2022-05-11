@@ -32,7 +32,7 @@ final class TabBarViewController: UITabBarController {
 				let viewModel = SearchViewModel()
 				viewController.viewModel = viewModel
 			case let viewController as FavoritesViewController:
-				let viewModel = FavoriteViewModel()
+				let viewModel = FavoritesViewModel()
 				viewController.viewModel = viewModel
 			case let viewController as UserViewController:
 				let viewModel = UserViewModel()

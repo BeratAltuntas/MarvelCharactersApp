@@ -26,8 +26,9 @@ class UserViewController: BaseViewController {
 	var dummyPersonList = ["Berat Altuntaş", "21", "Erkek", "Kayseri / Türkiye"]
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		if Auth.auth().currentUser == nil{
-		} else {
+//		if Auth.auth().currentUser == nil{
+//
+//		} else {
 			setupNavBar()
 			nameLabel.text = dummyPersonList[0]
 			iconList.append(UIImage(named: "calender-icon-black")!)
@@ -35,7 +36,7 @@ class UserViewController: BaseViewController {
 			iconList.append(UIImage(named: "location-icon-black")!)
 			
 			miniProfileImageView.layer.cornerRadius = CGFloat((miniProfileImageView.frame.width)/2)
-		}
+		//}
 	}
 }
 
