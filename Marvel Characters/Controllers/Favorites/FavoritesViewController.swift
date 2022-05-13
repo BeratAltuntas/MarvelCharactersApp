@@ -6,7 +6,6 @@
 //
 import UIKit
 
-
 enum CellProperties {
 	static let cellNibName = "FavoritesCollectionViewCell"
 	static let favoritesCellIdentifier = "FavoriteCell"
@@ -14,7 +13,7 @@ enum CellProperties {
 
 // MARK: - FavoritesViewController
 class FavoritesViewController: BaseViewController {
-	weak var viewModel: FavoritesViewModel! {
+	var viewModel: FavoritesViewModelProtocol! {
 		didSet {
 			viewModel.delegate = self
 		}

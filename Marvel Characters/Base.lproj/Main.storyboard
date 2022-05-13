@@ -179,7 +179,7 @@
                                                     <constraint firstAttribute="height" constant="270" id="g2h-fF-39y"/>
                                                 </constraints>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tableViewCharacter" id="TtC-dk-jKx">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="0" id="TtC-dk-jKx">
                                                         <rect key="frame" x="0.0" y="44.5" width="394" height="43.5"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TtC-dk-jKx" id="fca-Ji-FCN">
@@ -189,8 +189,8 @@
                                                     </tableViewCell>
                                                 </prototypes>
                                                 <connections>
-                                                    <outlet property="dataSource" destination="qMN-1X-JpL" id="IaA-6d-GJv"/>
-                                                    <outlet property="delegate" destination="qMN-1X-JpL" id="vEP-vk-aEF"/>
+                                                    <outlet property="dataSource" destination="Wq8-or-nZg" id="YJy-6O-2fM"/>
+                                                    <outlet property="delegate" destination="Wq8-or-nZg" id="frL-TV-taj"/>
                                                 </connections>
                                             </tableView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Karakterin bulunduğu Seriler" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAt-H3-2Zy">
@@ -206,7 +206,7 @@
                                                     <constraint firstAttribute="height" constant="270" id="6vD-kz-1iE"/>
                                                 </constraints>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Characer" id="Zja-7m-fiX">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="1" id="Zja-7m-fiX">
                                                         <rect key="frame" x="0.0" y="44.5" width="394" height="43.5"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zja-7m-fiX" id="Qmv-Rj-eUr">
@@ -215,6 +215,10 @@
                                                         </tableViewCellContentView>
                                                     </tableViewCell>
                                                 </prototypes>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="Wq8-or-nZg" id="J7d-lN-snz"/>
+                                                    <outlet property="delegate" destination="Wq8-or-nZg" id="8vS-sg-wKA"/>
+                                                </connections>
                                             </tableView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Karakterin bulunduğu Hikayeler" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hD-Q6-kYF">
                                                 <rect key="frame" x="10" y="1436" width="394" height="27"/>
@@ -226,7 +230,7 @@
                                                 <rect key="frame" x="10" y="1473" width="394" height="317"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Qdt-AF-GiR">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="2" id="Qdt-AF-GiR">
                                                         <rect key="frame" x="0.0" y="44.5" width="394" height="43.5"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qdt-AF-GiR" id="dVB-iM-h0L">
@@ -235,6 +239,10 @@
                                                         </tableViewCellContentView>
                                                     </tableViewCell>
                                                 </prototypes>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="Wq8-or-nZg" id="2oo-Pw-fXJ"/>
+                                                    <outlet property="delegate" destination="Wq8-or-nZg" id="Mab-GX-WGc"/>
+                                                </connections>
                                             </tableView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -294,6 +302,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="yeu-Ez-ec2"/>
                     <size key="freeformSize" width="414" height="1800"/>
+                    <connections>
+                        <outlet property="imageViewBanner" destination="xay-VV-ppN" id="iLV-pZ-HDu"/>
+                        <outlet property="labelDescription" destination="onU-WI-Qpz" id="gHc-bk-qel"/>
+                        <outlet property="labelSubtitleCharacter" destination="u9h-fC-zXf" id="g68-zb-kUX"/>
+                        <outlet property="labelTitleCharacter" destination="BG7-QR-PSW" id="Ib7-KH-RtG"/>
+                        <outlet property="tableViewCharacterInComics" destination="lfi-dL-6a0" id="Pwy-xq-Ab3"/>
+                        <outlet property="tableViewCharacterInSeries" destination="caT-Q5-mJW" id="vss-ug-uZ7"/>
+                        <outlet property="tableViewCharacterInStories" destination="r8P-90-hpf" id="MUZ-Vh-TFK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nlf-Tm-KYY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

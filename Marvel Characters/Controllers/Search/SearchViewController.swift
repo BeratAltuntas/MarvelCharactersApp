@@ -22,7 +22,7 @@ enum SearchingCatagories {
 
 // MARK: - SearchViewController
 final class SearchViewController: BaseViewController {
-	weak var viewModel: SearchViewModel! {
+	var viewModel: SearchViewModelProtocol! {
 		didSet {
 			viewModel.delegate = self
 		}

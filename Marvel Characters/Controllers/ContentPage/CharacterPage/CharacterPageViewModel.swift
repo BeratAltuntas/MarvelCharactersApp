@@ -10,10 +10,14 @@ import Foundation
 // MARK: - CharacterPageViewModelProtocol
 protocol CharacterPageViewModelProtocol {
 	var delegate: CharacterPageViewModelDelegate? { get set }
+	func Load()
 }
 
 // MARK: - CharacterPageViewModelDelegate
 protocol CharacterPageViewModelDelegate: AnyObject {
+	func SetupTableViews()
+	func ReloadTableViews()
+	func SetPageAttiributes()
 }
 
 // MARK: - CharacterPageViewModel
@@ -23,5 +27,10 @@ final class CharacterPageViewModel {
 
 // MARK: - Extension CharacterPageViewModel
 extension CharacterPageViewModel: CharacterPageViewModelProtocol {
-	
+
+	func Load() {
+		delegate?.SetupTableViews()
+		delegate?.SetPageAttiributes()
+		delegate?.ReloadTableViews()
+	}
 }

@@ -11,7 +11,7 @@ import UIKit
 // MARK: - UserViewController
 class UserViewController: BaseViewController {
 	static let biographyCellCount = 3
-	weak var viewModel: UserViewModel! {
+	var viewModel: UserViewModelProtocol! {
 		didSet {
 			viewModel.delegate = self
 		}

@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+
 // MARK: - HomeViewModelProtocol
 protocol HomeViewModelProtocol {
 	var delegate: HomeViewModelDelegate? { get set }
@@ -36,27 +37,27 @@ final class HomeViewModel {
 	private var characterList: [CharacterModelResult]?
 	
 	func fetchComics(completionHandler: @escaping ([ComicModelResult]) -> Void) {
-		
-		NetworkManager.shared.fetchData(endPoint: Config.comicMainUrl, type: ComicModel?.self) { comicFetchedData in
-			do {
-				self.comic = try comicFetchedData.get()
-				completionHandler(try comicFetchedData.get().data!.results!)
-			}
-			catch {
-				print("error: \(error)")
+		NetworkManager.shared.fetchData(endPoint: Config.comicMainUrl, type: ComicModel?.self) { [weak self] result in
+			switch result {
+			case .success(let response):
+				self?.comic = response
+				completionHandler(response.data!.results!)
+			case .failure(let error):
+				print(error)
+				break
 			}
 		}
 	}
 	
 	func fetchCharacters(completionHandler: @escaping ([CharacterModelResult]) -> Void) {
-		
-		NetworkManager.shared.fetchData(endPoint: Config.characterMainUrl, type: CharacterModel?.self) { fetchedData in
-			do {
-				self.character = try fetchedData.get()
-				completionHandler(try fetchedData.get().data!.results!)
-			}
-			catch {
-				print("error:\(error)")
+		NetworkManager.shared.fetchData(endPoint: Config.characterMainUrl, type: CharacterModel?.self) { [weak self] result in
+			switch result {
+			case .success(let response):
+				self?.character = response
+				completionHandler(response.data!.results!)
+			case .failure(let error):
+				print(error)
+				break
 			}
 		}
 	}
@@ -130,7 +131,7 @@ extension HomeViewModel: HomeViewModelProtocol {
 		if segue.identifier == HomeConstant.homeToCharPageSegueID {
 			let targetVC = segue.destination as! CharacterPageViewController
 			targetVC.viewModel = CharacterPageViewModel()
-			targetVC.character = characterList?[index]
+			targetVC.selectedCharacter = characterList?[index]
 			
 		} else if segue.identifier == HomeConstant.homeToComicPageSegueID {
 			let targetVC = segue.destination as! ComicPageViewController

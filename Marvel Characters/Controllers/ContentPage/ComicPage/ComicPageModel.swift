@@ -24,7 +24,6 @@ protocol ComicPageViewModelDelegate: AnyObject {
 // MARK: - ComicPageViewModel
 final class ComicPageViewModel {
 	weak var delegate: ComicPageViewModelDelegate?
-	
 }
 
 // MARK: - Extension ComicPageViewModel
