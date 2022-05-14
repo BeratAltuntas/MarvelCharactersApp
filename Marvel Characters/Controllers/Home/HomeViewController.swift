@@ -27,6 +27,9 @@ final class HomeViewController: BaseViewController {
 			viewModel.delegate = self
 		}
 	}
+	override func viewWillAppear(_ animated: Bool) {
+		AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
+	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
