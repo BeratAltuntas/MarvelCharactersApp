@@ -24,11 +24,8 @@ final class SignInViewController: BaseViewController {
 	@IBAction func SignIn_TUI(_ sender: Any) {
 		if let email = textFieldEmail.text,
 		   let password = textFieldPassword.text {
-			if !password.isEmpty && !email.isEmpty && email.contains("@") && email.contains(".com") {
-				let success = viewModel.SignIn(email: email, password: password)
-				if success {
-					dismiss(animated: true)
-				}
+			if !password.isEmpty && !email.isEmpty && email.contains("@") {
+				viewModel.SignIn(email: email, password: password)
 			}
 		}
 	}
@@ -38,5 +35,7 @@ final class SignInViewController: BaseViewController {
 
 // MARK: - Extension: SignInViewModelDelegate
 extension SignInViewController: SignInViewModelDelegate {
-	
+	func Dissmiss() {
+		_ = navigationController?.popToRootViewController(animated: true)
+	}
 }

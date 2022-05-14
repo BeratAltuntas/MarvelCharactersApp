@@ -11,12 +11,12 @@ import Foundation
 protocol SignInViewModelProtocol {
 	var delegate: SignInViewModelDelegate? { get set }
 	
-	func SignIn(email: String, password: String)-> Bool
+	func SignIn(email: String, password: String)
 }
 
 // MARK: - SignInViewModelDelegate
 protocol SignInViewModelDelegate: AnyObject {
-	
+	func Dissmiss()
 }
 
 // MARK: - SignInViewModel
@@ -26,17 +26,12 @@ final class SignInViewModel {
 
 // MARK: - Extension: SignInViewModelProtocol
 extension SignInViewModel: SignInViewModelProtocol {
-	func SignIn(email: String, password: String) -> Bool {
-		var returnValue = false
-		Auth.auth().signIn(withEmail: email, password: password) { result, error in
-			if error != nil {
-				returnValue = true
-				
-			} else {
-				returnValue = false
+	func SignIn(email: String, password: String) {
+		Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
+			if error == nil {
+				self?.delegate?.Dissmiss()
 			}
 		}
-		return returnValue
 	}
 }
 

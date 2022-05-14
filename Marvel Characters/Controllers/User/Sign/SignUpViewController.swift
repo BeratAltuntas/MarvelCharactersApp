@@ -32,12 +32,8 @@ final class SignUpViewController: BaseViewController {
 		if let name = textFieldNameSurname.text,
 		   let email = textFieldEmail.text,
 		   let password = textFieldPassword.text {
-			if email.contains("@") && email.contains(".com") && password.count >= 8 {
-				let success = viewModel.CreateUser(email: email, password: password)
-				if success {
-					viewModel.UpdateUsersName(name: name)
-					dismiss(animated: true)
-				}
+			if email.contains("@") && password.count >= 8 {
+				viewModel.CreateUser(email: email, password: password)
 			}
 		}
 	}
@@ -48,5 +44,7 @@ final class SignUpViewController: BaseViewController {
 
 // MARK: - Extension: SignUpViewModelDelegate
 extension SignUpViewController: SignUpViewModelDelegate {
-	
+	func Dissmiss() {
+		_ = navigationController?.popViewController(animated: true)
+	}
 }

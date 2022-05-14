@@ -11,12 +11,13 @@ import Foundation
 protocol SignUpViewModelProtocol {
 	var delegate: SignUpViewModelDelegate? { get set }
 	
-	func CreateUser(email: String, password: String)-> Bool
+	func CreateUser(email: String, password: String)
 	func UpdateUsersName(name: String)
 }
 
 // MARK: - SignUpViewModelDelegate
 protocol SignUpViewModelDelegate: AnyObject {
+	func Dissmiss()
 }
 
 // MARK: - SignUpViewModel
@@ -26,18 +27,13 @@ final class SignUpViewModel {
 
 // MARK: - Extension: SignUpViewModelProtocol
 extension SignUpViewModel: SignUpViewModelProtocol {
-	func CreateUser(email: String, password: String)-> Bool {
-		var returnValue = false
-		Auth.auth().createUser(withEmail: email, password: password) { result, error in
+	func CreateUser(email: String, password: String) {
+		Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
 			if error == nil {
-				returnValue = true
-			} else {
-				returnValue = false
+				self?.delegate?.Dissmiss()
 			}
 		}
-		return returnValue
 	}
-	
 	func UpdateUsersName(name: String) {
 		let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
 		changeRequest?.displayName = name
