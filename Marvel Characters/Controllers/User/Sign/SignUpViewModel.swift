@@ -7,22 +7,22 @@
 
 import Foundation
 
-// MARK: - CreateUserViewModelProtocol
+// MARK: - SignUpViewModelProtocol
 protocol SignUpViewModelProtocol {
 	var delegate: SignUpViewModelDelegate? { get set }
 }
 
-// MARK: - CreateUserViewModelDelegate
+// MARK: - SignUpViewModelDelegate
 protocol SignUpViewModelDelegate: AnyObject {
 	
 }
 
-// MARK: - CreateUserViewModel
+// MARK: - SignUpViewModel
 final class SignUpViewModel {
 	weak var delegate: SignUpViewModelDelegate?
 }
 
-// MARK: - Extension: CreateUserViewModelProtocol
+// MARK: - Extension: SignUpViewModelProtocol
 extension SignUpViewModel: SignUpViewModelProtocol {
 	
 }

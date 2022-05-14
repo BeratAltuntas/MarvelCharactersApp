@@ -726,10 +726,13 @@
                                     <constraint firstAttribute="height" constant="50" id="nNR-bL-A9y"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Giriş Yap">
+                                <buttonConfiguration key="configuration" style="plain" title="Kayıt Ol">
                                     <fontDescription key="titleFontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="SignUp_TUI:" destination="WON-BP-kXW" eventType="touchUpInside" id="jg2-vj-Cvz"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7Y-g2-YUw">
                                 <rect key="frame" x="80" y="667.5" width="254" height="50"/>
@@ -739,6 +742,9 @@
                                     <fontDescription key="titleFontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="SignUpWithGoogle_TUI:" destination="WON-BP-kXW" eventType="touchUpInside" id="u86-wW-ub0"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="veya" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQT-TS-CsJ">
                                 <rect key="frame" x="120" y="628" width="174" height="19.5"/>
@@ -803,6 +809,11 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="textFieldEmail" destination="LgI-mC-7AA" id="sXg-of-6hN"/>
+                        <outlet property="textFieldNameSurname" destination="Y87-Wq-qpa" id="hPg-DO-xF1"/>
+                        <outlet property="textFieldPassword" destination="Fff-iq-7sk" id="mCf-Is-gEV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uae-gP-QQ6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -861,6 +872,9 @@
                                     <fontDescription key="titleFontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="SignIn_TUI:" destination="EqZ-Nb-Sn1" eventType="touchUpInside" id="GPL-E5-cQo"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F0l-M5-l8x">
                                 <rect key="frame" x="80" y="510.5" width="254" height="50"/>
@@ -870,6 +884,9 @@
                                     <fontDescription key="titleFontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="SignInWithGoogle_TUI:" destination="EqZ-Nb-Sn1" eventType="touchUpInside" id="dkL-sh-NIN"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="veya" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bE1-mo-PQI">
                                 <rect key="frame" x="120" y="471" width="174" height="19.5"/>
@@ -910,6 +927,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="LEE-bQ-pHK"/>
+                    <connections>
+                        <outlet property="textFieldEmail" destination="Snd-ie-cHP" id="sEm-6a-5gG"/>
+                        <outlet property="textFieldPassword" destination="Vrg-mW-fKL" id="vFq-W5-isx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JWq-aq-c1o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
