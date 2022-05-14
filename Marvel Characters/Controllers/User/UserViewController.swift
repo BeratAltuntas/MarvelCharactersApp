@@ -11,6 +11,7 @@ enum UserViewConstants {
 	static let biographyCellId = "BiographyCell"
 	static let signUpViewControllerId = "SignUpSegue"
 	static let signInViewControllerId = "SignInSegue"
+	static let userSettingsControllerId = "SettingsSegue"
 }
 // MARK: - UserViewController
 final class UserViewController: BaseViewController {
@@ -34,7 +35,7 @@ final class UserViewController: BaseViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		if viewModel.CheckUserSignedIn(){
 			viewModel.LoadUserInfos()
-			nameLabel.text = viewModel.email
+			nameLabel.text = viewModel.name
 		} else {
 			performSegue(withIdentifier: UserViewConstants.signUpViewControllerId, sender: self)
 		}
@@ -43,6 +44,9 @@ final class UserViewController: BaseViewController {
 		if segue.identifier == UserViewConstants.signUpViewControllerId {
 			let targetVC = segue.destination as! SignUpViewController
 			targetVC.viewModel = SignUpViewModel()
+		} else if segue.identifier == UserViewConstants.userSettingsControllerId {
+			let targetVC = segue.destination as! UserSettingsViewController
+			targetVC.viewModel = UserSettingsViewModel()
 		}
 	}
 }
@@ -60,7 +64,6 @@ extension UserViewController: UserViewModelDelegate {
 		tableView.reloadData()
 	}
 }
-
 
 // MARK: - UITableViewDataSource
 extension UserViewController: UITableViewDataSource {

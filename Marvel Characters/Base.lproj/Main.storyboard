@@ -645,10 +645,17 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Hq6-jT-xXb">
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="Crf-X3-DKb">
+                        <barButtonItem key="rightBarButtonItem" id="Crf-X3-DKb">
+                            <imageReference key="image" image="gearshape" catalog="system" renderingMode="hierarchical">
+                                <hierarchicalColors>
+                                    <color red="0.12941176469999999" green="0.1450980392" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color systemColor="secondaryLabelColor"/>
+                                    <color systemColor="tertiaryLabelColor"/>
+                                </hierarchicalColors>
+                            </imageReference>
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="w4W-iv-Rqx" kind="show" id="ukb-DJ-i7o"/>
+                                <segue destination="w4W-iv-Rqx" kind="show" identifier="SettingsSegue" id="ukb-DJ-i7o"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1417,6 +1424,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Marvel_Logo" width="400" height="160.5"/>
+        <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="house" catalog="system" width="128" height="106"/>
