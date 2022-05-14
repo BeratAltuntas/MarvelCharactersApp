@@ -9,7 +9,8 @@ import UIKit
 enum UserViewConstants {
 	static let biographyCellCount = 3
 	static let biographyCellId = "BiographyCell"
-	static let createUserViewControllerId = ""
+	static let signUpViewControllerId = "SignUpSegue"
+	static let signInViewControllerId = "SignInSegue"
 }
 // MARK: - UserViewController
 final class UserViewController: BaseViewController {
@@ -28,17 +29,20 @@ final class UserViewController: BaseViewController {
 	var iconList = [UIImage]()
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		viewModel.LoadUI()
 		
+	}
+	override func viewWillAppear(_ animated: Bool) {
 		if viewModel.CheckUserSignedIn(){
-			viewModel.LoadUI()
+			//Signed In Codes
 		} else {
-			performSegue(withIdentifier: UserViewConstants.createUserViewControllerId, sender: self)
+			performSegue(withIdentifier: UserViewConstants.signUpViewControllerId, sender: self)
 		}
 	}
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if segue.identifier == UserViewConstants.createUserViewControllerId {
-			let targetVC = segue.destination as! CreateUserViewController
-			targetVC.viewModel = CreateUserViewModel()
+		if segue.identifier == UserViewConstants.signUpViewControllerId {
+			let targetVC = segue.destination as! SignUpViewController
+			targetVC.viewModel = SignUpViewModel()
 		}
 	}
 }

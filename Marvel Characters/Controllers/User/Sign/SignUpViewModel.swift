@@ -8,21 +8,21 @@
 import Foundation
 
 // MARK: - CreateUserViewModelProtocol
-protocol CreateUserViewModelProtocol {
-	var delegate: CreateUserViewModelDelegate? { get set }
+protocol SignUpViewModelProtocol {
+	var delegate: SignUpViewModelDelegate? { get set }
 }
 
 // MARK: - CreateUserViewModelDelegate
-protocol CreateUserViewModelDelegate: AnyObject {
+protocol SignUpViewModelDelegate: AnyObject {
 	
 }
 
 // MARK: - CreateUserViewModel
-final class CreateUserViewModel {
-	weak var delegate: CreateUserViewModelDelegate?
+final class SignUpViewModel {
+	weak var delegate: SignUpViewModelDelegate?
 }
 
 // MARK: - Extension: CreateUserViewModelProtocol
-extension CreateUserViewModel: CreateUserViewModelProtocol {
+extension SignUpViewModel: SignUpViewModelProtocol {
 	
 }
