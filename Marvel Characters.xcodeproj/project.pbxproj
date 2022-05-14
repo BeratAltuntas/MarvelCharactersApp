@@ -41,6 +41,8 @@
 		F47598F92819BD3600FCF94E /* UICollectionView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47598F82819BD3600FCF94E /* UICollectionView+Register.swift */; };
 		F47598FB2819C45700FCF94E /* UICollectionViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47598FA2819C45700FCF94E /* UICollectionViewCell+Extension.swift */; };
 		F4A02F9D281953B30070A4A3 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A02F9C281953B30070A4A3 /* config.swift */; };
+		F4F27555283005F700B45A19 /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F27554283005F700B45A19 /* CreateUserViewController.swift */; };
+		F4F275572830061500B45A19 /* CreateUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F275562830061500B45A19 /* CreateUserViewModel.swift */; };
 		F4FC3232282FA34F0095C54B /* CreatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FC3231282FA34F0095C54B /* CreatorModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +85,8 @@
 		F47598F82819BD3600FCF94E /* UICollectionView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Register.swift"; sourceTree = "<group>"; };
 		F47598FA2819C45700FCF94E /* UICollectionViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Extension.swift"; sourceTree = "<group>"; };
 		F4A02F9C281953B30070A4A3 /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
+		F4F27554283005F700B45A19 /* CreateUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserViewController.swift; sourceTree = "<group>"; };
+		F4F275562830061500B45A19 /* CreateUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserViewModel.swift; sourceTree = "<group>"; };
 		F4FC3231282FA34F0095C54B /* CreatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -214,6 +218,7 @@
 		F40AC2C7281771BF00C9C346 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				F4F275582830086B00B45A19 /* Sign */,
 				F40AC2D42817728C00C9C346 /* UserViewController.swift */,
 				F40AC2D62817729D00C9C346 /* UserViewModel.swift */,
 			);
@@ -302,6 +307,15 @@
 				F47598FA2819C45700FCF94E /* UICollectionViewCell+Extension.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		F4F275582830086B00B45A19 /* Sign */ = {
+			isa = PBXGroup;
+			children = (
+				F4F27554283005F700B45A19 /* CreateUserViewController.swift */,
+				F4F275562830061500B45A19 /* CreateUserViewModel.swift */,
+			);
+			path = Sign;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -426,6 +440,7 @@
 				F40AC2D12817726600C9C346 /* FavoritesViewModel.swift in Sources */,
 				F40AC2D52817728C00C9C346 /* UserViewController.swift in Sources */,
 				F4A02F9D281953B30070A4A3 /* config.swift in Sources */,
+				F4F27555283005F700B45A19 /* CreateUserViewController.swift in Sources */,
 				F456CBE9281853C3002B30EB /* CharacterPageViewController.swift in Sources */,
 				F4073EE92817861900381C98 /* ComicsCollectionViewCell.swift in Sources */,
 				F433FE46282275A50067102C /* NetworkManager.swift in Sources */,
@@ -447,6 +462,7 @@
 				F4073EED28178EF600381C98 /* ComicModel.swift in Sources */,
 				F40AC2CB2817722E00C9C346 /* HomeViewModel.swift in Sources */,
 				F456CBDE281821A4002B30EB /* SearchTableViewCell.swift in Sources */,
+				F4F275572830061500B45A19 /* CreateUserViewModel.swift in Sources */,
 				F40AC2B228176FBF00C9C346 /* SceneDelegate.swift in Sources */,
 				F46DF71E281EA9A7002C786E /* CharacterPageViewModel.swift in Sources */,
 				F40AC2C92817721B00C9C346 /* HomeViewController.swift in Sources */,
