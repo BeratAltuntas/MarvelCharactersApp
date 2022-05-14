@@ -18,9 +18,9 @@ final class NetworkManager {
     
     func fetchData<T: Decodable>(endPoint: String, type: T?.Type, completion: @escaping Completion<T> ) {
         let urlStr = endPoint+String(Config.keysWithHash)
-        let url = URL(string: urlStr)
+		guard let url = URL(string: urlStr) else { return }
         
-        let task = URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
             if let error = error {
                 print(error)
                 return

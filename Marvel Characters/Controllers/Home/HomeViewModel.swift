@@ -127,7 +127,7 @@ extension HomeViewModel: HomeViewModelProtocol {
 		return cell
 	}
 	
-	func prepareToOpenPage(segue: UIStoryboardSegue,index: Int) {
+	func prepareToOpenPage(segue: UIStoryboardSegue, index: Int) {
 		if segue.identifier == HomeConstant.homeToCharPageSegueID {
 			let targetVC = segue.destination as! CharacterPageViewController
 			targetVC.viewModel = CharacterPageViewModel()
@@ -136,7 +136,7 @@ extension HomeViewModel: HomeViewModelProtocol {
 		} else if segue.identifier == HomeConstant.homeToComicPageSegueID {
 			let targetVC = segue.destination as! ComicPageViewController
 			targetVC.viewModel = ComicPageViewModel()
-			targetVC.comic = comicList?[index]
+			targetVC.selectedComic = comicList?[index]
 		}
 	}
 }

@@ -30,11 +30,11 @@ final class ComicPageViewController: BaseViewController {
 	}
 	var tableViewCharList: [ComicModelItem]?
 	var tableViewWriterList: [ComicModelItem]?
-	var comic: ComicModelResult?
+	var selectedComic: ComicModelResult?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		viewModel.loadComicAttiributes(comic: comic)
+		viewModel.loadComicAttiributes(comic: selectedComic)
 		reloadTableViews()
 	}
 }
@@ -47,24 +47,24 @@ extension ComicPageViewController: ComicPageViewModelDelegate {
 	}
 	
 	func setupUI() {
-		if let imgName = comic?.thumbnail?.path {
+		if let imgName = selectedComic?.thumbnail?.path {
 			let urlImgStr = imgName.replacingOccurrences(of: "http", with: "https") + "/portrait_incredible.jpg"
 			imageViewBanner?.kf.setImage(with: URL(string: urlImgStr))
 		} else {
 			imageViewBanner?.image = UIImage(named: "Marvel_Logo")
 		}
-		labelTitle?.text = comic?.title ?? "İsimsiz"
-		labelSubtitle?.text = "Çizgi Roman sayısı: \(comic?.stories?.available ?? 1)"
-		if let resDescription = comic?.resultDescription {
-			labelDescription?.text = "\(comic?.title ?? "").\n\(resDescription)"
+		labelTitle?.text = selectedComic?.title ?? "İsimsiz"
+		labelSubtitle?.text = "Çizgi Roman sayısı: \(selectedComic?.stories?.available ?? 1)"
+		if let resDescription = selectedComic?.resultDescription {
+			labelDescription?.text = "\(selectedComic?.title ?? "").\n\(resDescription)"
 		} else {
-			if comic?.textObjects.count ?? 0 > 0 {
-				labelDescription?.text = "\(comic?.title ?? "").\n\(comic?.textObjects[0].text ?? "")"
+			if selectedComic?.textObjects.count ?? 0 > 0 {
+				labelDescription?.text = "\(selectedComic?.title ?? "").\n\(selectedComic?.textObjects[0].text ?? "")"
 			} else {
 				labelDescription?.text = "İçerik bilgisi bulunmuyor."
 			}
 		}
-		if let chars = comic?.characters?.items, let writers = comic?.creators?.items {
+		if let chars = selectedComic?.characters?.items, let writers = selectedComic?.creators?.items {
 			tableViewCharList = chars
 			tableViewWriterList = writers
 		}
@@ -97,11 +97,11 @@ extension ComicPageViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		if tableView.tag == ComicPageConstant.charsTableViewTag {
 			let cell = tableView.dequeueReusableCell(withIdentifier: ComicPageConstant.tableViewCharIdentifier)!
-			cell.textLabel?.text = (comic?.characters?.items?[indexPath.row].name ?? "Karakter bilgisi bulunmuyor.") + (comic?.characters?.items?[indexPath.row].role ?? "")
+			cell.textLabel?.text = (selectedComic?.characters?.items?[indexPath.row].name ?? "Karakter bilgisi bulunmuyor.") + (selectedComic?.characters?.items?[indexPath.row].role ?? "")
 			return cell
 		} else if tableView.tag == ComicPageConstant.writersTableViewTag {
 			let cell = tableView.dequeueReusableCell(withIdentifier: ComicPageConstant.tableViewWriterIdentifier)!
-			cell.textLabel?.text = (comic?.creators?.items?[indexPath.row].name ?? "Yazar bilgisi bulunmuyor.") + (comic?.creators?.items?[indexPath.row].role ?? "")
+			cell.textLabel?.text = (selectedComic?.creators?.items?[indexPath.row].name ?? "Yazar bilgisi bulunmuyor.") + (selectedComic?.creators?.items?[indexPath.row].role ?? "")
 			return cell
 		}
 		return UITableViewCell()

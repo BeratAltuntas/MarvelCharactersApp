@@ -22,8 +22,8 @@ protocol SearchViewModelProtocol {
 
 // MARK: - SearchViewModelDelegate
 protocol SearchViewModelDelegate: AnyObject {
-	func setupTableView()
-	func reloadTableView()
+	func SetupTableView()
+	func ReloadTableView()
 	func setupNavigationBar()
 }
 // MARK: - SearchViewModel
@@ -39,7 +39,7 @@ extension SearchViewModel: SearchViewModelProtocol {
 	
 	func SetupUI() {
 		delegate?.setupNavigationBar()
-		delegate?.setupTableView()
+		delegate?.SetupTableView()
 	}
 	
 	func fetchCharacter(searchingString: String) {
@@ -48,6 +48,7 @@ extension SearchViewModel: SearchViewModelProtocol {
 			switch result {
 			case .success(let response):
 				self?.searchCharacter = response.data?.results
+				self?.DispatchQueueReloadTable()
 			case .failure(let error):
 				print(error)
 			}
@@ -60,6 +61,7 @@ extension SearchViewModel: SearchViewModelProtocol {
 			switch result {
 			case .success(let response):
 				self?.searchComic = response.data?.results
+				self?.DispatchQueueReloadTable()
 			case .failure(let error):
 				print(error)
 			}
@@ -72,9 +74,16 @@ extension SearchViewModel: SearchViewModelProtocol {
 			switch result {
 			case .success(let response):
 				self?.searchCreator = response.data?.results
+				self?.DispatchQueueReloadTable()
 			case .failure(let error):
 				print(error)
 			}
+		}
+	}
+	
+	func DispatchQueueReloadTable() {
+		DispatchQueue.main.async { [weak self] in
+			self?.delegate?.ReloadTableView()
 		}
 	}
 }
