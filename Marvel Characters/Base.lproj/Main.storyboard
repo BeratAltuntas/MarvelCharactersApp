@@ -644,7 +644,14 @@
                             <constraint firstItem="rB6-fd-JZM" firstAttribute="trailing" secondItem="i6o-2l-erw" secondAttribute="trailing" id="uIr-p3-xbh"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Hq6-jT-xXb"/>
+                    <navigationItem key="navigationItem" id="Hq6-jT-xXb">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="Crf-X3-DKb">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="w4W-iv-Rqx" kind="show" id="ukb-DJ-i7o"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="largeProfileImageView" destination="bi6-cY-vA1" id="VX6-6r-gJO"/>
                         <outlet property="miniProfileImageView" destination="iTd-Pv-TRf" id="Bfn-Sf-Jmi"/>
@@ -656,6 +663,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0lL-pg-ZDR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="827.536231884058" y="462.72321428571428"/>
+        </scene>
+        <!--User Settings View Controller-->
+        <scene sceneID="ajU-g8-8ik">
+            <objects>
+                <viewController id="w4W-iv-Rqx" customClass="UserSettingsViewController" customModule="Marvel_Characters" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="41I-CM-pFG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="0RA-tf-4rT"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="MxQ-hY-ZU6"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VzK-ew-yIV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1787" y="463"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="Al6-wU-spN">
