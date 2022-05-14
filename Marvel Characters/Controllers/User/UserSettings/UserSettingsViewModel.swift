@@ -4,12 +4,13 @@
 //
 //  Created by BERAT ALTUNTAŞ on 14.05.2022.
 //
-
+import FirebaseAuth
 import Foundation
 
 // MARK: - UserSettingsViewModelProtocol
 protocol UserSettingsViewModelProtocol {
 	var delegate: UserSettingsViewModelDelegate? { get set }
+	func UpdateUserInfo()
 }
 
 // MARK: - UserSettingsViewModelDelegate
@@ -24,5 +25,7 @@ final class UserSettingsViewModel {
 
 // MARK: - Extension: UserSettingsViewModelProtocol
 extension UserSettingsViewModel: UserSettingsViewModelProtocol {
-	
+	func UpdateUserInfo() {
+		
+	}
 }
