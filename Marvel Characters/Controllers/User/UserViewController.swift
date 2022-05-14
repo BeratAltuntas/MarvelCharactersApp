@@ -30,11 +30,11 @@ final class UserViewController: BaseViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		viewModel.LoadUI()
-		
 	}
 	override func viewWillAppear(_ animated: Bool) {
 		if viewModel.CheckUserSignedIn(){
-			//Signed In Codes
+			viewModel.LoadUserInfos()
+			nameLabel.text = viewModel.email
 		} else {
 			performSegue(withIdentifier: UserViewConstants.signUpViewControllerId, sender: self)
 		}

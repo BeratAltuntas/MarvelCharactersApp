@@ -22,6 +22,15 @@ final class SignInViewController: BaseViewController {
         // Do any additional setup after loading the view.
     }
 	@IBAction func SignIn_TUI(_ sender: Any) {
+		if let email = textFieldEmail.text,
+		   let password = textFieldPassword.text {
+			if !password.isEmpty && !email.isEmpty && email.contains("@") && email.contains(".com") {
+				let success = viewModel.SignIn(email: email, password: password)
+				if success {
+					dismiss(animated: true)
+				}
+			}
+		}
 	}
 	@IBAction func SignInWithGoogle_TUI(_ sender: Any) {
 	}
