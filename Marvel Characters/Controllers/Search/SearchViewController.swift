@@ -4,7 +4,6 @@
 //
 //  Created by BERAT ALTUNTAŞ on 26.04.2022.
 //
-
 import UIKit
 
 enum SearchViewConstant {
@@ -17,7 +16,7 @@ enum SearchViewConstant {
 enum SearchingCatagories {
 	static let comicTitle = "Çizgi Roman"
 	static let charTitle = "Karakter"
-	static let writerTitle = "Yazar"
+	static let creatorTitle = "Yazar"
 }
 
 // MARK: - SearchViewController
@@ -29,16 +28,41 @@ final class SearchViewController: BaseViewController {
 	}
 	var comic: [ComicModelResult]?
 	var character: [CharacterModelResult]?
+	var creator: [CreatorModelResult]?
+	
 	var counterButtonTextChanger: Int = .zero
 	
+	@IBOutlet private weak var buttonSearchingType: UIButton!
 	@IBOutlet private var tableView:UITableView!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		setupNavBar()
+		viewModel.SetupUI()
+		buttonSearchingType.setTitle(SearchingCatagories.charTitle, for: .normal)
+	}
+	func changeTitle(title: SearchingCatagories) {
+		
 	}
 	@IBAction func buttonChangeType_TUI(_ sender: UIButton) {
-		changeButtonTitle(sender)
+		switch counterButtonTextChanger {
+		case .zero:
+			buttonSearchingType.setTitle(SearchingCatagories.charTitle, for: .normal)
+			break
+		case 1:
+			buttonSearchingType.setTitle(SearchingCatagories.creatorTitle, for: .normal)
+			break
+
+		case 2:
+			buttonSearchingType.setTitle(SearchingCatagories.comicTitle, for: .normal)
+			break
+		default:
+			break
+		}
+		if counterButtonTextChanger < 2 {
+			counterButtonTextChanger += 1
+		} else {
+			counterButtonTextChanger = .zero
+		}
 	}
 }
 
@@ -55,28 +79,6 @@ extension SearchViewController: SearchViewModelDelegate {
 	func setupNavigationBar() {
 		setupNavBar()
 	}
-	
-	func changeButtonTitle(_ sender: UIButton) {
-		switch counterButtonTextChanger {
-		case 0:
-			sender.setTitle(SearchingCatagories.charTitle, for: .normal)
-			break
-		case 1:
-			sender.setTitle(SearchingCatagories.writerTitle, for: .normal)
-			break
-			
-		case 2:
-			sender.setTitle(SearchingCatagories.comicTitle, for: .normal)
-			break
-		default:
-			break
-		}
-		if counterButtonTextChanger < 2 {
-			counterButtonTextChanger += 1
-		} else {
-			counterButtonTextChanger = .zero
-		}
-	}
 }
 
 // MARK: - UISearchBarDelegate
@@ -87,12 +89,30 @@ extension SearchViewController: UISearchBarDelegate {
 // MARK: - SearchViewController: UITableViewDataSource
 extension SearchViewController: UITableViewDataSource{
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 0
+		let buttonTitle = buttonSearchingType.titleLabel?.text
+		if buttonTitle == SearchingCatagories.charTitle {
+			character = viewModel.searchCharacter
+			return viewModel.searchCharacter?.count ?? .zero
+		} else if buttonTitle == SearchingCatagories.comicTitle {
+			comic = viewModel.searchComic
+			return viewModel.searchComic?.count ?? .zero
+		} else if buttonTitle == SearchingCatagories.creatorTitle {
+			creator = viewModel.searchCreator
+			return viewModel.searchCreator?.count ?? .zero
+		}
+		return .zero
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let buttonTitle = buttonSearchingType.titleLabel?.text
 		let cell = Bundle.main.loadNibNamed(SearchViewConstant.searchCellNibName, owner: self)?.first as! SearchTableViewCell
-		cell.textLabel?.text = comic?[indexPath.row].title
+		if buttonTitle == SearchingCatagories.charTitle {
+			cell.setupCell(imageName: character?[indexPath.row].thumbnail?.path, contentName: character?[indexPath.row].name, contentDesc: character?[indexPath.row].resultDescription)
+		} else if buttonTitle == SearchingCatagories.comicTitle {
+			cell.setupCell(imageName: comic?[indexPath.row].thumbnail?.path, contentName: comic?[indexPath.row].title, contentDesc: comic?[indexPath.row].resultDescription)
+		} else if buttonTitle == SearchingCatagories.creatorTitle {
+			cell.setupCell(imageName: creator?[indexPath.row].thumbnail?.path, contentName: (creator?[indexPath.row].firstName ?? "") + (creator?[indexPath.row].lastName ?? ""), contentDesc: creator?[indexPath.row].fullName ?? "")
+		}
 		return cell
 	}
 }

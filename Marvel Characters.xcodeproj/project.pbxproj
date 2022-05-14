@@ -41,6 +41,7 @@
 		F47598F92819BD3600FCF94E /* UICollectionView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47598F82819BD3600FCF94E /* UICollectionView+Register.swift */; };
 		F47598FB2819C45700FCF94E /* UICollectionViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47598FA2819C45700FCF94E /* UICollectionViewCell+Extension.swift */; };
 		F4A02F9D281953B30070A4A3 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A02F9C281953B30070A4A3 /* config.swift */; };
+		F4FC3232282FA34F0095C54B /* CreatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FC3231282FA34F0095C54B /* CreatorModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		F47598F82819BD3600FCF94E /* UICollectionView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Register.swift"; sourceTree = "<group>"; };
 		F47598FA2819C45700FCF94E /* UICollectionViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Extension.swift"; sourceTree = "<group>"; };
 		F4A02F9C281953B30070A4A3 /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
+		F4FC3231282FA34F0095C54B /* CreatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 			children = (
 				F4073EEC28178EF600381C98 /* ComicModel.swift */,
 				F42FA4F628195EDE003309EF /* CharacterModel.swift */,
+				F4FC3231282FA34F0095C54B /* CreatorModel.swift */,
 			);
 			name = Models;
 			path = "Marvel Characters";
@@ -438,6 +441,7 @@
 				F46DF720281EA9B1002C786E /* ComicPageModel.swift in Sources */,
 				F40AC2CD2817724600C9C346 /* SearchViewController.swift in Sources */,
 				F456CBE628184FA1002B30EB /* FavoriteCellFlowLayout.swift in Sources */,
+				F4FC3232282FA34F0095C54B /* CreatorModel.swift in Sources */,
 				F40AC2B028176FBF00C9C346 /* AppDelegate.swift in Sources */,
 				F47598F72819BA9B00FCF94E /* BaseViewController.swift in Sources */,
 				F4073EED28178EF600381C98 /* ComicModel.swift in Sources */,

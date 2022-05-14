@@ -77,6 +77,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="1co-rP-VCh"/>
                     <connections>
+                        <outlet property="buttonSearchingType" destination="8J0-bq-uvb" id="hkh-e2-ccc"/>
                         <outlet property="tableView" destination="vgL-43-ZOx" id="HiG-ZV-4B9"/>
                         <segue destination="Wq8-or-nZg" kind="show" identifier="SearchToChar" id="jVx-ze-HrX"/>
                         <segue destination="qMN-1X-JpL" kind="show" identifier="SearchToComic" id="w1f-Qh-Lzj"/>
@@ -972,8 +973,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="dy5-gc-3eI"/>
-        <segue reference="uQC-9R-U3W"/>
+        <segue reference="w1f-Qh-Lzj"/>
+        <segue reference="jVx-ze-HrX"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Marvel_Logo" width="400" height="160.5"/>
