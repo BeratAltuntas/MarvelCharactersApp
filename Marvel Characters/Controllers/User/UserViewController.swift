@@ -13,6 +13,7 @@ enum UserViewConstants {
 	static let signInViewControllerId = "SignInSegue"
 	static let userSettingsControllerId = "SettingsSegue"
 }
+
 // MARK: - UserViewController
 final class UserViewController: BaseViewController {
 	
@@ -33,7 +34,7 @@ final class UserViewController: BaseViewController {
 		viewModel.LoadUI()
 	}
 	override func viewWillAppear(_ animated: Bool) {
-		if viewModel.CheckUserSignedIn(){
+		if false{//viewModel.CheckUserSignedIn(){
 			viewModel.LoadUserInfos()
 			nameLabel.text = viewModel.name
 		} else {

@@ -15,11 +15,19 @@ final class SignUpViewController: BaseViewController {
 			viewModel.delegate = self
 		}
 	}
+	private var currentImage: UIImage!
+	@IBOutlet weak var imageViewUserProfile: UIImageView!
 	@IBOutlet weak var textFieldNameSurname: UITextField!
 	@IBOutlet weak var textFieldEmail: UITextField!
 	@IBOutlet weak var textFieldPassword: UITextField!
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+		imageViewUserProfile.isUserInteractionEnabled = true
+		imageViewUserProfile.addGestureRecognizer(tapGestureRecognizer)
+	}
+	@objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+		OpenImagePicker()
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -33,7 +41,7 @@ final class SignUpViewController: BaseViewController {
 		   let email = textFieldEmail.text,
 		   let password = textFieldPassword.text {
 			if email.contains("@") && password.count >= 8 {
-				viewModel.CreateUser(email: email, password: password)
+				viewModel.CreateUser(name: name, email: email, password: password)
 			}
 		}
 	}
@@ -46,5 +54,33 @@ final class SignUpViewController: BaseViewController {
 extension SignUpViewController: SignUpViewModelDelegate {
 	func Dissmiss() {
 		_ = navigationController?.popViewController(animated: true)
+	}
+}
+
+// MARK: - Extension: UINavigationControllerDelegate
+extension SignUpViewController: UINavigationControllerDelegate {
+	
+}
+
+// MARK: - Extension: UIImagePickerControllerDelegate
+extension SignUpViewController: UIImagePickerControllerDelegate {
+	func OpenImagePicker() {
+		let imagePicker = UIImagePickerController()
+		imagePicker.allowsEditing = true
+		imagePicker.delegate = self
+		imagePicker.sourceType = .photoLibrary
+		present(imagePicker, animated: true)
+	}
+	
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+		// image is selected
+		dismiss(animated: true)
+		guard let image = info[.editedImage] as? UIImage else{return}
+		currentImage = image
+		imageViewUserProfile.image = currentImage
+	}
+	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+		// image selecting is canceled
+		dismiss(animated: true)
 	}
 }

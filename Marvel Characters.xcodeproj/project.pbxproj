@@ -35,6 +35,8 @@
 		F456CBE428184168002B30EB /* FavoritesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F456CBE228184168002B30EB /* FavoritesCollectionViewCell.xib */; };
 		F456CBE628184FA1002B30EB /* FavoriteCellFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F456CBE528184FA1002B30EB /* FavoriteCellFlowLayout.swift */; };
 		F456CBE9281853C3002B30EB /* CharacterPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F456CBE8281853C2002B30EB /* CharacterPageViewController.swift */; };
+		F458999C28314D8000C4140E /* FirebaseDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F458999B28314D8000C4140E /* FirebaseDatabaseManager.swift */; };
+		F458999E28314E9300C4140E /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F458999D28314E9300C4140E /* FirebaseAuthManager.swift */; };
 		F46DF71E281EA9A7002C786E /* CharacterPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46DF71D281EA9A7002C786E /* CharacterPageViewModel.swift */; };
 		F46DF720281EA9B1002C786E /* ComicPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46DF71F281EA9B1002C786E /* ComicPageModel.swift */; };
 		F47598F72819BA9B00FCF94E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47598F62819BA9B00FCF94E /* BaseViewController.swift */; };
@@ -83,6 +85,8 @@
 		F456CBE228184168002B30EB /* FavoritesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesCollectionViewCell.xib; sourceTree = "<group>"; };
 		F456CBE528184FA1002B30EB /* FavoriteCellFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCellFlowLayout.swift; sourceTree = "<group>"; };
 		F456CBE8281853C2002B30EB /* CharacterPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterPageViewController.swift; sourceTree = "<group>"; };
+		F458999B28314D8000C4140E /* FirebaseDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseManager.swift; sourceTree = "<group>"; };
+		F458999D28314E9300C4140E /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
 		F46DF71D281EA9A7002C786E /* CharacterPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterPageViewModel.swift; sourceTree = "<group>"; };
 		F46DF71F281EA9B1002C786E /* ComicPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicPageModel.swift; sourceTree = "<group>"; };
 		F47598F62819BA9B00FCF94E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -259,6 +263,8 @@
 			isa = PBXGroup;
 			children = (
 				F433FE45282275A50067102C /* NetworkManager.swift */,
+				F458999B28314D8000C4140E /* FirebaseDatabaseManager.swift */,
+				F458999D28314E9300C4140E /* FirebaseAuthManager.swift */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -484,7 +490,9 @@
 				F47598F72819BA9B00FCF94E /* BaseViewController.swift in Sources */,
 				F4073EED28178EF600381C98 /* ComicModel.swift in Sources */,
 				F4F275602830338400B45A19 /* UserSettingsViewModel.swift in Sources */,
+				F458999C28314D8000C4140E /* FirebaseDatabaseManager.swift in Sources */,
 				F40AC2CB2817722E00C9C346 /* HomeViewModel.swift in Sources */,
+				F458999E28314E9300C4140E /* FirebaseAuthManager.swift in Sources */,
 				F456CBDE281821A4002B30EB /* SearchTableViewCell.swift in Sources */,
 				F4F275572830061500B45A19 /* SignUpViewModel.swift in Sources */,
 				F40AC2B228176FBF00C9C346 /* SceneDelegate.swift in Sources */,

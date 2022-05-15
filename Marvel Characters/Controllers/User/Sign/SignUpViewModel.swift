@@ -4,15 +4,13 @@
 //
 //  Created by BERAT ALTUNTAŞ on 14.05.2022.
 //
-import FirebaseAuth
 import Foundation
 
 // MARK: - SignUpViewModelProtocol
 protocol SignUpViewModelProtocol {
 	var delegate: SignUpViewModelDelegate? { get set }
 	
-	func CreateUser(email: String, password: String)
-	func UpdateUsersName(name: String)
+	func CreateUser(name: String, email: String, password: String)
 }
 
 // MARK: - SignUpViewModelDelegate
@@ -27,16 +25,15 @@ final class SignUpViewModel {
 
 // MARK: - Extension: SignUpViewModelProtocol
 extension SignUpViewModel: SignUpViewModelProtocol {
-	func CreateUser(email: String, password: String) {
-		Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
-			if error == nil {
-				self?.delegate?.Dissmiss()
+	func CreateUser(name: String, email: String, password: String) {
+		FirebaseAuthManager.shared.CreateUser(email: email, password: password) { (success, uId) in
+			if success {
+				FireBaseDatabaseManager.shared.CreateUserInDatabase(uId: uId, name: name, email: email, password: password) { [weak self] (success) in
+					if success {
+						self?.delegate?.Dissmiss()
+					}
+				}
 			}
 		}
-	}
-	func UpdateUsersName(name: String) {
-		let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-		changeRequest?.displayName = name
-		changeRequest?.commitChanges()
 	}
 }

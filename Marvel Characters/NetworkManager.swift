@@ -11,11 +11,10 @@ struct ApiError: Error {
     let desc: String?
 }
 
-typealias Completion<T> = (Result<T, ApiError>)-> Void where T: Decodable
-
 final class NetworkManager {
     static let shared = NetworkManager()
-    
+	typealias Completion<T> = (Result<T, ApiError>)-> Void where T: Decodable
+	
     func fetchData<T: Decodable>(endPoint: String, type: T?.Type, completion: @escaping Completion<T> ) {
         let urlStr = endPoint+String(Config.keysWithHash)
 		guard let url = URL(string: urlStr) else { return }
