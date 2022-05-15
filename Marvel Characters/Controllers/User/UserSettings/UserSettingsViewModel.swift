@@ -86,17 +86,22 @@ extension UserSettingsViewModel: UserSettingsViewModelProtocol {
 	}
 	
 	func UpdateUserInfo(name: String,image: UIImage, city: String, birthdate: String, email: String) {
-		
-		let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-		if !name.isEmpty {
-			changeRequest?.displayName = name
-		}
-		UpdateStorageUserImage(image: image)
-		
-		changeRequest?.commitChanges(completion: { [weak self] error in
-			if error == nil {
+		FireBaseDatabaseManager.shared.UpdateUserInDatabase(withUId: uID, name: name, email: email, profileImage: "image", birthdate: birthdate, city: city, gender: "gender", password: "") {[weak self] success in
+			if success {
 				self?.delegate?.DissmissToRootController()
 			}
-		})
+		}
+//
+//		let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+//		if !name.isEmpty {
+//			changeRequest?.displayName = name
+//		}
+//		UpdateStorageUserImage(image: image)
+//
+//		changeRequest?.commitChanges(completion: { [weak self] error in
+//			if error == nil {
+//				self?.delegate?.DissmissToRootController()
+//			}
+//		})
 	}
 }
