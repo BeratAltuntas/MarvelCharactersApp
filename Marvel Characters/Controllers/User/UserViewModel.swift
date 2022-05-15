@@ -4,19 +4,17 @@
 //
 //  Created by BERAT ALTUNTAŞ on 26.04.2022.
 //
-import FirebaseAuth
 import Foundation
+
+typealias UserViewCompletion = (_ success: Bool) -> Void
 
 // MARK: - UserViewModelProtocol
 protocol UserViewModelProtocol {
 	var delegate: UserViewModelDelegate? { get set }
-	var uId: String { get }
-	var email: String { get }
-	var name: String { get }
-	var imageUrl: URL { get }
+	var user: User { get }
 	
 	func LoadUI()
-	func LoadUserInfos()
+	func LoadUserInfos(completion: @escaping UserViewCompletion)
 	func CheckUserSignedIn()-> Bool
 	
 }
@@ -29,39 +27,25 @@ protocol UserViewModelDelegate: AnyObject {
 
 // MARK: - UserViewModel
 final class UserViewModel {
+	
+	
 	weak var delegate: UserViewModelDelegate?
-	var userId: String?
-	var userEmail: String?
-	var userName: String?
-	var userImageUrl: URL?
+	var userViewModel: User?
 }
 
 // MARK: - UserViewModelExtension
 extension UserViewModel: UserViewModelProtocol {
-	var imageUrl: URL {
-		userImageUrl ?? URL(string: "")!
+	
+	var user: User {
+		userViewModel ?? User(data: ["":""])
 	}
 	
-	var uId: String {
-		userId ?? ""
-	}
-	
-	var email: String {
-		userEmail ?? ""
-	}
-	
-	var name: String {
-		userName ?? ""
-	}
-	
-	
-	func LoadUserInfos() {
-		let user = Auth.auth().currentUser
-		if let user = user {
-			userId = user.uid
-			userEmail = user.email
-			userName = user.displayName
-			userImageUrl = user.photoURL
+	func LoadUserInfos(completion: @escaping UserViewCompletion) {
+		FireBaseDatabaseManager.shared.GetUserInDatabase(withUid: FirebaseAuthManager.shared.GetUserUid()!) { [weak self] (success, result) in
+			if success {
+				self?.userViewModel = result
+				completion(true)
+			}
 		}
 	}
 	
@@ -69,9 +53,6 @@ extension UserViewModel: UserViewModelProtocol {
 		delegate?.SetupUI()
 	}
 	func CheckUserSignedIn()-> Bool {
-		if Auth.auth().currentUser == nil{
-			return false
-		}
-		return true
+		FirebaseAuthManager.shared.IsUserSignedIn()
 	}
 }

@@ -5,7 +5,6 @@
 //  Created by BERAT ALTUNTAŞ on 14.05.2022.
 //
 import FirebaseAuth
-import FirebaseStorage
 import Foundation
 
 // MARK: - UserSettingsViewModelProtocol
@@ -38,18 +37,19 @@ final class UserSettingsViewModel {
 	var userEmail: String?
 	
 	func UpdateStorageUserImage(image: UIImage) {
-		guard let imageData = image.jpegData(compressionQuality: 0.4) else { return }
-		let storageRef = Storage.storage().reference(forURL: Config.firebaseStorageReferenceUrl)
-		let profileRef = storageRef.child(Config.firebaseStorageReferenceMainChild).child(uID)
-		
-		let metaData = StorageMetadata()
-		metaData.contentType = "image/jpg"
-		profileRef.putData(imageData, metadata: metaData) { (storageMetaData, error) in
-			if error != nil {
-				print(error!.localizedDescription)
-				return
-			}
-		}
+		FirebaseStorageManager.shared.UploadImageToFirebaseStorage(uId: uID, image: image)
+//		guard let imageData = image.jpegData(compressionQuality: 0.4) else { return }
+//		let storageRef = Storage.storage().reference(forURL: Config.firebaseStorageReferenceUrl)
+//		let profileRef = storageRef.child(Config.firebaseStorageReferenceMainChild).child(uID)
+//
+//		let metaData = StorageMetadata()
+//		metaData.contentType = "image/jpg"
+//		profileRef.putData(imageData, metadata: metaData) { (storageMetaData, error) in
+//			if error != nil {
+//				print(error!.localizedDescription)
+//				return
+//			}
+//		}
 	}
 }
 
@@ -76,13 +76,8 @@ extension UserSettingsViewModel: UserSettingsViewModelProtocol {
 	}
 	
 	func getUserInfos() {
-		let user = Auth.auth().currentUser
-		if let user = user {
-			uID = user.uid
-			userName = user.displayName
-			userEmail = user.email
-			photoUrl = user.photoURL
-		}
+		uID = FirebaseAuthManager.shared.GetUserUid()
+		userEmail = FirebaseAuthManager.shared.GetUserEmail()
 	}
 	
 	func UpdateUserInfo(name: String,image: UIImage, city: String, birthdate: String, email: String) {

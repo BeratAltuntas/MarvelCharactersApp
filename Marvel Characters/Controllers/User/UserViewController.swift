@@ -34,9 +34,13 @@ final class UserViewController: BaseViewController {
 		viewModel.LoadUI()
 	}
 	override func viewWillAppear(_ animated: Bool) {
-		if false{//viewModel.CheckUserSignedIn(){
-			viewModel.LoadUserInfos()
-			nameLabel.text = viewModel.name
+		if viewModel.CheckUserSignedIn(){
+			viewModel.LoadUserInfos(){ [weak self] success in
+				if success {
+					self?.nameLabel.text = self?.viewModel.user.namesurname
+				}
+			}
+			
 		} else {
 			performSegue(withIdentifier: UserViewConstants.signUpViewControllerId, sender: self)
 		}

@@ -8,6 +8,7 @@ import FirebaseDatabase
 import Foundation
 
 typealias Databasecompletion = (_ success: Bool) -> Void
+typealias GetUserCompletionHandler = (_ success: Bool, _ result: User) -> Void
 
 final class FireBaseDatabaseManager {
 	static let shared = FireBaseDatabaseManager()
@@ -20,11 +21,11 @@ final class FireBaseDatabaseManager {
 		let dict: [String: Any] = [
 			"uid": UId,
 			"email": email,
-			"profileImageLink": "",
+			"profileImageLink": profileImage,
 			"namesurname":name,
-			"birthdate":"",
-			"city":"",
-			"gender":"",
+			"birthdate":birthdate,
+			"city":city,
+			"gender": gender,
 			"password": password
 		]
 		
@@ -34,8 +35,7 @@ final class FireBaseDatabaseManager {
 	}
 	
 	func CreateUserInDatabase(uId: String, name: String, email: String, password: String, completion: @escaping Databasecompletion) {
-		
-		let dict: [String: Any] = [
+		let dict: [String: String] = [
 			"uid": uId,
 			"email": email,
 			"profileImageLink": "",
@@ -48,6 +48,20 @@ final class FireBaseDatabaseManager {
 		
 		Database.database(url: Config.firebaseDatabaseRefrenceUrl).reference().child(Config.firebaseDatabaseReferenceMainChild).child(uId).updateChildValues(dict) { (error, databaseRef) in
 			completion(true)
+		}
+	}
+	
+	func GetUserInDatabase(withUid uId: String, completion: @escaping GetUserCompletionHandler ) {
+		let ref = Database.database(url: Config.firebaseDatabaseRefrenceUrl).reference().child(Config.firebaseDatabaseReferenceMainChild).child(uId)
+		
+		ref.observeSingleEvent(of: .value) { result in
+			
+			if result.exists() {
+				let value = result.value as? NSDictionary
+				
+				let user = User(data: value as! [String : String])
+				completion(true,user)
+			}
 		}
 	}
 }
