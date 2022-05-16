@@ -16,6 +16,7 @@ protocol UserSettingsViewModelProtocol {
 	
 	func UpdateUserInfo(user: User!, imageData: Data)
 	func DownloadImage(urlString: String?, completion: @escaping CompletionHandlerImage)
+	func SignOut()-> Bool
 }
 
 // MARK: - UserSettingsViewModelDelegate
@@ -23,7 +24,6 @@ protocol UserSettingsViewModelDelegate: AnyObject {
 	var isImageSet: Bool { get }
 	func DissmissToRootController()
 	func SetImage()
-	
 }
 
 // MARK: - UserSettingsViewModel
@@ -37,6 +37,10 @@ final class UserSettingsViewModel {
 
 // MARK: - Extension: UserSettingsViewModelProtocol
 extension UserSettingsViewModel: UserSettingsViewModelProtocol {
+	func SignOut()-> Bool {
+		return FirebaseAuthManager.shared.SignOut()
+	}
+	
 	var image: UIImage? {
 		imageViewModel
 	}
@@ -48,7 +52,12 @@ extension UserSettingsViewModel: UserSettingsViewModelProtocol {
 					let tempUser = User(uId: user.uid, email: user.email, profileImageLink: imageStringPath, namesurname: user.namesurname, birthdate: user.birthdate, city: user.city, gender: user.gender)
 					FireBaseDatabaseManager.shared.UpdateUserInDatabase(withUser: tempUser) {[weak self] success in
 						if success {
-							self?.delegate?.DissmissToRootController()
+							if let name = user.namesurname,
+							   let email = user.email {
+								FirebaseAuthManager.shared.ChangeUserNameAndImage(name: name, stringImageUrl: imageStringPath)
+								FirebaseAuthManager.shared.ChangeUserEmail(email: email)
+								self?.delegate?.DissmissToRootController()
+							}
 						}
 					}
 				}

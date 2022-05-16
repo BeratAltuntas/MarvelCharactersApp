@@ -22,12 +22,18 @@ final class SignUpViewController: BaseViewController {
 	@IBOutlet weak var textFieldPassword: UITextField!
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+		let imageTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
 		imageViewUserProfile.isUserInteractionEnabled = true
-		imageViewUserProfile.addGestureRecognizer(tapGestureRecognizer)
+		imageViewUserProfile.addGestureRecognizer(imageTapGestureRecognizer)
+		
+		let closeKeyboardGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(DissmissKeyboard))
+		view.addGestureRecognizer(closeKeyboardGestureRecognizer)
 	}
 	@objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
 		OpenImagePicker()
+	}
+	@objc func DissmissKeyboard() {
+		view.endEditing(true)
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -41,7 +47,7 @@ final class SignUpViewController: BaseViewController {
 		   let email = textFieldEmail.text,
 		   let password = textFieldPassword.text {
 			if email.contains("@") && password.count >= 8 {
-				let imgData = ImageToData(image: currentImage)
+				let imgData = ImageToData(image: imageViewUserProfile.image!)
 				viewModel.CreateUser(name: name, email: email, imageData: imgData, password: password)
 			}
 		}

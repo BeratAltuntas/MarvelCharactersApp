@@ -19,6 +19,7 @@ final class UserSettingsViewController: BaseViewController {
 	@IBOutlet weak var textFieldNameSurname: UITextField!
 	@IBOutlet weak var textFieldCity: UITextField!
 	@IBOutlet weak var datePickerBirthdate: UIDatePicker!
+	@IBOutlet weak var segmentControllerGender: UISegmentedControl!
 	@IBOutlet weak var textFieldEmail: UITextField!
 	
 	var currentImage = UIImage(systemName: "person.fill" )
@@ -41,16 +42,31 @@ final class UserSettingsViewController: BaseViewController {
 		}
 	}
 	
+	func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+		print(true)
+	}
+	
 	func LoadUserInfo(image: UIImage) {
 		imageViewProfileImage.image = image
 		textFieldNameSurname.text = user.namesurname
 		textFieldCity.text = user.city
 		textFieldEmail.text = user.email
+		if user.gender == "Erkek" {
+			segmentControllerGender.selectedSegmentIndex = 1
+		} else if user.gender == "Kadın" {
+			segmentControllerGender.selectedSegmentIndex = 0
+		}
 		if let birthdate = user.birthdate {
-			let dateFormatter = DateFormatter()
-			dateFormatter.dateFormat = "dd-MM-yyyy"
-			let date = dateFormatter.date(from:birthdate)!
-			datePickerBirthdate.setDate(date, animated: true)
+			do {
+				let dateFormatter = DateFormatter()
+				dateFormatter.dateFormat = "dd-MM-yyyy"
+				let date = try dateFormatter.date(from:birthdate)
+				if let date = date {
+					datePickerBirthdate.setDate(date, animated: true)
+				}
+			} catch {
+				print(error)
+			}
 		}
 	}
 	
@@ -63,15 +79,20 @@ final class UserSettingsViewController: BaseViewController {
 		   let city = textFieldCity.text,
 		   let date = datePickerBirthdate?.date,
 		   let email = textFieldEmail.text {
-			
+			let gender = segmentControllerGender.titleForSegment(at: segmentControllerGender.selectedSegmentIndex)
 			let dateFormatter = DateFormatter()
 			dateFormatter.dateFormat = "dd/MM/yyyy"
 			let birthdate = dateFormatter.string(from: date)
 			
 			let imgData = ImageToData(image: currentImage!)
 			
-			let tempUser = User(uId: user.uid, email: email, profileImageLink: "", namesurname: name, birthdate: birthdate, city: city, gender: "")
+			let tempUser = User(uId: user.uid, email: email, profileImageLink: "", namesurname: name, birthdate: birthdate, city: city, gender: gender)
 			viewModel.UpdateUserInfo(user: tempUser, imageData: imgData)
+		}
+	}
+	@IBAction func SignOut_TUI(_ sender: Any) {
+		if viewModel.SignOut() {
+			DissmissToRootController()
 		}
 	}
 }
@@ -105,7 +126,6 @@ extension UserSettingsViewController: UIImagePickerControllerDelegate {
 	}
 	
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-		// image is selected
 		dismiss(animated: true)
 		guard let image = info[.editedImage] as? UIImage else{return}
 		currentImage = image
@@ -113,9 +133,13 @@ extension UserSettingsViewController: UIImagePickerControllerDelegate {
 		imageViewProfileImage.image = currentImage
 	}
 	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-		// image selecting is canceled
 		dismiss(animated: true)
-		print("image cancel")
+	}
+}
+
+extension UserSettingsViewController: UIScrollViewDelegate {
+	func scrollViewDidScroll(_ scrollView: UIScrollView) {
+		view.endEditing(true)
 	}
 }
 
