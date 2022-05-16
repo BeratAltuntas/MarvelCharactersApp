@@ -41,7 +41,8 @@ final class SignUpViewController: BaseViewController {
 		   let email = textFieldEmail.text,
 		   let password = textFieldPassword.text {
 			if email.contains("@") && password.count >= 8 {
-				viewModel.CreateUser(name: name, email: email, password: password)
+				let imgData = ImageToData(image: currentImage)
+				viewModel.CreateUser(name: name, email: email, imageData: imgData, password: password)
 			}
 		}
 	}

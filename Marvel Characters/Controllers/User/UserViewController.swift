@@ -29,18 +29,36 @@ final class UserViewController: BaseViewController {
 	@IBOutlet weak var nameLabel: UILabel!
 	
 	var iconList = [UIImage]()
+	var currentUser: User!
+	var currentUserImage: UIImage!
+	var userTableListItems = [String?]()
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		viewModel.LoadUI()
 	}
+	
 	override func viewWillAppear(_ animated: Bool) {
 		if viewModel.CheckUserSignedIn(){
-			viewModel.LoadUserInfos(){ [weak self] success in
+			FireBaseDatabaseManager.shared.GetUserInDatabase(withUid: FirebaseAuthManager.shared.GetUserUid()!) {[weak self] success, result in
 				if success {
-					self?.nameLabel.text = self?.viewModel.user.namesurname
+					self?.userTableListItems.removeAll()
+					self?.currentUser = result
+					self?.nameLabel.text = self?.currentUser.namesurname
+					self?.viewModel.DownloadUserImage(urlString: self?.currentUser.profileImageLink, completion: { success, image in
+						if success {
+							self?.largeProfileImageView.image = image
+							self?.miniProfileImageView.image = image
+							self?.currentUserImage = image
+							self?.ReloadImageViews()
+						}
+					})
+					self?.userTableListItems.append(self?.currentUser.birthdate ?? "")
+					self?.userTableListItems.append(self?.currentUser.gender ?? "")
+					self?.userTableListItems.append(self?.currentUser.city ?? "")
+					self?.ReloadTableView()
 				}
 			}
-			
 		} else {
 			performSegue(withIdentifier: UserViewConstants.signUpViewControllerId, sender: self)
 		}
@@ -66,7 +84,15 @@ extension UserViewController: UserViewModelDelegate {
 		miniProfileImageView.layer.cornerRadius = CGFloat((miniProfileImageView.frame.width)/2)
 	}
 	func ReloadTableView() {
-		tableView.reloadData()
+		DispatchQueue.main.async { [weak self] in
+			self?.tableView.reloadData()
+		}
+	}
+	func ReloadImageViews() {
+		DispatchQueue.main.async {[weak self] in
+			self?.largeProfileImageView.image = self?.currentUserImage
+			self?.miniProfileImageView.image = self?.currentUserImage
+		}
 	}
 }
 
@@ -76,7 +102,10 @@ extension UserViewController: UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: UserViewConstants.biographyCellId,for: indexPath)
-		//cell.textLabel?.text = dummyPersonList[indexPath.row+1]
+		cell.textLabel?.text = ""
+		if !userTableListItems.isEmpty {
+			cell.textLabel?.text = userTableListItems[indexPath.row]
+		}
 		cell.imageView?.image = iconList[indexPath.row]
 		return cell
 	}

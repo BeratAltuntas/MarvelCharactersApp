@@ -17,36 +17,16 @@ final class FireBaseDatabaseManager {
 		
 	}
 	
-	func UpdateUserInDatabase(withUId UId: String, name: String, email: String, profileImage: String, birthdate: String, city: String, gender: String, password: String, completion: @escaping Databasecompletion) {
-		let dict: [String: Any] = [
-			"uid": UId,
-			"email": email,
-			"profileImageLink": profileImage,
-			"namesurname":name,
-			"birthdate":birthdate,
-			"city":city,
-			"gender": gender,
-			"password": password
-		]
-		
-		Database.database(url: Config.firebaseDatabaseRefrenceUrl).reference().child(Config.firebaseDatabaseReferenceMainChild).child(UId).updateChildValues(dict) { (error, databaseRef) in
+	func UpdateUserInDatabase(withUser user: User, completion: @escaping Databasecompletion) {
+		guard let uId = user.uid else { return }
+		Database.database(url: Config.firebaseDatabaseRefrenceUrl).reference().child(Config.firebaseDatabaseReferenceMainChild).child(uId).updateChildValues(user.dictionary) { (error, databaseRef) in
 			completion(true)
 		}
 	}
 	
-	func CreateUserInDatabase(uId: String, name: String, email: String, password: String, completion: @escaping Databasecompletion) {
-		let dict: [String: String] = [
-			"uid": uId,
-			"email": email,
-			"profileImageLink": "",
-			"namesurname":name,
-			"birthdate":"",
-			"city":"",
-			"gender":"",
-			"password": password
-		]
-		
-		Database.database(url: Config.firebaseDatabaseRefrenceUrl).reference().child(Config.firebaseDatabaseReferenceMainChild).child(uId).updateChildValues(dict) { (error, databaseRef) in
+	func CreateUserInDatabase(user: User, completion: @escaping Databasecompletion) {
+		guard let uId = user.uid else { return }
+		Database.database(url: Config.firebaseDatabaseRefrenceUrl).reference().child(Config.firebaseDatabaseReferenceMainChild).child(uId).updateChildValues(user.dictionary) { (error, databaseRef) in
 			completion(true)
 		}
 	}

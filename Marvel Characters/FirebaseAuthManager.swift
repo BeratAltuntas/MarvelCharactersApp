@@ -46,6 +46,7 @@ final class FirebaseAuthManager {
 		}
 		return ""
 	}
+	
 	func GetUserEmail()-> String? {
 		let user = Auth.auth().currentUser
 		if let user = user {

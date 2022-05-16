@@ -7,11 +7,12 @@
 import FirebaseStorage
 import Foundation
 
+typealias CompletionStorage = (_ complete: Bool, _ imageStringPath: String)-> Void
+
 final class FirebaseStorageManager {
 	static let shared = FirebaseStorageManager()
 	
-	func UploadImageToFirebaseStorage(uId: String, image: UIImage) {
-		guard let imageData = image.jpegData(compressionQuality: 0.4) else { return }
+	func UploadImageToFirebaseStorage(uId: String, imageData: Data, completion: @escaping CompletionStorage) {
 		
 		let storageRef = Storage.storage().reference(forURL: Config.firebaseStorageReferenceUrl)
 		let profileRef = storageRef.child(Config.firebaseStorageReferenceMainChild).child(uId)
@@ -23,6 +24,11 @@ final class FirebaseStorageManager {
 			if error != nil {
 				print(error!.localizedDescription)
 				return
+			}
+			profileRef.downloadURL { (url, error) in
+				if let metaImageUrl = url?.absoluteString {
+					completion(true, metaImageUrl)
+				}
 			}
 		}
 	}

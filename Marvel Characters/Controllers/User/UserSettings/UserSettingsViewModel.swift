@@ -4,99 +4,77 @@
 //
 //  Created by BERAT ALTUNTAŞ on 14.05.2022.
 //
-import FirebaseAuth
 import Foundation
+import Kingfisher
+
+typealias CompletionHandlerImage = (_ success: Bool, _ image: UIImage)-> Void
 
 // MARK: - UserSettingsViewModelProtocol
 protocol UserSettingsViewModelProtocol {
 	var delegate: UserSettingsViewModelDelegate? { get set }
-	var name: String? { get }
 	var image: UIImage? { get }
-	var city: String? { get }
-	var birthdate: String? { get }
-	var email: String? { get }
 	
-	func UpdateUserInfo(name: String, image: UIImage, city: String, birthdate: String, email: String)
-	func getUserInfos()
+	func UpdateUserInfo(user: User!, imageData: Data)
+	func DownloadImage(urlString: String?, completion: @escaping CompletionHandlerImage)
 }
 
 // MARK: - UserSettingsViewModelDelegate
 protocol UserSettingsViewModelDelegate: AnyObject {
+	var isImageSet: Bool { get }
 	func DissmissToRootController()
+	func SetImage()
+	
 }
 
 // MARK: - UserSettingsViewModel
 final class UserSettingsViewModel {
 	weak var delegate: UserSettingsViewModelDelegate?
 	private var uID: String!
-	private var photoUrl: URL!
-	var userName: String?
-	var userImage: UIImage?
-	var userCity: String?
-	var userBirthdate: String?
-	var userEmail: String?
-	
-	func UpdateStorageUserImage(image: UIImage) {
-		FirebaseStorageManager.shared.UploadImageToFirebaseStorage(uId: uID, image: image)
-//		guard let imageData = image.jpegData(compressionQuality: 0.4) else { return }
-//		let storageRef = Storage.storage().reference(forURL: Config.firebaseStorageReferenceUrl)
-//		let profileRef = storageRef.child(Config.firebaseStorageReferenceMainChild).child(uID)
-//
-//		let metaData = StorageMetadata()
-//		metaData.contentType = "image/jpg"
-//		profileRef.putData(imageData, metadata: metaData) { (storageMetaData, error) in
-//			if error != nil {
-//				print(error!.localizedDescription)
-//				return
-//			}
-//		}
-	}
+	private var imageViewModel: UIImage?
+	private var photoUrl: String!
+	var currentUserViewModel: User!
 }
 
 // MARK: - Extension: UserSettingsViewModelProtocol
 extension UserSettingsViewModel: UserSettingsViewModelProtocol {
-	var name: String? {
-		userName
-	}
-	
 	var image: UIImage? {
-		userImage
+		imageViewModel
 	}
-	
-	var city: String? {
-		userCity
-	}
-	
-	var birthdate: String? {
-		userBirthdate
-	}
-	
-	var email: String? {
-		userEmail
-	}
-	
-	func getUserInfos() {
-		uID = FirebaseAuthManager.shared.GetUserUid()
-		userEmail = FirebaseAuthManager.shared.GetUserEmail()
-	}
-	
-	func UpdateUserInfo(name: String,image: UIImage, city: String, birthdate: String, email: String) {
-		FireBaseDatabaseManager.shared.UpdateUserInDatabase(withUId: uID, name: name, email: email, profileImage: "image", birthdate: birthdate, city: city, gender: "gender", password: "") {[weak self] success in
-			if success {
-				self?.delegate?.DissmissToRootController()
+	func UpdateUserInfo(user: User!, imageData: Data) {
+		guard let imageset = delegate?.isImageSet else { return }
+		if imageset {
+			FirebaseStorageManager.shared.UploadImageToFirebaseStorage(uId: user.uid!, imageData: imageData) { complete, imageStringPath in
+				if complete {
+					let tempUser = User(uId: user.uid, email: user.email, profileImageLink: imageStringPath, namesurname: user.namesurname, birthdate: user.birthdate, city: user.city, gender: user.gender)
+					FireBaseDatabaseManager.shared.UpdateUserInDatabase(withUser: tempUser) {[weak self] success in
+						if success {
+							self?.delegate?.DissmissToRootController()
+						}
+					}
+				}
+			}
+			
+		} else {
+			let tempUser = User(uId: user.uid, email: user.email, profileImageLink: "", namesurname: user.namesurname, birthdate: user.birthdate, city: user.city, gender: user.gender)
+			FireBaseDatabaseManager.shared.UpdateUserInDatabase(withUser: tempUser) {[weak self] success in
+				if success {
+					self?.delegate?.DissmissToRootController()
+				}
 			}
 		}
-//
-//		let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-//		if !name.isEmpty {
-//			changeRequest?.displayName = name
-//		}
-//		UpdateStorageUserImage(image: image)
-//
-//		changeRequest?.commitChanges(completion: { [weak self] error in
-//			if error == nil {
-//				self?.delegate?.DissmissToRootController()
-//			}
-//		})
+	}
+	
+	func DownloadImage(urlString: String?, completion: @escaping CompletionHandlerImage) {
+		guard let urlString = urlString else { return }
+		guard let url = URL(string: urlString) else { return }
+		let resource = ImageResource(downloadURL: url)
+		KingfisherManager.shared.retrieveImage(with: resource) { result in
+			switch result {
+			case .success(let value):
+				completion(true, value.image)
+			case .failure(let error):
+				print("Error: \(error)")
+			}
+		}
 	}
 }

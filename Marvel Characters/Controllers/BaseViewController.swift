@@ -21,4 +21,8 @@ class BaseViewController: UIViewController {
 			navImageView.heightAnchor.constraint(equalToConstant: 40)
 		])
 	}
+	func ImageToData(image: UIImage)-> Data {
+		guard let imageData = image.jpegData(compressionQuality: 0.4) else { return Data()}
+		return imageData
+	}
 }
