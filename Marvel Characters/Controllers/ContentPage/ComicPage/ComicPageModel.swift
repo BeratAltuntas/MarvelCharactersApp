@@ -54,7 +54,6 @@ extension ComicPageViewModel: ComicPageViewModelProtocol {
 				}
 			}
 		}
-		
 	}
 	
 	func loadComicAttiributes(comic: ComicModelResult?) {

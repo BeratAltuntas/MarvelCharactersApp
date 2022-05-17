@@ -42,6 +42,19 @@ final class CharacterPageViewController: BaseViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		viewModel.Load()
+		SetImageViewTapRecognizer()
+		if let characterId = selectedCharacter?.id,
+		   let userUid = FirebaseAuthManager.shared.GetUserUid() {
+			viewModel.CharacterIsLiked(comicId: characterId, userUid: userUid)
+		}
+	}
+	func SetImageViewTapRecognizer() {
+		let imageTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ImageTapped(tapGestureRecognizer:)))
+		imageViewLiked.isUserInteractionEnabled = true
+		imageViewLiked.addGestureRecognizer(imageTapGestureRecognizer)
+	}
+	@objc func ImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+		SaveLikedCharacterInDatabase()
 	}
 }
 
@@ -71,6 +84,23 @@ extension CharacterPageViewController: CharacterPageViewModelDelegate {
 		charInStoriesList = selectedCharacter?.stories?.items
 		guard let modifiedDate = selectedCharacter?.modified?.split(separator: "T") else { return }
 		labelSubtitleCharacter.text = "En son yenilenme tarihi: " + String(modifiedDate[0])
+	}
+	func SaveLikedCharacterInDatabase() {
+		guard let characterId = selectedCharacter?.id else { return }
+		let userUid = FirebaseAuthManager.shared.GetUserUid()
+		let user = User(uId: userUid, comicResult: [], characterResult: [characterId])
+		viewModel.LikeCharacter(withComicId: characterId, user: user)
+	}
+	func ChangeLikedImageViewImage() {
+		DispatchQueue.main.async { [weak self] in
+			if self?.imageViewLiked.tag == 0 {
+				self?.imageViewLiked.image = UIImage(systemName: "heart.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
+				self?.imageViewLiked.tag = 1
+			} else {
+				self?.imageViewLiked.image = UIImage(systemName: "heart")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
+				self?.imageViewLiked.tag = 0
+			}
+		}
 	}
 }
 
@@ -116,8 +146,4 @@ extension CharacterPageViewController: UITableViewDataSource {
 		}
 		return cell
 	}
-}
-
-extension CharacterPageViewController: UITableViewDelegate {
-	
 }

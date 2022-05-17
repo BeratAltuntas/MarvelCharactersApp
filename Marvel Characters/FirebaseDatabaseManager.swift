@@ -15,6 +15,7 @@ typealias CompletionGetComic = (_ success: Bool, _ result: [Int])-> Void
 final class FireBaseDatabaseManager {
 	static let shared = FireBaseDatabaseManager()
 	
+	// MARK: - Users
 	func UpdateUserInDatabase(withUser user: User, completion: @escaping Databasecompletion) {
 		guard let uId = user.uid else { return }
 		Database.database(url: Config.firebaseDatabaseRefrenceUrl).reference().child(Config.firebaseDatabaseReferenceMainChild).child(uId).updateChildValues(user.userDictionary) { (error, databaseRef) in
@@ -48,6 +49,7 @@ final class FireBaseDatabaseManager {
 		}
 	}
 	
+	// MARK: - Comics
 	func GetUserComics(userUid: String, completion: @escaping CompletionGetComic) {
 		let ref = Database.database(url: Config.firebaseDatabaseRefrenceUrl).reference().child(Config.firebaseDatabaseReferenceMainChild).child(userUid)
 		
@@ -60,7 +62,6 @@ final class FireBaseDatabaseManager {
 			}
 		}
 	}
-	
 	func SetUserComics(user: User, completion: @escaping Databasecompletion) {
 		guard let uid = user.uid else { return }
 		Database.database(url: Config.firebaseDatabaseRefrenceUrl).reference().child(Config.firebaseDatabaseReferenceMainChild).child(uid).updateChildValues(user.userComicDictionary) { (error, databaseRef) in
@@ -68,7 +69,29 @@ final class FireBaseDatabaseManager {
 		}
 	}
 	
-	func GetUserComic(withComicId: String, userUid: String) {
+	// MARK: - Characters
+	func GetUserCharacters(userUid: String, completion: @escaping CompletionGetComic) {
+		let ref = Database.database(url: Config.firebaseDatabaseRefrenceUrl).reference().child(Config.firebaseDatabaseReferenceMainChild).child(userUid)
+		
+		ref.observeSingleEvent(of: .value) { result in
+			let value = result.value as? NSDictionary
+			let data = value?["charactersIds"] as? [Int]
+			if data != nil {
+				guard let ids = data else { return completion(false,[]) }
+				completion(true, ids)
+			} else {
+				completion(false,[-1])
+			}
+		}
+	}
+	func SetUserCharacters(user: User, completion: @escaping Databasecompletion) {
+		guard let uid = user.uid else { return }
+		Database.database(url: Config.firebaseDatabaseRefrenceUrl).reference().child(Config.firebaseDatabaseReferenceMainChild).child(uid).updateChildValues(user.userCharacterDictionary) { (error, databaseRef) in
+			completion(true)
+		}
+	}
+	func DeleteUserCharacter(Uid: String, characterId: Int) {
+		
 		
 	}
 }

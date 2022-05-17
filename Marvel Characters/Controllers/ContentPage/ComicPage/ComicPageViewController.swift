@@ -37,19 +37,16 @@ final class ComicPageViewController: BaseViewController {
 		super.viewDidLoad()
 		SetImageViewTapRecognizer()
 		viewModel.loadComicAttiributes(comic: selectedComic)
-		reloadTableViews()
 		if let comicId = selectedComic?.id,
 		   let userUid = FirebaseAuthManager.shared.GetUserUid() {
 			viewModel.ComicIsLiked(comicId: comicId, userUid: userUid)
 		}
 	}
-	
 	func SetImageViewTapRecognizer() {
 		let imageTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ImageTapped(tapGestureRecognizer:)))
 		imageViewLiked.isUserInteractionEnabled = true
 		imageViewLiked.addGestureRecognizer(imageTapGestureRecognizer)
 	}
-	
 	@objc func ImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
 		SaveLikedComicInDatabase()
 	}
@@ -142,9 +139,4 @@ extension ComicPageViewController: UITableViewDataSource {
 		}
 		return UITableViewCell()
 	}
-}
-
-// MARK: - TableView Delegate Extensions
-extension ComicPageViewController: UITableViewDelegate{
-	
 }
