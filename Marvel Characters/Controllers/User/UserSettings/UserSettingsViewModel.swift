@@ -16,7 +16,7 @@ protocol UserSettingsViewModelProtocol {
 	
 	func UpdateUserInfo(user: User!, imageData: Data)
 	func DownloadImage(urlString: String?, completion: @escaping CompletionHandlerImage)
-	func SignOut()-> Bool
+	func SignOut()
 }
 
 // MARK: - UserSettingsViewModelDelegate
@@ -37,8 +37,9 @@ final class UserSettingsViewModel {
 
 // MARK: - Extension: UserSettingsViewModelProtocol
 extension UserSettingsViewModel: UserSettingsViewModelProtocol {
-	func SignOut()-> Bool {
-		return FirebaseAuthManager.shared.SignOut()
+	func SignOut() {
+		FirebaseAuthManager.shared.SignOut()
+		delegate?.DissmissToRootController()
 	}
 	
 	var image: UIImage? {

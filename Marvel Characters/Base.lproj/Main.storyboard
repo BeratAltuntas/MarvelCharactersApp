@@ -709,9 +709,6 @@
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="İsim Soyisim *" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bja-jX-cLR">
                                                 <rect key="frame" x="20" y="173" width="216" height="31"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="216" id="jBk-yg-VCg"/>
-                                                </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="26"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -777,12 +774,11 @@
                                                 </date>
                                                 <locale key="locale" localeIdentifier="tr_TR"/>
                                             </datePicker>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kg8-BM-goB">
-                                                <rect key="frame" x="24" y="823" width="150" height="50"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kg8-BM-goB">
+                                                <rect key="frame" x="20" y="823.5" width="115.5" height="50"/>
                                                 <color key="backgroundColor" red="0.01176470588" green="0.6588235294" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="C2s-ff-SPq"/>
-                                                    <constraint firstAttribute="width" constant="150" id="wDj-wd-MXt"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Güncelle">
@@ -819,20 +815,16 @@
                                             </button>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="G8F-L6-aqm">
                                                 <rect key="frame" x="20" y="433" width="158" height="32"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="158" id="nq0-LL-W6a"/>
-                                                </constraints>
                                                 <segments>
                                                     <segment title="Kadın"/>
                                                     <segment title="Erkek"/>
                                                 </segments>
                                             </segmentedControl>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4YW-jV-B72">
-                                                <rect key="frame" x="244" y="823.5" width="150" height="50"/>
+                                                <rect key="frame" x="275.5" y="823.5" width="118.5" height="50"/>
                                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="HKU-bq-WzE"/>
-                                                    <constraint firstAttribute="width" constant="150" id="ZHc-YZ-sDh"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Çıkış Yap">
@@ -850,6 +842,7 @@
                                         <constraints>
                                             <constraint firstItem="kg8-BM-goB" firstAttribute="top" secondItem="u4I-zB-8Eq" secondAttribute="bottom" constant="20" id="0Tl-We-459"/>
                                             <constraint firstItem="ZmX-9M-9O7" firstAttribute="leading" secondItem="sZe-z1-BEt" secondAttribute="leading" id="1Oe-9d-7h7"/>
+                                            <constraint firstItem="4YW-jV-B72" firstAttribute="width" secondItem="kg8-BM-goB" secondAttribute="width" multiplier="1.0303" id="2Be-tH-FeR"/>
                                             <constraint firstItem="ekt-cg-h0i" firstAttribute="leading" secondItem="bja-jX-cLR" secondAttribute="leading" id="2In-G1-34e"/>
                                             <constraint firstItem="G8F-L6-aqm" firstAttribute="leading" secondItem="w9i-j8-afU" secondAttribute="leading" id="3SJ-UT-TFY"/>
                                             <constraint firstItem="bja-jX-cLR" firstAttribute="leading" secondItem="zgn-2S-8hL" secondAttribute="leading" constant="20" id="6jl-eu-9Ik"/>
@@ -869,7 +862,7 @@
                                             <constraint firstItem="kg8-BM-goB" firstAttribute="leading" secondItem="u4I-zB-8Eq" secondAttribute="leading" id="Jbr-zv-BcY"/>
                                             <constraint firstItem="JG3-Kx-GcB" firstAttribute="leading" secondItem="UMp-Dg-rb3" secondAttribute="leading" id="JcN-mW-Fl0"/>
                                             <constraint firstItem="ekt-cg-h0i" firstAttribute="leading" secondItem="zgn-2S-8hL" secondAttribute="leading" constant="20" id="MGH-CM-a2f"/>
-                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="G8F-L6-aqm" secondAttribute="trailing" constant="236" id="Nm3-sN-roA"/>
+                                            <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="G8F-L6-aqm" secondAttribute="trailing" constant="236" id="Nm3-sN-roA"/>
                                             <constraint firstItem="w9i-j8-afU" firstAttribute="top" secondItem="ZmX-9M-9O7" secondAttribute="bottom" constant="30" id="Noa-SX-zWU"/>
                                             <constraint firstItem="MRk-ZE-1Ud" firstAttribute="leading" secondItem="bja-jX-cLR" secondAttribute="trailing" constant="7" id="PWM-hG-n4S"/>
                                             <constraint firstItem="UMp-Dg-rb3" firstAttribute="trailing" secondItem="d0l-P0-Gxg" secondAttribute="trailing" id="RN9-cQ-ktN"/>
@@ -879,6 +872,7 @@
                                             <constraint firstItem="UMp-Dg-rb3" firstAttribute="leading" secondItem="d0l-P0-Gxg" secondAttribute="leading" id="Zg3-Pm-x8z"/>
                                             <constraint firstItem="sZe-z1-BEt" firstAttribute="trailing" secondItem="ekt-cg-h0i" secondAttribute="trailing" id="arG-99-SoS"/>
                                             <constraint firstItem="d0l-P0-Gxg" firstAttribute="top" secondItem="G8F-L6-aqm" secondAttribute="bottom" constant="30" id="b79-JC-JWe"/>
+                                            <constraint firstItem="4YW-jV-B72" firstAttribute="leading" secondItem="kg8-BM-goB" secondAttribute="trailing" constant="140" id="bAQ-wJ-djv"/>
                                             <constraint firstItem="MRk-ZE-1Ud" firstAttribute="leading" secondItem="y4L-Vl-d62" secondAttribute="trailing" constant="35" id="biu-mM-17g"/>
                                             <constraint firstItem="4YW-jV-B72" firstAttribute="top" secondItem="u4I-zB-8Eq" secondAttribute="bottom" constant="20" id="cLP-4n-zQc"/>
                                             <constraint firstItem="u4I-zB-8Eq" firstAttribute="leading" secondItem="JG3-Kx-GcB" secondAttribute="leading" id="ceQ-Ku-xAL"/>
@@ -995,7 +989,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Harf, sayı ve simge karışık 8 veya daha fazla karakter kullanın" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJe-kV-MIj">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Harf, sayı ve simge karışık 8 veya daha fazla karakter kullanın" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="EJe-kV-MIj">
                                 <rect key="frame" x="20" y="495" width="374" height="42.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                 <color key="textColor" red="0.36862745098039218" green="0.396078431372549" blue="0.43529411764705883" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

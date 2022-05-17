@@ -68,6 +68,10 @@ final class FireBaseDatabaseManager {
 			completion(true)
 		}
 	}
+	func DeleteUserComic(user: User) {
+		Database.database(url: Config.firebaseDatabaseRefrenceUrl).reference().child(Config.firebaseDatabaseReferenceMainChild).child(user.uid!).updateChildValues(user.userComicDictionary) { (error, databaseRef) in
+		}
+	}
 	
 	// MARK: - Characters
 	func GetUserCharacters(userUid: String, completion: @escaping CompletionGetComic) {
@@ -90,8 +94,8 @@ final class FireBaseDatabaseManager {
 			completion(true)
 		}
 	}
-	func DeleteUserCharacter(Uid: String, characterId: Int) {
-		
-		
+	func DeleteUserCharacter(user: User) {
+		Database.database(url: Config.firebaseDatabaseRefrenceUrl).reference().child(Config.firebaseDatabaseReferenceMainChild).child(user.uid!).updateChildValues(user.userCharacterDictionary) { (error, databaseRef) in
+		}
 	}
 }

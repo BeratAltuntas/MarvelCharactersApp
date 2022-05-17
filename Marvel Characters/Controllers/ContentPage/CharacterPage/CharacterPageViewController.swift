@@ -89,7 +89,7 @@ extension CharacterPageViewController: CharacterPageViewModelDelegate {
 		guard let characterId = selectedCharacter?.id else { return }
 		let userUid = FirebaseAuthManager.shared.GetUserUid()
 		let user = User(uId: userUid, comicResult: [], characterResult: [characterId])
-		viewModel.LikeCharacter(withComicId: characterId, user: user)
+		viewModel.LikeCharacter(withCharacterId: characterId, user: user)
 	}
 	func ChangeLikedImageViewImage() {
 		DispatchQueue.main.async { [weak self] in

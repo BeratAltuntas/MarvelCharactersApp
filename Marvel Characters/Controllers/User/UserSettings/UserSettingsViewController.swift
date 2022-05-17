@@ -53,15 +53,11 @@ final class UserSettingsViewController: BaseViewController {
 		textFieldEmail.text = user.email
 		segmentControllerGender.selectedSegmentIndex = user.gender == "Erkek" ? 1 :  0
 		if let birthdate = user.birthdate {
-			do {
-				let dateFormatter = DateFormatter()
-				dateFormatter.dateFormat = "dd-MM-yyyy"
-				let date = try dateFormatter.date(from:birthdate)
-				if let date = date {
-					datePickerBirthdate.setDate(date, animated: true)
-				}
-			} catch {
-				print(error)
+			let dateFormatter = DateFormatter()
+			dateFormatter.dateFormat = "dd-MM-yyyy"
+			let date = dateFormatter.date(from:birthdate)
+			if let date = date {
+				datePickerBirthdate.setDate(date, animated: true)
 			}
 		}
 	}
@@ -87,9 +83,8 @@ final class UserSettingsViewController: BaseViewController {
 		}
 	}
 	@IBAction func SignOut_TUI(_ sender: Any) {
-		if viewModel.SignOut() {
-			DissmissToRootController()
-		}
+		viewModel.SignOut()
+		
 	}
 }
 

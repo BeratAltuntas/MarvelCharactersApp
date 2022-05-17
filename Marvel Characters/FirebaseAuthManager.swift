@@ -30,14 +30,12 @@ final class FirebaseAuthManager {
 		}
 	}
 	
-	func SignOut()-> Bool {
+	func SignOut() {
 		let firebaseAuth = Auth.auth()
 		do {
 			try firebaseAuth.signOut()
-			return true
 		} catch let signOutError as NSError {
 			print("Error signing out: %@", signOutError)
-			return false
 		}
 	}
 	
@@ -47,7 +45,7 @@ final class FirebaseAuthManager {
 		changeRequest?.photoURL = URL(string: stringImageUrl)
 		changeRequest?.commitChanges { error in
 			if error != nil {
-				print("error: ",error?.localizedDescription)
+				print("error: ",error?.localizedDescription ?? "")
 			}
 		}
 	}
@@ -55,7 +53,7 @@ final class FirebaseAuthManager {
 	func ChangeUserEmail(email: String) {
 		Auth.auth().currentUser?.updateEmail(to: email) { error in
 			if error != nil {
-				print("error: ",error?.localizedDescription)
+				print("error: ",error?.localizedDescription ?? "")
 			}
 		}
 	}

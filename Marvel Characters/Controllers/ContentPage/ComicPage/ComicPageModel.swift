@@ -44,12 +44,27 @@ extension ComicPageViewModel: ComicPageViewModelProtocol {
 	}
 	
 	func LikeComic(withComicId: Int, user: User) {
-		FireBaseDatabaseManager.shared.GetUserComics(userUid: user.uid!) { success, result in
+		FireBaseDatabaseManager.shared.GetUserComics(userUid: user.uid!) {[weak self] (success, result) in
 			if success {
-				user.comicsIds?.append(contentsOf: result)
-				FireBaseDatabaseManager.shared.SetUserComics(user: user) {[weak self] success in
-					if success {
+				
+				var itIsLikedBefore = false
+				for i in 0..<result.count {
+					if result[i] == withComicId {
+						var array = result
+						array.remove(at: i)
+						let tempDeletingUser = User(uId: user.uid, comicResult: array, characterResult: [])
+						FireBaseDatabaseManager.shared.DeleteUserComic(user: tempDeletingUser)
+						itIsLikedBefore = true
 						self?.delegate?.ChangeLikedImageViewImage()
+						break
+					}
+				}
+				if !itIsLikedBefore {
+					user.comicsIds?.append(contentsOf: result)
+					FireBaseDatabaseManager.shared.SetUserComics(user: user) {[weak self] success in
+						if success {
+							self?.delegate?.ChangeLikedImageViewImage()
+						}
 					}
 				}
 			}

@@ -12,7 +12,7 @@ protocol CharacterPageViewModelProtocol {
 	var delegate: CharacterPageViewModelDelegate? { get set }
 	func Load()
 	func CharacterIsLiked(comicId: Int, userUid: String)
-	func LikeCharacter(withComicId: Int, user: User)
+	func LikeCharacter(withCharacterId: Int, user: User)
 }
 
 // MARK: - CharacterPageViewModelDelegate
@@ -44,17 +44,28 @@ extension CharacterPageViewModel: CharacterPageViewModelProtocol {
 		delegate?.SetPageAttiributes()
 		delegate?.ReloadTableViews()
 	}
-	func LikeCharacter(withComicId: Int, user: User) {
+	func LikeCharacter(withCharacterId: Int, user: User) {
 		FireBaseDatabaseManager.shared.GetUserCharacters(userUid: user.uid!) { [weak self] (success, result) in
 			if success {
-				for res in result {
-					if res == withComicId {
+				var itIsLikedBefore = false
+				for i in 0..<result.count {
+					if result[i] == withCharacterId {
+						var array = result
 						
+						array.remove(at: i)
+						let tempDeletingUser = User(uId: user.uid, comicResult: [], characterResult: array)
+						FireBaseDatabaseManager.shared.DeleteUserCharacter(user: tempDeletingUser)
+						itIsLikedBefore = true
+						self?.delegate?.ChangeLikedImageViewImage()
+						break
 					}
 				}
-				user.charactersIds?.append(contentsOf: result)
-				self?.SetLikedCharacter(user: user)
-			} else {
+				if !itIsLikedBefore {
+					user.charactersIds?.append(contentsOf: result)
+					self?.SetLikedCharacter(user: user)
+					
+				}
+			} else {
 				if result.first == -1 {
 					self?.SetLikedCharacter(user: user)
 				}
