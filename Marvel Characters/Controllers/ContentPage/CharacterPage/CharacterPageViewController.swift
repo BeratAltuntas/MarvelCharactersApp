@@ -28,6 +28,7 @@ final class CharacterPageViewController: BaseViewController {
 	var charInSeriesList: [CharacterModelSeriesItem]?
 	var charInStoriesList: [CharacterModelStoriesItem]?
 	
+	@IBOutlet weak var imageViewLiked: UIImageView!
 	@IBOutlet weak var imageViewBanner: UIImageView!
 	@IBOutlet weak var labelTitleCharacter: UILabel!
 	@IBOutlet weak var labelSubtitleCharacter: UILabel!

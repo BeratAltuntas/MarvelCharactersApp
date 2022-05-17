@@ -35,10 +35,10 @@ final class UserViewController: BaseViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		viewModel.LoadUI()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
+		viewModel.LoadUI()
 		if viewModel.CheckUserSignedIn(){
 			FireBaseDatabaseManager.shared.GetUserInDatabase(withUid: FirebaseAuthManager.shared.GetUserUid()!) {[weak self] success, result in
 				if success {

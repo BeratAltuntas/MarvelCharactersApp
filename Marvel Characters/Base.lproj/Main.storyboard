@@ -132,7 +132,7 @@
                                                             <constraint firstAttribute="width" constant="80" id="hLx-gA-T0y"/>
                                                             <constraint firstAttribute="height" constant="80" id="l5a-H8-1u3"/>
                                                         </constraints>
-                                                        <imageReference key="image" image="heart.fill" catalog="system" symbolScale="large" renderingMode="hierarchical">
+                                                        <imageReference key="image" image="heart" catalog="system" symbolScale="large" renderingMode="hierarchical">
                                                             <hierarchicalColors>
                                                                 <color systemColor="systemRedColor"/>
                                                                 <color systemColor="secondaryLabelColor"/>
@@ -305,6 +305,7 @@
                     <size key="freeformSize" width="414" height="1800"/>
                     <connections>
                         <outlet property="imageViewBanner" destination="xay-VV-ppN" id="iLV-pZ-HDu"/>
+                        <outlet property="imageViewLiked" destination="ez3-2d-PUc" id="OXs-kw-Etw"/>
                         <outlet property="labelDescription" destination="onU-WI-Qpz" id="gHc-bk-qel"/>
                         <outlet property="labelSubtitleCharacter" destination="u9h-fC-zXf" id="g68-zb-kUX"/>
                         <outlet property="labelTitleCharacter" destination="BG7-QR-PSW" id="Ib7-KH-RtG"/>
@@ -362,7 +363,7 @@
                                                             <constraint firstAttribute="width" constant="80" id="4Hx-oS-7ql"/>
                                                             <constraint firstAttribute="height" constant="80" id="twp-xG-7ox"/>
                                                         </constraints>
-                                                        <imageReference key="image" image="heart.fill" catalog="system" symbolScale="large" renderingMode="hierarchical">
+                                                        <imageReference key="image" image="heart" catalog="system" symbolScale="large" renderingMode="hierarchical">
                                                             <hierarchicalColors>
                                                                 <color systemColor="systemRedColor"/>
                                                                 <color systemColor="secondaryLabelColor"/>
@@ -505,6 +506,7 @@
                     <size key="freeformSize" width="414" height="1400"/>
                     <connections>
                         <outlet property="imageViewBanner" destination="yAG-Go-O0L" id="AA1-jG-04c"/>
+                        <outlet property="imageViewLiked" destination="4V7-hJ-HYg" id="DxH-hu-pNT"/>
                         <outlet property="labelDescription" destination="aQH-Qj-MOu" id="E57-8l-hsL"/>
                         <outlet property="labelSubtitle" destination="G8D-jc-fuY" id="v16-Kz-zQM"/>
                         <outlet property="labelTitle" destination="KXW-Dn-WIv" id="I7d-7R-wWU"/>

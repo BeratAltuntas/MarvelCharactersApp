@@ -16,6 +16,7 @@ enum ComicPageConstant {
 
 final class ComicPageViewController: BaseViewController {
 	
+	@IBOutlet weak var imageViewLiked: UIImageView!
 	@IBOutlet weak var imageViewBanner: UIImageView!
 	@IBOutlet weak var labelTitle: UILabel!
 	@IBOutlet weak var labelSubtitle: UILabel!
@@ -34,8 +35,23 @@ final class ComicPageViewController: BaseViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		SetImageViewTapRecognizer()
 		viewModel.loadComicAttiributes(comic: selectedComic)
 		reloadTableViews()
+		if let comicId = selectedComic?.id,
+		   let userUid = FirebaseAuthManager.shared.GetUserUid() {
+			viewModel.ComicIsLiked(comicId: comicId, userUid: userUid)
+		}
+	}
+	
+	func SetImageViewTapRecognizer() {
+		let imageTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ImageTapped(tapGestureRecognizer:)))
+		imageViewLiked.isUserInteractionEnabled = true
+		imageViewLiked.addGestureRecognizer(imageTapGestureRecognizer)
+	}
+	
+	@objc func ImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+		SaveLikedComicInDatabase()
 	}
 }
 
@@ -73,6 +89,26 @@ extension ComicPageViewController: ComicPageViewModelDelegate {
 	func reloadTableViews(){
 		tableViewCharacter?.reloadData()
 		tableViewWriter?.reloadData()
+	}
+	
+	func SaveLikedComicInDatabase() {
+		guard let comicId = selectedComic?.id else { return }
+		let userUid = FirebaseAuthManager.shared.GetUserUid()
+		let user = User(uId: userUid, comicResult: [comicId], characterResult: [])
+		viewModel.LikeComic(withComicId: comicId, user: user)
+	}
+	func ChangeLikedImageViewImage() {
+		// liked Function
+		DispatchQueue.main.async { [weak self] in
+			
+			if self?.imageViewLiked.tag == 0 {
+				self?.imageViewLiked.image = UIImage(systemName: "heart.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
+				self?.imageViewLiked.tag = 1
+			} else {
+				self?.imageViewLiked.image = UIImage(systemName: "heart")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
+				self?.imageViewLiked.tag = 0
+			}
+		}
 	}
 }
 
