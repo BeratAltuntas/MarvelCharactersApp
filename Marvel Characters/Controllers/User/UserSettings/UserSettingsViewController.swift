@@ -51,11 +51,7 @@ final class UserSettingsViewController: BaseViewController {
 		textFieldNameSurname.text = user.namesurname
 		textFieldCity.text = user.city
 		textFieldEmail.text = user.email
-		if user.gender == "Erkek" {
-			segmentControllerGender.selectedSegmentIndex = 1
-		} else if user.gender == "Kadın" {
-			segmentControllerGender.selectedSegmentIndex = 0
-		}
+		segmentControllerGender.selectedSegmentIndex = user.gender == "Erkek" ? 1 :  0
 		if let birthdate = user.birthdate {
 			do {
 				let dateFormatter = DateFormatter()

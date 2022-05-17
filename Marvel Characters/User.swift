@@ -15,6 +15,9 @@ class User: Codable {
 	var birthdate: String?
 	var city: String?
 	var gender: String?
+	var comicsResults: [ComicModelResult]?
+	var characterResults: [CharacterModelResult]?
+	
 	var dictionary: [String: String] {
 		return ["uid": uid!,
 				"email": email!,
@@ -43,5 +46,11 @@ class User: Codable {
 		self.birthdate = birthdate
 		self.city = city
 		self.gender = gender
+	}
+	
+	init(uId: String?, comicResult: [ComicModelResult]?, characterResult: [CharacterModelResult]?) {
+		self.uid = uId
+		self.comicsResults = comicResult
+		self.characterResults = characterResult
 	}
 }
