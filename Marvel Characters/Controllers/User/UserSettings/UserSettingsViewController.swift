@@ -27,7 +27,12 @@ final class UserSettingsViewController: BaseViewController {
 	var imageIsSet = false
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+		if FirebaseAuthManager.shared.IsUserSignedIn() {
+			GetUserInDatabase()
+		}
+
+	}
+	func GetUserInDatabase() {
 		FireBaseDatabaseManager.shared.GetUserInDatabase(withUid: FirebaseAuthManager.shared.GetUserUid()!) {[weak self] success, result in
 			if success {
 				self?.user = result
@@ -41,7 +46,6 @@ final class UserSettingsViewController: BaseViewController {
 			}
 		}
 	}
-	
 	func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
 		print(true)
 	}

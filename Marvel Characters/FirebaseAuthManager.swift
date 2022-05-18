@@ -14,7 +14,6 @@ final class FirebaseAuthManager {
 	
 	static let shared = FirebaseAuthManager()
 	
-	
 	func IsUserSignedIn()-> Bool {
 		if Auth.auth().currentUser == nil{
 			return false
@@ -25,7 +24,14 @@ final class FirebaseAuthManager {
 	func SignIn(withEmail email: String, password: String, completion: @escaping CompletionHandler) {
 		Auth.auth().signIn(withEmail: email, password: password) { result, error in
 			if error == nil {
-				completion(true, result!.user.uid)
+				let eMail = EmailAuthProvider.credential(withEmail: email, password: password)
+
+				Auth.auth().currentUser?.reauthenticate(with: eMail) {
+					(authDataResult,error) in
+					if result == nil {
+						completion(true,authDataResult!.user.uid)
+					}
+				}
 			}
 		}
 	}

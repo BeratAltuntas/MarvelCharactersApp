@@ -16,9 +16,7 @@ protocol UserViewModelProtocol {
 	
 	func LoadUI()
 	func LoadUserInfos(completion: @escaping UserViewCompletion)
-	func CheckUserSignedIn()-> Bool
 	func DownloadUserImage(urlString: String?, completion: @escaping CompletionHandlerImage)
-	
 }
 
 // MARK: - UserViewModelDelegate
@@ -66,8 +64,5 @@ extension UserViewModel: UserViewModelProtocol {
 	}
 	func LoadUI() {
 		delegate?.SetupUI()
-	}
-	func CheckUserSignedIn()-> Bool {
-		FirebaseAuthManager.shared.IsUserSignedIn()
 	}
 }

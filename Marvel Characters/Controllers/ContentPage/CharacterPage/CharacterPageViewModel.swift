@@ -51,7 +51,6 @@ extension CharacterPageViewModel: CharacterPageViewModelProtocol {
 				for i in 0..<result.count {
 					if result[i] == withCharacterId {
 						var array = result
-						
 						array.remove(at: i)
 						let tempDeletingUser = User(uId: user.uid, comicResult: [], characterResult: array)
 						FireBaseDatabaseManager.shared.DeleteUserCharacter(user: tempDeletingUser)
@@ -63,7 +62,6 @@ extension CharacterPageViewModel: CharacterPageViewModelProtocol {
 				if !itIsLikedBefore {
 					user.charactersIds?.append(contentsOf: result)
 					self?.SetLikedCharacter(user: user)
-					
 				}
 			} else {
 				if result.first == -1 {

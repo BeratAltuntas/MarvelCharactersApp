@@ -43,9 +43,12 @@ final class CharacterPageViewController: BaseViewController {
 		super.viewDidLoad()
 		viewModel.Load()
 		SetImageViewTapRecognizer()
-		if let characterId = selectedCharacter?.id,
-		   let userUid = FirebaseAuthManager.shared.GetUserUid() {
-			viewModel.CharacterIsLiked(comicId: characterId, userUid: userUid)
+		if FirebaseAuthManager.shared.IsUserSignedIn() {
+			if let characterId = selectedCharacter?.id,
+			   let userUid = FirebaseAuthManager.shared.GetUserUid() {
+				viewModel.CharacterIsLiked(comicId: characterId, userUid: userUid)
+			}
+			
 		}
 	}
 	func SetImageViewTapRecognizer() {

@@ -27,6 +27,14 @@ protocol ComicPageViewModelDelegate: AnyObject {
 // MARK: - ComicPageViewModel
 final class ComicPageViewModel {
 	weak var delegate: ComicPageViewModelDelegate?
+	
+	func SetLikedComic(user: User) {
+		FireBaseDatabaseManager.shared.SetUserComics(user: user) {[weak self] success in
+			if success {
+				self?.delegate?.ChangeLikedImageViewImage()
+			}
+		}
+	}
 }
 
 // MARK: - Extension ComicPageViewModel
@@ -46,7 +54,6 @@ extension ComicPageViewModel: ComicPageViewModelProtocol {
 	func LikeComic(withComicId: Int, user: User) {
 		FireBaseDatabaseManager.shared.GetUserComics(userUid: user.uid!) {[weak self] (success, result) in
 			if success {
-				
 				var itIsLikedBefore = false
 				for i in 0..<result.count {
 					if result[i] == withComicId {
@@ -61,11 +68,11 @@ extension ComicPageViewModel: ComicPageViewModelProtocol {
 				}
 				if !itIsLikedBefore {
 					user.comicsIds?.append(contentsOf: result)
-					FireBaseDatabaseManager.shared.SetUserComics(user: user) {[weak self] success in
-						if success {
-							self?.delegate?.ChangeLikedImageViewImage()
-						}
-					}
+					self?.SetLikedComic(user: user)
+				}
+			} else {
+				if result.first == -1 {
+					self?.SetLikedComic(user: user)
 				}
 			}
 		}

@@ -52,13 +52,14 @@ final class FireBaseDatabaseManager {
 	// MARK: - Comics
 	func GetUserComics(userUid: String, completion: @escaping CompletionGetComic) {
 		let ref = Database.database(url: Config.firebaseDatabaseRefrenceUrl).reference().child(Config.firebaseDatabaseReferenceMainChild).child(userUid)
-		
 		ref.observeSingleEvent(of: .value) { result in
 			let value = result.value as? NSDictionary
 			let data = value?["comicsIds"] as? [Int]
 			if data != nil {
 				guard let ids = data else { return completion(false,[]) }
 				completion(true, ids)
+			} else {
+				completion(false,[-1])
 			}
 		}
 	}

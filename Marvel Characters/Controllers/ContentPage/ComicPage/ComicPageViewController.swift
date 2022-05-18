@@ -37,9 +37,12 @@ final class ComicPageViewController: BaseViewController {
 		super.viewDidLoad()
 		SetImageViewTapRecognizer()
 		viewModel.loadComicAttiributes(comic: selectedComic)
-		if let comicId = selectedComic?.id,
-		   let userUid = FirebaseAuthManager.shared.GetUserUid() {
-			viewModel.ComicIsLiked(comicId: comicId, userUid: userUid)
+		if FirebaseAuthManager.shared.IsUserSignedIn() {
+			if let comicId = selectedComic?.id,
+			   let userUid = FirebaseAuthManager.shared.GetUserUid() {
+				viewModel.ComicIsLiked(comicId: comicId, userUid: userUid)
+			}
+			
 		}
 	}
 	func SetImageViewTapRecognizer() {
@@ -96,8 +99,7 @@ extension ComicPageViewController: ComicPageViewModelDelegate {
 	}
 	func ChangeLikedImageViewImage() {
 		// liked Function
-		DispatchQueue.main.async { [weak self] in
-			
+		DispatchQueue.main.async { [weak self] in			
 			if self?.imageViewLiked.tag == 0 {
 				self?.imageViewLiked.image = UIImage(systemName: "heart.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
 				self?.imageViewLiked.tag = 1

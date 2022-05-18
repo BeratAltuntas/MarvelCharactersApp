@@ -39,7 +39,7 @@ final class UserViewController: BaseViewController {
 	
 	override func viewWillAppear(_ animated: Bool) {
 		viewModel.LoadUI()
-		if viewModel.CheckUserSignedIn(){
+		if FirebaseAuthManager.shared.IsUserSignedIn() {
 			FireBaseDatabaseManager.shared.GetUserInDatabase(withUid: FirebaseAuthManager.shared.GetUserUid()!) {[weak self] success, result in
 				if success {
 					self?.userTableListItems.removeAll()
