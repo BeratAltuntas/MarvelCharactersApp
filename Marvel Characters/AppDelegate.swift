@@ -5,10 +5,8 @@
 //  Created by BERAT ALTUNTAŞ on 26.04.2022.
 //
 import FirebaseCore
-import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
-import Firebase
 import UIKit
 
 @main
@@ -54,7 +52,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			UIDevice.current.setValue(rotateOrientation.rawValue, forKey: "orientation")
 		}
 	}
-
-
 }
-

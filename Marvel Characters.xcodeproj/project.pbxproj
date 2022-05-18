@@ -178,10 +178,10 @@
 		F40AC2AE28176FBF00C9C346 /* Marvel Characters */ = {
 			isa = PBXGroup;
 			children = (
-				F433FE442822758E0067102C /* Manager */,
-				F47598F52819BA5700FCF94E /* Extensions */,
+				F4E3B48E28358AAB0065EFFE /* Views */,
+				F4E3B48D28358A760065EFFE /* Extensions */,
+				F4E3B48C28358A660065EFFE /* Manager */,
 				F40AC2D9281772BE00C9C346 /* SupportingFiles */,
-				F40AC2D8281772A900C9C346 /* Views */,
 				F40AC2C32817710D00C9C346 /* Controllers */,
 				F4A02F9C281953B30070A4A3 /* config.swift */,
 			);
@@ -243,15 +243,6 @@
 			path = User;
 			sourceTree = "<group>";
 		};
-		F40AC2D8281772A900C9C346 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				F40AC2B528176FBF00C9C346 /* Main.storyboard */,
-				F40AC2BA28176FC300C9C346 /* LaunchScreen.storyboard */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
 		F40AC2D9281772BE00C9C346 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,17 +253,6 @@
 				F44E04A5281FF880005AB85E /* GoogleService-Info.plist */,
 			);
 			name = SupportingFiles;
-			sourceTree = "<group>";
-		};
-		F433FE442822758E0067102C /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				F433FE45282275A50067102C /* NetworkManager.swift */,
-				F458999B28314D8000C4140E /* FirebaseDatabaseManager.swift */,
-				F458999D28314E9300C4140E /* FirebaseAuthManager.swift */,
-				F458999F2831682200C4140E /* FirebaseStorageManager.swift */,
-			);
-			name = Manager;
 			sourceTree = "<group>";
 		};
 		F44E04A3281FE194005AB85E /* CharacterPage */ = {
@@ -321,13 +301,33 @@
 			path = ContentPage;
 			sourceTree = "<group>";
 		};
-		F47598F52819BA5700FCF94E /* Extensions */ = {
+		F4E3B48C28358A660065EFFE /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				F433FE45282275A50067102C /* NetworkManager.swift */,
+				F458999B28314D8000C4140E /* FirebaseDatabaseManager.swift */,
+				F458999D28314E9300C4140E /* FirebaseAuthManager.swift */,
+				F458999F2831682200C4140E /* FirebaseStorageManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		F4E3B48D28358A760065EFFE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				F47598F82819BD3600FCF94E /* UICollectionView+Register.swift */,
 				F47598FA2819C45700FCF94E /* UICollectionViewCell+Extension.swift */,
 			);
-			name = Extensions;
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F4E3B48E28358AAB0065EFFE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F40AC2B528176FBF00C9C346 /* Main.storyboard */,
+				F40AC2BA28176FC300C9C346 /* LaunchScreen.storyboard */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		F4F275582830086B00B45A19 /* Sign */ = {
