@@ -52,9 +52,6 @@ final class SignUpViewController: BaseViewController {
 			}
 		}
 	}
-	
-	@IBAction func SignUpWithGoogle_TUI(_ sender: Any) {
-	}
 }
 
 // MARK: - Extension: SignUpViewModelDelegate

@@ -29,8 +29,6 @@ final class SignInViewController: BaseViewController {
 			}
 		}
 	}
-	@IBAction func SignInWithGoogle_TUI(_ sender: Any) {
-	}
 }
 
 // MARK: - Extension: SignInViewModelDelegate

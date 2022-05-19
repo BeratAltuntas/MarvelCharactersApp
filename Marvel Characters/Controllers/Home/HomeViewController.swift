@@ -17,7 +17,6 @@ enum HomeConstant {
 
 
 final class HomeViewController: BaseViewController {
-	
 	@IBOutlet private weak var forYouCollectionView: UICollectionView!
 	@IBOutlet private weak var trendsCollectionView: UICollectionView!
 	
