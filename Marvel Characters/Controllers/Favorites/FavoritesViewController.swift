@@ -10,6 +10,10 @@ enum CellProperties {
 	static let cellNibName = "FavoritesCollectionViewCell"
 	static let favoritesCellIdentifier = "FavoriteCell"
 }
+enum FavoritesSegueProperties {
+	static let favoriteToComic = "FavoriteToComic"
+	static let favoriteToChar = "FavoriteToChar"
+}
 
 // MARK: - FavoritesViewController
 class FavoritesViewController: BaseViewController {
@@ -18,46 +22,79 @@ class FavoritesViewController: BaseViewController {
 			viewModel.delegate = self
 		}
 	}
+	private let refreshControl = UIRefreshControl()
 	
-	var comicsList = [ComicModelResult]()
+	private var comicsList = [ComicModelResult]()
+	private var selectedCellIndex = 0
+	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 	@IBOutlet var favoritesCollectionView: UICollectionView!
-	override func viewDidLoad() {
-	}
+	
 	override func viewWillAppear(_ animated: Bool) {
 		viewModel.LoadScreen()
 	}
-}
-
-// MARK: - FavoriteViewModelDelegate
-extension FavoritesViewController: FavoritesViewModelDelegate {
-	
-	func SetupUI() {
-		setupNavBar()
+	func SetIndicator() {
+		activityIndicator.startAnimating()
+		if #available(iOS 10.0, *) {
+			favoritesCollectionView.refreshControl = refreshControl
+		} else {
+			favoritesCollectionView.addSubview(refreshControl)
+		}
+		refreshControl.addTarget(self, action: #selector(RefreshData(_:)), for: .valueChanged)
+	}
+	@objc func RefreshData(_ sender: Any) {
+		viewModel.LoadComicsChars()
+	}
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == FavoritesSegueProperties.favoriteToComic {
+			let target = segue.destination as? ComicPageViewController
+			target?.viewModel = ComicPageViewModel()
+			target?.selectedComic = viewModel.comics[selectedCellIndex]
+		} else if segue.identifier == FavoritesSegueProperties.favoriteToChar {
+			let target = segue.destination as? CharacterPageViewController
+			target?.viewModel = CharacterPageViewModel()
+			target?.selectedCharacter = viewModel.characters[selectedCellIndex - viewModel.comics.count]
+		}
 	}
 	func SetupCell() {
 		favoritesCollectionView.register(UINib(nibName: CellProperties.cellNibName, bundle: nil), forCellWithReuseIdentifier: CellProperties.favoritesCellIdentifier)
 		favoritesCollectionView.collectionViewLayout = FavoriteCellFlowLayout(ColumnCount: 2, MinColumnSpace: 15, MinRowSpace: 15)
 	}
+}
+
+// MARK: - FavoriteViewModelDelegate
+extension FavoritesViewController: FavoritesViewModelDelegate {
+	func SetupUI() {
+		setupNavBar()
+		SetIndicator()
+		SetupCell()
+	}
 	func ReloadCollectionView() {
 		DispatchQueue.main.async {[weak self] in
 			self?.favoritesCollectionView.reloadData()
+			self?.refreshControl.endRefreshing()
+			self?.activityIndicator.stopAnimating()
 		}
 	}
 }
 
 // MARK: - UICollectionViewDataSource
 extension FavoritesViewController: UICollectionViewDataSource {
-	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { viewModel.comics!.count }
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { viewModel.comics.count + viewModel.characters.count }
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellProperties.favoritesCellIdentifier, for: indexPath) as! FavoritesCollectionViewCell
-		
-		var image = viewModel.comics?[indexPath.row].images?.first?.path ?? nil
-		if image == nil {
-			image = viewModel.comics[indexPath.row].thumbnail?.path!
+		if indexPath.row < viewModel.comics.count {
+			cell.comic = viewModel.comics?[indexPath.row]
+			var image = viewModel.comics?[indexPath.row].images?.first?.path ?? nil
+			if image == nil {
+				image = viewModel.comics[indexPath.row].thumbnail?.path!
+			}
+			cell.setupCell(imageName: image, title: viewModel.comics?[indexPath.row].title)
+		} else {
+			cell.char = viewModel.characters[indexPath.row - viewModel.comics.count]
+			let image = viewModel.characters[indexPath.row - viewModel.comics.count].thumbnail?.path!
+			cell.setupCell(imageName: image, title: viewModel.characters?[indexPath.row - viewModel.comics.count].name)
 		}
-		
-		cell.setupCell(imageName: image, title: viewModel.comics?[indexPath.row].title)
 		return cell
 	}
 }
@@ -65,8 +102,12 @@ extension FavoritesViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension FavoritesViewController: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		if let viewController = storyboard?.instantiateViewController(withIdentifier: "ContentPage") as? CharacterPageViewController{
-			navigationController?.pushViewController(viewController, animated: true)
+		selectedCellIndex = indexPath.row
+		if indexPath.row < viewModel.comics.count {
+			performSegue(withIdentifier: FavoritesSegueProperties.favoriteToComic, sender: self)
+		} else {
+			performSegue(withIdentifier: FavoritesSegueProperties.favoriteToChar, sender: self)
 		}
+		
 	}
 }

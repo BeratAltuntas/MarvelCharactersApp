@@ -48,7 +48,6 @@ final class CharacterPageViewController: BaseViewController {
 			   let userUid = FirebaseAuthManager.shared.GetUserUid() {
 				viewModel.CharacterIsLiked(comicId: characterId, userUid: userUid)
 			}
-			
 		}
 	}
 	func SetImageViewTapRecognizer() {

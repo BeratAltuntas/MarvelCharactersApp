@@ -13,12 +13,13 @@ protocol FavoritesViewModelProtocol {
 	var comics: [ComicModelResult]! { get }
 	var characters: [CharacterModelResult]! { get }
 	func LoadScreen()
+	func ResetLists()
+	func LoadComicsChars()
 }
 
 // MARK: - FavoriteViewModelDelegate
 protocol FavoritesViewModelDelegate: AnyObject {
 	func SetupUI()
-	func SetupCell()
 	func ReloadCollectionView()
 }
 
@@ -27,6 +28,7 @@ final class FavoritesViewModel {
 	weak var delegate: FavoritesViewModelDelegate?
 	var comicsList = [ComicModelResult]()
 	var charactersList = [CharacterModelResult]()
+	
 	func GetLikedComics() {
 		guard let userUid = FirebaseAuthManager.shared.GetUserUid() else { return }
 		FireBaseDatabaseManager.shared.GetUsersLikedComics(userUid: userUid) { success, ids in
@@ -44,11 +46,22 @@ final class FavoritesViewModel {
 	}
 	func GetLikedCharacters() {
 		guard let userUid = FirebaseAuthManager.shared.GetUserUid() else { return }
-		FireBaseDatabaseManager.shared.GetUsersLikedCharacters(userUid: userUid) { success, result in
+		FireBaseDatabaseManager.shared.GetUsersLikedCharacters(userUid: userUid) { success, ids in
 			if success {
-				
+				for id in ids {
+					FireBaseDatabaseManager.shared.GetCharacter(withIds: id) {[weak self] successComic, result in
+						if successComic {
+							self?.charactersList.append(result)
+							self?.delegate?.ReloadCollectionView()
+						}
+					}
+				}
 			}
 		}
+	}
+	func ResetLists() {
+		comicsList.removeAll()
+		charactersList.removeAll()
 	}
 }
 
@@ -60,12 +73,14 @@ extension FavoritesViewModel: FavoritesViewModelProtocol {
 	var characters: [CharacterModelResult]! {
 		charactersList
 	}
-	
-	func LoadScreen() {
-		delegate?.SetupCell()
-		delegate?.SetupUI()
+	func LoadComicsChars() {
+		ResetLists()
+		delegate?.ReloadCollectionView()
 		GetLikedComics()
-		//GetLikedCharacters()
-		//delegate?.ReloadCollectionView()
+		GetLikedCharacters()
+	}
+	func LoadScreen() {
+		delegate?.SetupUI()
+		LoadComicsChars()
 	}
 }

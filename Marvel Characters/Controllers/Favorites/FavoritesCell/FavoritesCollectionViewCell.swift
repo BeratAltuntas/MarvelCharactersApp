@@ -7,12 +7,21 @@
 import Kingfisher
 import UIKit
 
+protocol FavoritesViewControllerCellDelegate: AnyObject {
+	func ReloadCollectionView()
+}
+
 class FavoritesCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var favoritesImageView: UIImageView!
     @IBOutlet weak var characterNameLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
-    
+	
+	var char: CharacterModelResult?
+	var comic: ComicModelResult?
+	
+	weak var delegate: FavoritesViewControllerCellDelegate?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         favoritesImageView.backgroundColor = .lightGray
@@ -32,8 +41,23 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
         
         if(button.imageView?.image == UIImage(systemName: "heart.fill")){
             button.setImage(UIImage(systemName: "heart"), for: .normal)
-        }else{
-            button.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+			if comic != nil {
+				FireBaseDatabaseManager.shared.DeleteUserLikedComic(deletingId: (comic!.id)!) { [weak self] success in
+					if success {
+						self?.Reload()
+					}
+				}
+				Reload()
+			} else if char != nil {
+				FireBaseDatabaseManager.shared.DeleteUsersLikedCharacter(withCharId: char!.id!) { [weak self] success in
+					if success {
+						self?.Reload()
+					}
+				}
+			}
         }
     }
+	func Reload () {
+		delegate?.ReloadCollectionView()
+	}
 }

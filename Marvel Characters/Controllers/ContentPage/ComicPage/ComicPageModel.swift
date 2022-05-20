@@ -57,10 +57,7 @@ extension ComicPageViewModel: ComicPageViewModelProtocol {
 				var itIsLikedBefore = false
 				for i in 0..<result.count {
 					if result[i] == withComicId {
-						var array = result
-						array.remove(at: i)
-						let tempDeletingUser = User(uId: user.uid, comicResult: array, characterResult: [])
-						FireBaseDatabaseManager.shared.DeleteUserLikedComic(user: tempDeletingUser)
+						FireBaseDatabaseManager.shared.DeleteUserLikedComic(deletingId: withComicId) { success in }
 						itIsLikedBefore = true
 						self?.delegate?.ChangeLikedImageViewImage()
 						break

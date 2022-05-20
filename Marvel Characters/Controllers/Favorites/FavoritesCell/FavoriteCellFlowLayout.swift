@@ -9,7 +9,7 @@ import UIKit
 
 class FavoriteCellFlowLayout: UICollectionViewFlowLayout {
 	var columnCount: Int
-	var heightRatio: CGFloat = (3.0 / 1.5)
+	var heightRatio: CGFloat = (1.7 / 1.0)
 	
 	init(ColumnCount:Int, MinColumnSpace:CGFloat = 15, MinRowSpace:CGFloat = 15) {
 		
