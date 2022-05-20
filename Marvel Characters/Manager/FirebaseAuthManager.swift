@@ -13,7 +13,16 @@ final class FirebaseAuthManager {
 	typealias CompletionHandler = (_ success: Bool, _ uId: String) -> Void
 	
 	static let shared = FirebaseAuthManager()
-	
+	func AuthListener() {
+		Auth.auth().addStateDidChangeListener { auth, user in
+			if auth.currentUser == nil {
+				print("çıktı")
+			} else {
+				print("girdi")
+			}
+		}
+	}
+
 	func IsUserSignedIn()-> Bool {
 		if Auth.auth().currentUser == nil{
 			return false

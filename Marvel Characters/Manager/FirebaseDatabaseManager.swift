@@ -100,6 +100,9 @@ final class FireBaseDatabaseManager {
 					}
 					let user = User(uId: userUid, comicResult: arraysOfIds, characterResult: [])
 					Database.database(url: Config.firebaseDatabaseRefrenceUrl).reference().child(Config.firebaseDatabaseReferenceMainChild).child(userUid).updateChildValues(user.userComicDictionary) { (error, databaseRef) in
+						if error == nil {
+							completion(true)
+						}
 					}
 				}
 			}

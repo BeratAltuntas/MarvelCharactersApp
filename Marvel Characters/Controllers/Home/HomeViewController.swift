@@ -27,6 +27,7 @@ final class HomeViewController: BaseViewController {
 		}
 	}
 	override func viewWillAppear(_ animated: Bool) {
+		FirebaseAuthManager.shared.AuthListener()
 		AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
 	}
 	

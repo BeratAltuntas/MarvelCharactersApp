@@ -28,8 +28,12 @@ class FavoritesViewController: BaseViewController {
 	private var selectedCellIndex = 0
 	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 	@IBOutlet var favoritesCollectionView: UICollectionView!
-	
+	override func loadView() {
+		super.loadView()
+		activityIndicator.startAnimating()
+	}
 	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(true)
 		viewModel.LoadScreen()
 	}
 	func SetIndicator() {
@@ -76,6 +80,11 @@ extension FavoritesViewController: FavoritesViewModelDelegate {
 		}
 	}
 }
+extension FavoritesViewController: FavoritesViewControllerCellDelegate {
+	func ReloadCollectionViewForCell() {
+		viewModel.LoadComicsChars()
+	}
+}
 
 // MARK: - UICollectionViewDataSource
 extension FavoritesViewController: UICollectionViewDataSource {
@@ -83,15 +92,18 @@ extension FavoritesViewController: UICollectionViewDataSource {
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellProperties.favoritesCellIdentifier, for: indexPath) as! FavoritesCollectionViewCell
+		cell.delegate = self
 		if indexPath.row < viewModel.comics.count {
-			cell.comic = viewModel.comics?[indexPath.row]
+			cell.cellId = "comic"
+			cell.comic = viewModel.comics?[indexPath.row].id
 			var image = viewModel.comics?[indexPath.row].images?.first?.path ?? nil
 			if image == nil {
 				image = viewModel.comics[indexPath.row].thumbnail?.path!
 			}
 			cell.setupCell(imageName: image, title: viewModel.comics?[indexPath.row].title)
 		} else {
-			cell.char = viewModel.characters[indexPath.row - viewModel.comics.count]
+			cell.cellId = "char"
+			cell.char = viewModel.characters[indexPath.row - viewModel.comics.count].id
 			let image = viewModel.characters[indexPath.row - viewModel.comics.count].thumbnail?.path!
 			cell.setupCell(imageName: image, title: viewModel.characters?[indexPath.row - viewModel.comics.count].name)
 		}
@@ -103,11 +115,11 @@ extension FavoritesViewController: UICollectionViewDataSource {
 extension FavoritesViewController: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		selectedCellIndex = indexPath.row
-		if indexPath.row < viewModel.comics.count {
+		let cell = collectionView.cellForItem(at: indexPath) as! FavoritesCollectionViewCell
+		if cell.cellId == "comic" {
 			performSegue(withIdentifier: FavoritesSegueProperties.favoriteToComic, sender: self)
-		} else {
+		} else if cell.cellId == "char" {
 			performSegue(withIdentifier: FavoritesSegueProperties.favoriteToChar, sender: self)
 		}
-		
 	}
 }
