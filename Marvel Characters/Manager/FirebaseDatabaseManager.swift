@@ -9,7 +9,9 @@ import Foundation
 
 typealias Databasecompletion = (_ success: Bool) -> Void
 typealias GetUserCompletionHandler = (_ success: Bool, _ result: User) -> Void
-typealias CompletionGetComic = (_ success: Bool, _ result: [Int])-> Void
+typealias CompletionGetComicAndCharIds = (_ success: Bool, _ ids: [Int])-> Void
+typealias CompletionGetComics = (_ success: Bool, _ result: ComicModelResult)-> Void
+typealias CompletionGetCharacterss = (_ success: Bool, _ result: [CharacterModelResult])-> Void
 
 
 final class FireBaseDatabaseManager {
@@ -50,7 +52,20 @@ final class FireBaseDatabaseManager {
 	}
 	
 	// MARK: - Comics
-	func GetUserComics(userUid: String, completion: @escaping CompletionGetComic) {
+	func GetComic(withIds id: Int, completion: @escaping CompletionGetComics) {
+		if FirebaseAuthManager.shared.IsUserSignedIn() {
+			NetworkManager.shared.fetchData(endPoint: Config.comicMainUrl + "/" + String(id) + "?", type: ComicModel?.self) { result in
+				switch result {
+				case .success(let response):
+					completion(true,response.data!.results!.first!)
+				case .failure(let error):
+					print(error)
+					break
+				}
+			}
+		}
+	}
+	func GetUsersLikedComics(userUid: String, completion: @escaping CompletionGetComicAndCharIds) {
 		if FirebaseAuthManager.shared.IsUserSignedIn() {
 			let ref = Database.database(url: Config.firebaseDatabaseRefrenceUrl).reference().child(Config.firebaseDatabaseReferenceMainChild).child(userUid)
 			ref.observeSingleEvent(of: .value) { result in
@@ -72,13 +87,13 @@ final class FireBaseDatabaseManager {
 			completion(true)
 		}
 	}
-	func DeleteUserComic(user: User) {
+	func DeleteUserLikedComic(user: User) {
 		Database.database(url: Config.firebaseDatabaseRefrenceUrl).reference().child(Config.firebaseDatabaseReferenceMainChild).child(user.uid!).updateChildValues(user.userComicDictionary) { (error, databaseRef) in
 		}
 	}
 	
 	// MARK: - Characters
-	func GetUserCharacters(userUid: String, completion: @escaping CompletionGetComic) {
+	func GetUsersLikedCharacters(userUid: String, completion: @escaping CompletionGetComicAndCharIds) {
 		if FirebaseAuthManager.shared.IsUserSignedIn() {
 			let ref = Database.database(url: Config.firebaseDatabaseRefrenceUrl).reference().child(Config.firebaseDatabaseReferenceMainChild).child(userUid)
 			
@@ -94,13 +109,13 @@ final class FireBaseDatabaseManager {
 			}
 		}
 	}
-	func SetUserCharacters(user: User, completion: @escaping Databasecompletion) {
+	func SetUsersLikedCharacters(user: User, completion: @escaping Databasecompletion) {
 		guard let uid = user.uid else { return }
 		Database.database(url: Config.firebaseDatabaseRefrenceUrl).reference().child(Config.firebaseDatabaseReferenceMainChild).child(uid).updateChildValues(user.userCharacterDictionary) { (error, databaseRef) in
 			completion(true)
 		}
 	}
-	func DeleteUserCharacter(user: User) {
+	func DeleteUsersLikedCharacter(user: User) {
 		Database.database(url: Config.firebaseDatabaseRefrenceUrl).reference().child(Config.firebaseDatabaseReferenceMainChild).child(user.uid!).updateChildValues(user.userCharacterDictionary) { (error, databaseRef) in
 		}
 	}

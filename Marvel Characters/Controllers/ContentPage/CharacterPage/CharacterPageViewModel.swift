@@ -28,7 +28,7 @@ final class CharacterPageViewModel {
 	weak var delegate: CharacterPageViewModelDelegate?
 	
 	func SetLikedCharacter(user: User) {
-		FireBaseDatabaseManager.shared.SetUserCharacters(user: user) {[weak self] success in
+		FireBaseDatabaseManager.shared.SetUsersLikedCharacters(user: user) {[weak self] success in
 			if success {
 				self?.delegate?.ChangeLikedImageViewImage()
 			}
@@ -45,7 +45,7 @@ extension CharacterPageViewModel: CharacterPageViewModelProtocol {
 		delegate?.ReloadTableViews()
 	}
 	func LikeCharacter(withCharacterId: Int, user: User) {
-		FireBaseDatabaseManager.shared.GetUserCharacters(userUid: user.uid!) { [weak self] (success, result) in
+		FireBaseDatabaseManager.shared.GetUsersLikedCharacters(userUid: user.uid!) { [weak self] (success, result) in
 			if success {
 				var itIsLikedBefore = false
 				for i in 0..<result.count {
@@ -53,7 +53,7 @@ extension CharacterPageViewModel: CharacterPageViewModelProtocol {
 						var array = result
 						array.remove(at: i)
 						let tempDeletingUser = User(uId: user.uid, comicResult: [], characterResult: array)
-						FireBaseDatabaseManager.shared.DeleteUserCharacter(user: tempDeletingUser)
+						FireBaseDatabaseManager.shared.DeleteUsersLikedCharacter(user: tempDeletingUser)
 						itIsLikedBefore = true
 						self?.delegate?.ChangeLikedImageViewImage()
 						break
@@ -71,7 +71,7 @@ extension CharacterPageViewModel: CharacterPageViewModelProtocol {
 		}
 	}
 	func CharacterIsLiked(comicId: Int, userUid: String) {
-		FireBaseDatabaseManager.shared.GetUserCharacters(userUid: userUid) { [weak self] success, result in
+		FireBaseDatabaseManager.shared.GetUsersLikedCharacters(userUid: userUid) { [weak self] success, result in
 			if success {
 				for res in result {
 					if res == comicId {

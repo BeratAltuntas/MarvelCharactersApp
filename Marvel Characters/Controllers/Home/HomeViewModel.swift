@@ -103,9 +103,9 @@ extension HomeViewModel: HomeViewModelProtocol {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Id, for: index) as! ComicsCollectionViewCell
 		
 		if collectionView.tag == tag[0] {
-			var image = comicList?[index.row].thumbnail?.path!
-			if ((image?.contains("image_not_available")) != nil) {
-				image = comicList?[index.row].images?.first?.path ?? nil
+			var image = comicList?[index.row].images?.first?.path ?? nil
+			if (image == nil) {
+				image =  comicList?[index.row].thumbnail?.path!
 			}
 			if let price = comicList?[index.row].prices?[0].price{
 				cell.setupCell(imageName: image, title: comicList?[index.row].title, subtitle: "Fiyatı: \(String(price))$")

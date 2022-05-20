@@ -165,13 +165,13 @@
 		F40AC2AE28176FBF00C9C346 /* Marvel Characters */ = {
 			isa = PBXGroup;
 			children = (
-				F4E3B49228358B7E0065EFFE /* Supporting Files */,
-				F4E3B49128358B570065EFFE /* Models */,
-				F40AC2C32817710D00C9C346 /* Controllers */,
-				F4E3B49028358B3C0065EFFE /* Views */,
 				F4E3B48D28358A760065EFFE /* Extensions */,
 				F4E3B48C28358A660065EFFE /* Manager */,
+				F4E3B49028358B3C0065EFFE /* Views */,
+				F4E3B49128358B570065EFFE /* Models */,
+				F40AC2C32817710D00C9C346 /* Controllers */,
 				F40AC2D9281772BE00C9C346 /* SupportingFiles */,
+				F4E3B49228358B7E0065EFFE /* Supporting Files */,
 				F4A02F9C281953B30070A4A3 /* config.swift */,
 			);
 			path = "Marvel Characters";

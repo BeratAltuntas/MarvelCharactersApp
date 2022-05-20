@@ -4,7 +4,7 @@
 //
 //  Created by BERAT ALTUNTAŞ on 26.04.2022.
 //
-
+import Kingfisher
 import UIKit
 
 class FavoritesCollectionViewCell: UICollectionViewCell {
@@ -17,7 +17,16 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         favoritesImageView.backgroundColor = .lightGray
     }
-    
+	func setupCell(imageName: String?, title: String?){
+		if let imgName = imageName {
+			let urlImgStr = imgName.replacingOccurrences(of: "http", with: "https") + "/portrait_medium.jpg"
+			favoritesImageView.kf.setImage(with: URL(string: urlImgStr))
+		}else{
+			favoritesImageView.image = UIImage(named: "Marvel_Logo")
+		}
+		characterNameLabel.text = title
+	}
+	
     @IBAction func likeButton_TUI(_ sender: Any) {
         guard let button = sender.self as? UIButton else{return}
         

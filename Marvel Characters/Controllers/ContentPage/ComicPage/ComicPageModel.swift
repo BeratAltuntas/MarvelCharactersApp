@@ -40,7 +40,7 @@ final class ComicPageViewModel {
 // MARK: - Extension ComicPageViewModel
 extension ComicPageViewModel: ComicPageViewModelProtocol {
 	func ComicIsLiked(comicId: Int, userUid: String) {
-		FireBaseDatabaseManager.shared.GetUserComics(userUid: userUid) { [weak self] success, result in
+		FireBaseDatabaseManager.shared.GetUsersLikedComics(userUid: userUid) { [weak self] success, result in
 			if success {
 				for res in result {
 					if res == comicId {
@@ -52,7 +52,7 @@ extension ComicPageViewModel: ComicPageViewModelProtocol {
 	}
 	
 	func LikeComic(withComicId: Int, user: User) {
-		FireBaseDatabaseManager.shared.GetUserComics(userUid: user.uid!) {[weak self] (success, result) in
+		FireBaseDatabaseManager.shared.GetUsersLikedComics(userUid: user.uid!) {[weak self] (success, result) in
 			if success {
 				var itIsLikedBefore = false
 				for i in 0..<result.count {
@@ -60,7 +60,7 @@ extension ComicPageViewModel: ComicPageViewModelProtocol {
 						var array = result
 						array.remove(at: i)
 						let tempDeletingUser = User(uId: user.uid, comicResult: array, characterResult: [])
-						FireBaseDatabaseManager.shared.DeleteUserComic(user: tempDeletingUser)
+						FireBaseDatabaseManager.shared.DeleteUserLikedComic(user: tempDeletingUser)
 						itIsLikedBefore = true
 						self?.delegate?.ChangeLikedImageViewImage()
 						break
