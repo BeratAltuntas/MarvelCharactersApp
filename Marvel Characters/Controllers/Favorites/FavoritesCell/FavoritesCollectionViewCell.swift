@@ -17,8 +17,8 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var characterNameLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
 	
-	var char: Int?
-	var comic: Int?
+	var char: Int? = nil
+	var comic: Int? = nil
 	var cellId: String!
 	
 	weak var delegate: FavoritesViewControllerCellDelegate?
@@ -38,29 +38,25 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
 		characterNameLabel.text = title
 	}
 	
-    @IBAction func likeButton_TUI(_ sender: Any) {
-        guard let button = sender.self as? UIButton else{return}
-        
-        if(button.imageView?.image == UIImage(systemName: "heart.fill")){
-            button.setImage(UIImage(systemName: "heart"), for: .normal)
-			if comic != nil {
-				FireBaseDatabaseManager.shared.DeleteUserLikedComic(deletingId: comic!) { [weak self] success in
-					if success {
-						self?.comic = nil
-						self?.Reload()
-					}
-				}
-			} else if char != nil {
-				FireBaseDatabaseManager.shared.DeleteUsersLikedCharacter(withCharId: char!) { [weak self] success in
-					if success {
-						self?.char = nil
-						self?.Reload()
-						
-					}
+	@IBAction func likeButton_TUI(_ sender: Any) {
+		guard let button = sender.self as? UIButton else{ return }
+		button.setImage(UIImage(systemName: "heart"), for: .normal)
+		if comic != nil {
+			FireBaseDatabaseManager.shared.DeleteUserLikedComic(deletingId: comic!) { [weak self] success in
+				if success {
+					self?.comic = nil
+					self?.Reload()
 				}
 			}
-        }
-    }
+		} else if char != nil {
+			FireBaseDatabaseManager.shared.DeleteUsersLikedCharacter(withCharId: char!) { [weak self] success in
+				if success {
+					self?.char = nil
+					self?.Reload()
+				}
+			}
+		}
+	}
 	func Reload () {
 		delegate?.ReloadCollectionViewForCell()
 	}

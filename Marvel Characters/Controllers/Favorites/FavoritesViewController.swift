@@ -28,10 +28,6 @@ class FavoritesViewController: BaseViewController {
 	private var selectedCellIndex = 0
 	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 	@IBOutlet var favoritesCollectionView: UICollectionView!
-	override func loadView() {
-		super.loadView()
-		activityIndicator.startAnimating()
-	}
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(true)
 		viewModel.LoadScreen()
@@ -46,6 +42,7 @@ class FavoritesViewController: BaseViewController {
 		refreshControl.addTarget(self, action: #selector(RefreshData(_:)), for: .valueChanged)
 	}
 	@objc func RefreshData(_ sender: Any) {
+		activityIndicator.startAnimating()
 		viewModel.LoadComicsChars()
 	}
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -76,6 +73,10 @@ extension FavoritesViewController: FavoritesViewModelDelegate {
 		DispatchQueue.main.async {[weak self] in
 			self?.favoritesCollectionView.reloadData()
 			self?.refreshControl.endRefreshing()
+		}
+	}
+	func StopIndicator() {
+		DispatchQueue.main.async {[weak self] in
 			self?.activityIndicator.stopAnimating()
 		}
 	}

@@ -76,7 +76,7 @@
                 <outlet property="favoritesImageView" destination="lcc-MW-gEn" id="MnH-ub-GjY"/>
                 <outlet property="likeButton" destination="sY3-NG-zqm" id="cJ7-n9-fR9"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="136.60714285714286"/>
+            <point key="canvasLocation" x="137.68115942028987" y="136.27232142857142"/>
         </collectionViewCell>
     </objects>
     <resources>

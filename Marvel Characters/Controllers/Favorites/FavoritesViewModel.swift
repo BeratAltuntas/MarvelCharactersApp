@@ -21,6 +21,7 @@ protocol FavoritesViewModelProtocol {
 protocol FavoritesViewModelDelegate: AnyObject {
 	func SetupUI()
 	func ReloadCollectionView()
+	func StopIndicator()
 }
 
 // MARK: - FavoriteViewModel
@@ -39,6 +40,9 @@ final class FavoritesViewModel {
 							self?.comicsList.append(result)
 							self?.delegate?.ReloadCollectionView()
 						}
+						if ids.count == self?.comicsList.count {
+							self?.delegate!.StopIndicator()
+						}
 					}
 				}
 			}
@@ -53,6 +57,9 @@ final class FavoritesViewModel {
 						if successComic {
 							self?.charactersList.append(result)
 							self?.delegate?.ReloadCollectionView()
+						}
+						if ids.count == self?.charactersList.count {
+							self?.delegate!.StopIndicator()
 						}
 					}
 				}
