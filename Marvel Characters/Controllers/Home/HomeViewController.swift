@@ -7,7 +7,7 @@
 import UIKit
 
 enum HomeConstant {
-	static let cellIdentifier = "ContentPage"
+	static let cellIdentifier = "ComicsCollectionViewCell"
 	static let forYouCollectionViewTag = 0
 	static let trendsCollectionViewTag = 1
 	
@@ -19,6 +19,8 @@ enum HomeConstant {
 final class HomeViewController: BaseViewController {
 	@IBOutlet private weak var forYouCollectionView: UICollectionView!
 	@IBOutlet private weak var trendsCollectionView: UICollectionView!
+	@IBOutlet weak var forYouIndicator: UIActivityIndicatorView!
+	@IBOutlet weak var trendsIndicator: UIActivityIndicatorView!
 	
 	lazy var indexOfSelectedCollectionCell: Int = 0
 	var viewModel: HomeViewModelProtocol! {
@@ -27,7 +29,6 @@ final class HomeViewController: BaseViewController {
 		}
 	}
 	override func viewWillAppear(_ animated: Bool) {
-		FirebaseAuthManager.shared.AuthListener()
 		AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
 	}
 	
@@ -37,8 +38,16 @@ final class HomeViewController: BaseViewController {
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		
-		viewModel.prepareToOpenPage(segue: segue, index: indexOfSelectedCollectionCell)
+		if segue.identifier == HomeConstant.homeToCharPageSegueID {
+			let targetVC = segue.destination as! CharacterPageViewController
+			targetVC.viewModel = CharacterPageViewModel()
+			targetVC.selectedCharacter = viewModel.characters![indexOfSelectedCollectionCell]
+			
+		} else if segue.identifier == HomeConstant.homeToComicPageSegueID {
+			let targetVC = segue.destination as! ComicPageViewController
+			targetVC.viewModel = ComicPageViewModel()
+			targetVC.selectedComic = viewModel.comics![indexOfSelectedCollectionCell]
+		}
 	}
 }
 
@@ -59,6 +68,14 @@ extension HomeViewController: HomeViewModelDelegate {
 	func setupNavigationBar() {
 		setupNavBar()
 	}
+	func StartIndicators() {
+		forYouIndicator.startAnimating()
+		trendsIndicator.startAnimating()
+	}
+	func StopIndicators() {
+		forYouIndicator.stopAnimating()
+		trendsIndicator.stopAnimating()
+	}
 }
 
 // MARK: - UICollectionViewDataSource
@@ -74,7 +91,31 @@ extension HomeViewController: UICollectionViewDataSource {
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		return viewModel.loadCellContent(collectionView: collectionView,Id: ComicsCollectionViewCell.identifier,tag: [HomeConstant.forYouCollectionViewTag,HomeConstant.trendsCollectionViewTag], index: indexPath)
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeConstant.cellIdentifier, for: indexPath) as! ComicsCollectionViewCell
+		
+		if collectionView.tag == HomeConstant.forYouCollectionViewTag {
+			var image = viewModel.comics![indexPath.row].images?.first?.path ?? nil
+			if (image == nil) {
+				image =  viewModel.comics![indexPath.row].thumbnail?.path!
+			}
+			if let price = viewModel.comics![indexPath.row].prices?[0].price{
+				cell.setupCell(imageName: image, title: viewModel.comics![indexPath.row].title, subtitle: "Fiyatı: \(String(price))$")
+			}
+		} else if collectionView.tag == HomeConstant.trendsCollectionViewTag {
+			let image = viewModel.characters![indexPath.row].thumbnail?.path!
+			let title = viewModel.characters![indexPath.row].name
+			var subtitle: String = ""
+			
+			if let items = viewModel.characters![indexPath.row].series?.items {
+				for (index,item) in items.enumerated() {
+					if index < 2 {
+						subtitle += " \(item.name!) \n"
+					}
+				}
+			}
+			cell.setupCell(imageName: image, title: title, subtitle: subtitle)
+		}
+		return cell
 	}
 }
 

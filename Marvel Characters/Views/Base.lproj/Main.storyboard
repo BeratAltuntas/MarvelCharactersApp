@@ -1224,6 +1224,11 @@
                                                             <outlet property="delegate" destination="fV9-7s-0SY" id="Ffu-gO-sFq"/>
                                                         </connections>
                                                     </collectionView>
+                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" id="hCB-v3-qLr">
+                                                        <rect key="frame" x="0.0" y="17" width="414" height="330"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="color" systemColor="systemRedColor"/>
+                                                    </activityIndicatorView>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="31K-O0-8HD" firstAttribute="top" secondItem="LmE-Vd-ooV" secondAttribute="top" id="0wq-cK-Ycc"/>
@@ -1260,6 +1265,11 @@
                                                             <outlet property="delegate" destination="fV9-7s-0SY" id="MK3-LT-AJg"/>
                                                         </connections>
                                                     </collectionView>
+                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" id="Qfl-vA-7Nd">
+                                                        <rect key="frame" x="0.0" y="17" width="414" height="330"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="color" systemColor="systemRedColor"/>
+                                                    </activityIndicatorView>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="eTy-b3-5Vj" secondAttribute="trailing" id="SCq-jC-lAW"/>
@@ -1309,7 +1319,9 @@
                     <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="gdD-Xd-u4V"/>
                     <connections>
                         <outlet property="forYouCollectionView" destination="7oZ-PF-2WS" id="Uqe-Wz-rUp"/>
+                        <outlet property="forYouIndicator" destination="hCB-v3-qLr" id="XQI-gz-vaN"/>
                         <outlet property="trendsCollectionView" destination="kuU-yY-qsB" id="nLS-bC-fK4"/>
+                        <outlet property="trendsIndicator" destination="Qfl-vA-7Nd" id="vpe-p7-HhF"/>
                         <segue destination="Wq8-or-nZg" kind="show" identifier="HomeToChar" id="uQC-9R-U3W"/>
                         <segue destination="qMN-1X-JpL" kind="show" identifier="HomeToComic" id="dy5-gc-3eI"/>
                     </connections>
@@ -1485,8 +1497,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="toU-Q0-3t1"/>
-        <segue reference="x2M-Hu-jiJ"/>
+        <segue reference="dy5-gc-3eI"/>
+        <segue reference="uQC-9R-U3W"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Marvel_Logo" width="400" height="160.5"/>
