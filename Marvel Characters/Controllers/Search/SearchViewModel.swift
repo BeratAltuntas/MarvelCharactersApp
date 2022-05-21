@@ -25,6 +25,8 @@ protocol SearchViewModelDelegate: AnyObject {
 	func SetupTableView()
 	func ReloadTableView()
 	func setupNavigationBar()
+	func DummySearch()
+	func StopIndicator()
 }
 // MARK: - SearchViewModel
 final class SearchViewModel {
@@ -38,6 +40,7 @@ final class SearchViewModel {
 extension SearchViewModel: SearchViewModelProtocol {
 	
 	func SetupUI() {
+		delegate?.DummySearch()
 		delegate?.setupNavigationBar()
 		delegate?.SetupTableView()
 	}
@@ -48,7 +51,8 @@ extension SearchViewModel: SearchViewModelProtocol {
 			switch result {
 			case .success(let response):
 				self?.searchCharacter = response.data?.results
-				self?.DispatchQueueReloadTable()
+				self?.delegate?.ReloadTableView()
+				self?.delegate?.StopIndicator()
 			case .failure(let error):
 				print(error)
 			}
@@ -61,7 +65,8 @@ extension SearchViewModel: SearchViewModelProtocol {
 			switch result {
 			case .success(let response):
 				self?.searchComic = response.data?.results
-				self?.DispatchQueueReloadTable()
+				self?.delegate?.ReloadTableView()
+				self?.delegate?.StopIndicator()
 			case .failure(let error):
 				print(error)
 			}
@@ -74,16 +79,11 @@ extension SearchViewModel: SearchViewModelProtocol {
 			switch result {
 			case .success(let response):
 				self?.searchCreator = response.data?.results
-				self?.DispatchQueueReloadTable()
+				self?.delegate?.ReloadTableView()
+				self?.delegate?.StopIndicator()
 			case .failure(let error):
 				print(error)
 			}
-		}
-	}
-	
-	func DispatchQueueReloadTable() {
-		DispatchQueue.main.async { [weak self] in
-			self?.delegate?.ReloadTableView()
 		}
 	}
 }

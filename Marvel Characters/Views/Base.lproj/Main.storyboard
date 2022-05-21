@@ -36,6 +36,11 @@
                                             <outlet property="delegate" destination="5cd-Xo-fGL" id="1LU-gO-w8C"/>
                                         </connections>
                                     </tableView>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="daT-uK-fV9">
+                                        <rect key="frame" x="197" y="325" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="color" systemColor="systemRedColor"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -51,7 +56,7 @@
                                     <constraint firstAttribute="height" constant="55" id="b2V-wj-xR4"/>
                                     <constraint firstAttribute="width" constant="90" id="uBm-lE-UPm"/>
                                 </constraints>
-                                <buttonConfiguration key="configuration" style="plain" title="Çizgi Roman">
+                                <buttonConfiguration key="configuration" style="plain" title="Karakter">
                                     <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
                                     <color key="baseForegroundColor" name="TabBarColorActive"/>
                                 </buttonConfiguration>
@@ -78,6 +83,8 @@
                     <navigationItem key="navigationItem" id="1co-rP-VCh"/>
                     <connections>
                         <outlet property="buttonSearchingType" destination="8J0-bq-uvb" id="hkh-e2-ccc"/>
+                        <outlet property="searchBar" destination="yxu-z4-vZ0" id="awh-84-CYy"/>
+                        <outlet property="searchIndicator" destination="daT-uK-fV9" id="X2Q-f5-kaT"/>
                         <outlet property="tableView" destination="vgL-43-ZOx" id="HiG-ZV-4B9"/>
                         <segue destination="Wq8-or-nZg" kind="show" identifier="SearchToChar" id="jVx-ze-HrX"/>
                         <segue destination="qMN-1X-JpL" kind="show" identifier="SearchToComic" id="w1f-Qh-Lzj"/>
@@ -1497,8 +1504,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="dy5-gc-3eI"/>
-        <segue reference="uQC-9R-U3W"/>
+        <segue reference="w1f-Qh-Lzj"/>
+        <segue reference="jVx-ze-HrX"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Marvel_Logo" width="400" height="160.5"/>
