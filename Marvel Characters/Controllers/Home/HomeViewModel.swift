@@ -37,7 +37,8 @@ final class HomeViewModel {
 	private var characterList: [CharacterModelResult]?
 	
 	func fetchComics(completionHandler: @escaping ([ComicModelResult]) -> Void) {
-		NetworkManager.shared.fetchData(endPoint: Config.comicMainUrl + "?", type: ComicModel?.self) { [weak self] result in
+		let limit = "40"
+		NetworkManager.shared.fetchData(endPoint: Config.comicMainUrl + "?" + Config.searchWithLimit + limit + "&", type: ComicModel?.self) { [weak self] result in
 			switch result {
 			case .success(let response):
 				self?.comic = response
@@ -50,7 +51,8 @@ final class HomeViewModel {
 	}
 	
 	func fetchCharacters(completionHandler: @escaping ([CharacterModelResult]) -> Void) {
-		NetworkManager.shared.fetchData(endPoint: Config.characterMainUrl + "?", type: CharacterModel?.self) { [weak self] result in
+		let limit = "40"
+		NetworkManager.shared.fetchData(endPoint: Config.characterMainUrl + "?" + Config.searchWithLimit + limit + "&", type: CharacterModel?.self) { [weak self] result in
 			switch result {
 			case .success(let response):
 				self?.character = response
