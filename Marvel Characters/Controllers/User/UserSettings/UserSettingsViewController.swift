@@ -9,28 +9,28 @@ import UIKit
 
 // MARK: - UserSettingsViewController
 final class UserSettingsViewController: BaseViewController {
-	
-	var viewModel: UserSettingsViewModelProtocol! {
+	internal var viewModel: UserSettingsViewModelProtocol! {
 		didSet {
 			viewModel.delegate = self
 		}
 	}
-	@IBOutlet weak var imageViewProfileImage: UIImageView!
-	@IBOutlet weak var textFieldNameSurname: UITextField!
-	@IBOutlet weak var textFieldCity: UITextField!
-	@IBOutlet weak var datePickerBirthdate: UIDatePicker!
-	@IBOutlet weak var segmentControllerGender: UISegmentedControl!
-	@IBOutlet weak var textFieldEmail: UITextField!
 	
-	var currentImage = UIImage(systemName: "person.fill" )
-	var user: User!
-	var imageIsSet = false
+	@IBOutlet private weak var imageViewProfileImage: UIImageView!
+	@IBOutlet private weak var textFieldNameSurname: UITextField!
+	@IBOutlet private weak var textFieldEmail: UITextField!
+	@IBOutlet private weak var textFieldCity: UITextField!
+	@IBOutlet private weak var datePickerBirthdate: UIDatePicker!
+	@IBOutlet private weak var segmentControllerGender: UISegmentedControl!
+	
+	private var currentImage = UIImage(systemName: "person.fill" )
+	private var user: User!
+	private var imageIsSet = false
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		if FirebaseAuthManager.shared.IsUserSignedIn() {
 			GetUserInDatabase()
 		}
-
 	}
 	func GetUserInDatabase() {
 		FireBaseDatabaseManager.shared.GetUserInDatabase(withUid: FirebaseAuthManager.shared.GetUserUid()!) {[weak self] success, result in
@@ -46,10 +46,6 @@ final class UserSettingsViewController: BaseViewController {
 			}
 		}
 	}
-	func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-		print(true)
-	}
-	
 	func LoadUserInfo(image: UIImage) {
 		imageViewProfileImage.image = image
 		textFieldNameSurname.text = user.namesurname
@@ -65,11 +61,9 @@ final class UserSettingsViewController: BaseViewController {
 			}
 		}
 	}
-	
 	@IBAction func selecetImage_TUI(_ sender: UIButton) {
 		OpenImagePicker()
 	}
-	
 	@IBAction func UpdateUserInfo_TUI(_ sender: UIButton) {
 		if let name = textFieldNameSurname.text,
 		   let city = textFieldCity.text,
@@ -79,16 +73,13 @@ final class UserSettingsViewController: BaseViewController {
 			let dateFormatter = DateFormatter()
 			dateFormatter.dateFormat = "dd/MM/yyyy"
 			let birthdate = dateFormatter.string(from: date)
-			
 			let imgData = ImageToData(image: currentImage!)
-			
 			let tempUser = User(uId: user.uid, email: email, profileImageLink: "", namesurname: name, birthdate: birthdate, city: city, gender: gender)
 			viewModel.UpdateUserInfo(user: tempUser, imageData: imgData)
 		}
 	}
 	@IBAction func SignOut_TUI(_ sender: Any) {
 		viewModel.SignOut()
-		
 	}
 }
 
@@ -101,16 +92,15 @@ extension UserSettingsViewController: UserSettingsViewModelDelegate {
 	func SetImage() {
 		imageViewProfileImage.image = viewModel.image
 	}
-	
 	func DissmissToRootController() {
 		_ = navigationController?.popToRootViewController(animated: true)
 	}
 }
 
-extension UserSettingsViewController: UINavigationControllerDelegate {
-	
-}
+// MARK: - Extension: UINavigationControllerDelegate
+extension UserSettingsViewController: UINavigationControllerDelegate { }
 
+// MARK: - Extension: UIImagePickerControllerDelegate
 extension UserSettingsViewController: UIImagePickerControllerDelegate {
 	func OpenImagePicker() {
 		let imagePicker = UIImagePickerController()
@@ -119,7 +109,6 @@ extension UserSettingsViewController: UIImagePickerControllerDelegate {
 		imagePicker.sourceType = .photoLibrary
 		present(imagePicker, animated: true)
 	}
-	
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 		dismiss(animated: true)
 		guard let image = info[.editedImage] as? UIImage else{return}
@@ -132,6 +121,7 @@ extension UserSettingsViewController: UIImagePickerControllerDelegate {
 	}
 }
 
+// MARK: - Extension: UIScrollViewDelegate
 extension UserSettingsViewController: UIScrollViewDelegate {
 	func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		view.endEditing(true)

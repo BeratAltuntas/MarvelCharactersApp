@@ -28,22 +28,22 @@ protocol UserSettingsViewModelDelegate: AnyObject {
 
 // MARK: - UserSettingsViewModel
 final class UserSettingsViewModel {
-	weak var delegate: UserSettingsViewModelDelegate?
+	internal weak var delegate: UserSettingsViewModelDelegate?
 	private var uID: String!
 	private var imageViewModel: UIImage?
 	private var photoUrl: String!
-	var currentUserViewModel: User!
+	private var currentUserViewModel: User!
 }
 
 // MARK: - Extension: UserSettingsViewModelProtocol
 extension UserSettingsViewModel: UserSettingsViewModelProtocol {
+	var image: UIImage? {
+		imageViewModel
+	}
+	
 	func SignOut() {
 		FirebaseAuthManager.shared.SignOut()
 		delegate?.DissmissToRootController()
-	}
-	
-	var image: UIImage? {
-		imageViewModel
 	}
 	func UpdateUserInfo(user: User!, imageData: Data) {
 		guard let imageset = delegate?.isImageSet else { return }
@@ -73,7 +73,6 @@ extension UserSettingsViewModel: UserSettingsViewModelProtocol {
 			}
 		}
 	}
-	
 	func DownloadImage(urlString: String?, completion: @escaping CompletionHandlerImage) {
 		guard let urlString = urlString else { return }
 		guard let url = URL(string: urlString) else { return }
