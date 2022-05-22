@@ -27,16 +27,13 @@ protocol UserViewModelDelegate: AnyObject {
 
 // MARK: - UserViewModel
 final class UserViewModel {
-	
-	
-	weak var delegate: UserViewModelDelegate?
-	var userViewModel: User?
+	internal weak var delegate: UserViewModelDelegate?
+	private var userViewModel: User?
 }
 
 // MARK: - UserViewModelExtension
 extension UserViewModel: UserViewModelProtocol {
-	
-	var user: User? {
+	internal var user: User? {
 		userViewModel
 	}
 	

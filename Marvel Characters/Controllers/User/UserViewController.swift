@@ -16,26 +16,20 @@ enum UserViewConstants {
 
 // MARK: - UserViewController
 final class UserViewController: BaseViewController {
+	@IBOutlet weak var tableView: UITableView!
+	@IBOutlet weak var largeProfileImageView: UIImageView!
+	@IBOutlet weak var miniProfileImageView: UIImageView!
+	@IBOutlet weak var nameLabel: UILabel!
 	
-	var viewModel: UserViewModelProtocol! {
+	internal var viewModel: UserViewModelProtocol! {
 		didSet {
 			viewModel.delegate = self
 		}
 	}
-	
-	@IBOutlet var tableView: UITableView!
-	@IBOutlet var largeProfileImageView: UIImageView!
-	@IBOutlet weak var miniProfileImageView: UIImageView!
-	@IBOutlet weak var nameLabel: UILabel!
-	
-	var iconList = [UIImage]()
-	var currentUser: User!
-	var currentUserImage: UIImage!
-	var userTableListItems = [String?]()
-	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-	}
+	private var iconList = [UIImage]()
+	private var currentUser: User!
+	private var currentUserImage: UIImage!
+	private var userTableListItems = [String?]()
 	
 	override func viewWillAppear(_ animated: Bool) {
 		viewModel.LoadUI()
@@ -99,7 +93,6 @@ extension UserViewController: UserViewModelDelegate {
 // MARK: - UITableViewDataSource
 extension UserViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { UserViewConstants.biographyCellCount }
-	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: UserViewConstants.biographyCellId,for: indexPath)
 		cell.textLabel?.text = ""
