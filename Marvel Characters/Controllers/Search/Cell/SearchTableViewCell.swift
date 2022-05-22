@@ -9,9 +9,9 @@ import UIKit
 
 final class SearchTableViewCell: UITableViewCell {
 	
-	@IBOutlet weak var characterImageView: UIImageView!
-	@IBOutlet weak var characterName: UILabel!
-	@IBOutlet weak var characterDescription: UILabel!
+	@IBOutlet private weak var characterImageView: UIImageView!
+	@IBOutlet private weak var characterName: UILabel!
+	@IBOutlet private weak var characterDescription: UILabel!
 	
 	func setupCell(imageName: String?, contentName: String?, contentDesc: String?) {
 		if let imgName = imageName{

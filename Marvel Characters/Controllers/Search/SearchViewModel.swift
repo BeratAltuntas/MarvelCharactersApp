@@ -30,7 +30,7 @@ protocol SearchViewModelDelegate: AnyObject {
 }
 // MARK: - SearchViewModel
 final class SearchViewModel {
-	weak var delegate: SearchViewModelDelegate?
+	internal weak var delegate: SearchViewModelDelegate?
 	internal var searchCharacter: [CharacterModelResult]?
 	internal var searchComic: [ComicModelResult]?
 	internal var searchCreator: [CreatorModelResult]?
@@ -38,13 +38,11 @@ final class SearchViewModel {
 
 // MARK: - SearchViewModelExtension
 extension SearchViewModel: SearchViewModelProtocol {
-	
 	func SetupUI() {
 		delegate?.DummySearch()
 		delegate?.setupNavigationBar()
 		delegate?.SetupTableView()
 	}
-	
 	func fetchCharacter(searchingString: String) {
 		let endpoint = Config.characterMainUrl + "?" + Config.searchCharacterNameStartWith + searchingString + "&"
 		NetworkManager.shared.fetchData(endPoint: endpoint, type: CharacterModel?.self) { [weak self] result in

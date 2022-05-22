@@ -26,7 +26,7 @@ final class SearchViewController: BaseViewController {
 	@IBOutlet private weak var buttonSearchingType: UIButton!
 	@IBOutlet private var tableView:UITableView!
 	
-	var viewModel: SearchViewModelProtocol! {
+	internal var viewModel: SearchViewModelProtocol! {
 		didSet {
 			viewModel.delegate = self
 		}
