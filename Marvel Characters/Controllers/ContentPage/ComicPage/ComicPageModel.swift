@@ -26,7 +26,7 @@ protocol ComicPageViewModelDelegate: AnyObject {
 
 // MARK: - ComicPageViewModel
 final class ComicPageViewModel {
-	weak var delegate: ComicPageViewModelDelegate?
+	internal weak var delegate: ComicPageViewModelDelegate?
 	
 	func SetLikedComic(user: User) {
 		FireBaseDatabaseManager.shared.SetUserComics(user: user) {[weak self] success in

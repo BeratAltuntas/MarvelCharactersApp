@@ -15,29 +15,30 @@ private enum TableViewConstants {
 
 // MARK: - CharacterPageViewController
 final class CharacterPageViewController: BaseViewController {
-	var viewModel: CharacterPageViewModel! {
+	internal var viewModel: CharacterPageViewModel! {
 		didSet {
 			viewModel.delegate = self
 		}
 	}
-	let emptyChar: CharacterModelResult = CharacterModelResult(id: 0, name: "İsimsiz", resultDescription: "Krakter tanımlama bilgisi bulunmuyor.", modified: "", thumbnail: CharacterModelThumbnail.init(path: "", thumbnailExtension: ""), resourceURI: "", comics: CharacterModelComics.init(available: 1, collectionURI: "", items: [CharacterModelSeriesItem.init(resourceURI: "", name: "Çizgi roman bilgisi bulunmuyor.")], returned: 1), series: CharacterModelComics.init(available: 1, collectionURI: "", items: [CharacterModelSeriesItem.init(resourceURI: "", name: "Seri bilgisi bulunmuyor.")], returned: 1), stories: CharacterModelStories.init(available: 1, collectionURI: "", items: [CharacterModelStoriesItem.init(resourceURI: "", name: "Hikaye bilgisi bulunmuyor.", type: "")], returned: 1), events: CharacterModelComics.init(available: 0, collectionURI: "", items: [], returned: 0), urls: [])
+	private let emptyChar: CharacterModelResult = CharacterModelResult(id: 0, name: "İsimsiz", resultDescription: "Krakter tanımlama bilgisi bulunmuyor.", modified: "", thumbnail: CharacterModelThumbnail.init(path: "", thumbnailExtension: ""), resourceURI: "", comics: CharacterModelComics.init(available: 1, collectionURI: "", items: [CharacterModelSeriesItem.init(resourceURI: "", name: "Çizgi roman bilgisi bulunmuyor.")], returned: 1), series: CharacterModelComics.init(available: 1, collectionURI: "", items: [CharacterModelSeriesItem.init(resourceURI: "", name: "Seri bilgisi bulunmuyor.")], returned: 1), stories: CharacterModelStories.init(available: 1, collectionURI: "", items: [CharacterModelStoriesItem.init(resourceURI: "", name: "Hikaye bilgisi bulunmuyor.", type: "")], returned: 1), events: CharacterModelComics.init(available: 0, collectionURI: "", items: [], returned: 0), urls: [])
 	
-	var selectedCharacter: CharacterModelResult?
+	internal var selectedCharacter: CharacterModelResult?
 	
-	var charInComicsList: [CharacterModelSeriesItem]?
-	var charInSeriesList: [CharacterModelSeriesItem]?
-	var charInStoriesList: [CharacterModelStoriesItem]?
+	private var charInComicsList: [CharacterModelSeriesItem]?
+	private var charInSeriesList: [CharacterModelSeriesItem]?
+	private var charInStoriesList: [CharacterModelStoriesItem]?
 	
-	@IBOutlet weak var imageViewLiked: UIImageView!
-	@IBOutlet weak var imageViewBanner: UIImageView!
-	@IBOutlet weak var labelTitleCharacter: UILabel!
-	@IBOutlet weak var labelSubtitleCharacter: UILabel!
-	@IBOutlet weak var labelDescription: UILabel!
+	@IBOutlet private weak var imageViewLiked: UIImageView!
+	@IBOutlet private weak var imageViewBanner: UIImageView!
+	
+	@IBOutlet private weak var labelTitleCharacter: UILabel!
+	@IBOutlet private weak var labelSubtitleCharacter: UILabel!
+	@IBOutlet private weak var labelDescription: UILabel!
 	
 	
-	@IBOutlet weak var tableViewCharacterInComics: UITableView!
-	@IBOutlet weak var tableViewCharacterInSeries: UITableView!
-	@IBOutlet weak var tableViewCharacterInStories: UITableView!
+	@IBOutlet private weak var tableViewCharacterInComics: UITableView!
+	@IBOutlet private weak var tableViewCharacterInSeries: UITableView!
+	@IBOutlet private weak var tableViewCharacterInStories: UITableView!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()

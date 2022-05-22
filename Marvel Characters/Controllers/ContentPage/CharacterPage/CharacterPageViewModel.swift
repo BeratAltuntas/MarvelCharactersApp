@@ -25,8 +25,7 @@ protocol CharacterPageViewModelDelegate: AnyObject {
 
 // MARK: - CharacterPageViewModel
 final class CharacterPageViewModel {
-	weak var delegate: CharacterPageViewModelDelegate?
-	
+	internal weak var delegate: CharacterPageViewModelDelegate?
 	func SetLikedCharacter(user: User) {
 		FireBaseDatabaseManager.shared.SetUsersLikedCharacters(user: user) {[weak self] success in
 			if success {

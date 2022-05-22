@@ -16,22 +16,22 @@ enum ComicPageConstant {
 
 final class ComicPageViewController: BaseViewController {
 	
-	@IBOutlet weak var imageViewLiked: UIImageView!
-	@IBOutlet weak var imageViewBanner: UIImageView!
-	@IBOutlet weak var labelTitle: UILabel!
-	@IBOutlet weak var labelSubtitle: UILabel!
-	@IBOutlet weak var labelDescription: UILabel!
-	@IBOutlet weak var tableViewCharacter: UITableView!
-	@IBOutlet weak var tableViewWriter: UITableView!
+	@IBOutlet private weak var imageViewLiked: UIImageView!
+	@IBOutlet private weak var imageViewBanner: UIImageView!
+	@IBOutlet private weak var labelTitle: UILabel!
+	@IBOutlet private weak var labelSubtitle: UILabel!
+	@IBOutlet private weak var labelDescription: UILabel!
+	@IBOutlet private weak var tableViewCharacter: UITableView!
+	@IBOutlet private weak var tableViewWriter: UITableView!
 	
-	var viewModel: ComicPageViewModelProtocol! {
+	internal var viewModel: ComicPageViewModelProtocol! {
 		didSet {
 			viewModel.delegate = self
 		}
 	}
-	var tableViewCharList: [ComicModelItem]?
-	var tableViewWriterList: [ComicModelItem]?
-	var selectedComic: ComicModelResult?
+	private var tableViewCharList: [ComicModelItem]?
+	private var tableViewWriterList: [ComicModelItem]?
+	internal var selectedComic: ComicModelResult?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
