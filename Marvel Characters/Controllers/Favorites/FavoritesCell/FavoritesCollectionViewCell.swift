@@ -11,18 +11,16 @@ protocol FavoritesViewControllerCellDelegate: AnyObject {
 	func ReloadCollectionViewForCell()
 }
 
-class FavoritesCollectionViewCell: UICollectionViewCell {
-
-    @IBOutlet weak var favoritesImageView: UIImageView!
-    @IBOutlet weak var characterNameLabel: UILabel!
-    @IBOutlet weak var likeButton: UIButton!
+final class FavoritesCollectionViewCell: UICollectionViewCell {
+    @IBOutlet private weak var favoritesImageView: UIImageView!
+    @IBOutlet private weak var characterNameLabel: UILabel!
+    @IBOutlet private weak var likeButton: UIButton!
 	
-	var char: Int? = nil
-	var comic: Int? = nil
-	var cellId: String!
+	internal var char: Int? = nil
+	internal var comic: Int? = nil
+	internal var cellId: String!
 	
-	weak var delegate: FavoritesViewControllerCellDelegate?
-
+	internal weak var delegate: FavoritesViewControllerCellDelegate?
     override func awakeFromNib() {
         super.awakeFromNib()
         favoritesImageView.backgroundColor = .lightGray
@@ -37,7 +35,6 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
 		}
 		characterNameLabel.text = title
 	}
-	
 	@IBAction func likeButton_TUI(_ sender: Any) {
 		guard let button = sender.self as? UIButton else{ return }
 		button.setImage(UIImage(systemName: "heart"), for: .normal)

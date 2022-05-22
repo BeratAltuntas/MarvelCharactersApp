@@ -567,7 +567,7 @@
                     <navigationItem key="navigationItem" id="PqH-1K-umc"/>
                     <connections>
                         <outlet property="activityIndicator" destination="hLM-gM-tMy" id="bma-hM-5kE"/>
-                        <outlet property="favoritesCollectionView" destination="B6a-WY-AW4" id="F3B-HI-w4f"/>
+                        <outlet property="favoritesCollectionView" destination="B6a-WY-AW4" id="ZWb-zl-06M"/>
                         <segue destination="Wq8-or-nZg" kind="show" identifier="FavoriteToChar" id="x2M-Hu-jiJ"/>
                         <segue destination="qMN-1X-JpL" kind="show" identifier="FavoriteToComic" id="toU-Q0-3t1"/>
                     </connections>
@@ -1504,8 +1504,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="w1f-Qh-Lzj"/>
-        <segue reference="jVx-ze-HrX"/>
+        <segue reference="toU-Q0-3t1"/>
+        <segue reference="x2M-Hu-jiJ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Marvel_Logo" width="400" height="160.5"/>

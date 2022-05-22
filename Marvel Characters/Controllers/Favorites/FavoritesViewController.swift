@@ -16,18 +16,19 @@ enum FavoritesSegueProperties {
 }
 
 // MARK: - FavoritesViewController
-class FavoritesViewController: BaseViewController {
-	var viewModel: FavoritesViewModelProtocol! {
+final class FavoritesViewController: BaseViewController {
+	@IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
+	@IBOutlet private weak var favoritesCollectionView: UICollectionView!
+	
+	internal var viewModel: FavoritesViewModelProtocol! {
 		didSet {
 			viewModel.delegate = self
 		}
 	}
 	private let refreshControl = UIRefreshControl()
-	
 	private var comicsList = [ComicModelResult]()
 	private var selectedCellIndex = 0
-	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-	@IBOutlet var favoritesCollectionView: UICollectionView!
+	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(true)
 		viewModel.LoadScreen()
