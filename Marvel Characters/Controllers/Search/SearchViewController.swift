@@ -21,7 +21,7 @@ enum SearchingCatagories {
 
 // MARK: - SearchViewController
 final class SearchViewController: BaseViewController {
-	@IBOutlet weak var searchBar: UISearchBar!
+	@IBOutlet private weak var searchBar: UISearchBar!
 	@IBOutlet private weak var searchIndicator: UIActivityIndicatorView!
 	@IBOutlet private weak var buttonSearchingType: UIButton!
 	@IBOutlet private var tableView:UITableView!
@@ -31,12 +31,12 @@ final class SearchViewController: BaseViewController {
 			viewModel.delegate = self
 		}
 	}
-	var comic: [ComicModelResult]?
-	var character: [CharacterModelResult]?
-	var creator: [CreatorModelResult]?
+	private var comic: [ComicModelResult]?
+	private var character: [CharacterModelResult]?
+	private var creator: [CreatorModelResult]?
 	
-	var selectedCellIndex: Int = 0
-	var counterButtonTextChanger: Int = .zero
+	private var selectedCellIndex: Int = 0
+	private var counterButtonTextChanger: Int = .zero
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -57,6 +57,10 @@ final class SearchViewController: BaseViewController {
 	}
 	
 	@IBAction func buttonChangeType_TUI(_ sender: UIButton) {
+		if counterButtonTextChanger >= 2 {
+			counterButtonTextChanger = -1
+		}
+		counterButtonTextChanger += 1
 		switch counterButtonTextChanger {
 		case .zero:
 			buttonSearchingType.setTitle(SearchingCatagories.charTitle, for: .normal)
@@ -72,12 +76,10 @@ final class SearchViewController: BaseViewController {
 			buttonSearchingType.setTitle(SearchingCatagories.creatorTitle, for: .normal)
 			guard let searchText = searchBar.text else { return }
 			searchBar(searchBar, textDidChange: searchText)
-			counterButtonTextChanger = -1
 			break
 		default:
 			break
 		}
-		counterButtonTextChanger += 1
 	}
 	func StartIndicator() {
 		DispatchQueue.main.async { [weak self] in
@@ -116,14 +118,6 @@ extension SearchViewController: UISearchBarDelegate {
 	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 		if !searchText.isEmpty {
 			StartIndicator()
-//			let buttonTitle = buttonSearchingType.titleLabel?.text
-//			if buttonTitle == SearchingCatagories.charTitle {
-//				viewModel.fetchCharacter(searchingString: searchText)
-//			} else if buttonTitle == SearchingCatagories.comicTitle {
-//				viewModel.fetchComic(searchingString: searchText)
-//			} else if buttonTitle == SearchingCatagories.creatorTitle {
-//				viewModel.fetchWriter(searchingString: searchText)
-//			}
 			switch counterButtonTextChanger {
 			case .zero:
 				viewModel.fetchCharacter(searchingString: searchText)

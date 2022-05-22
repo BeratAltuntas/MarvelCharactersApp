@@ -31,9 +31,9 @@ protocol SearchViewModelDelegate: AnyObject {
 // MARK: - SearchViewModel
 final class SearchViewModel {
 	weak var delegate: SearchViewModelDelegate?
-	var searchCharacter: [CharacterModelResult]?
-	var searchComic: [ComicModelResult]?
-	var searchCreator: [CreatorModelResult]?
+	internal var searchCharacter: [CharacterModelResult]?
+	internal var searchComic: [ComicModelResult]?
+	internal var searchCreator: [CreatorModelResult]?
 }
 
 // MARK: - SearchViewModelExtension
