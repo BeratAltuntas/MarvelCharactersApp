@@ -34,11 +34,8 @@ final class FireBaseDatabaseManager {
 	
 	func GetUserInDatabase(withUid uId: String, completion: @escaping GetUserCompletionHandler ) {
 		let ref = Database.database(url: Config.firebaseDatabaseRefrenceUrl).reference().child(Config.firebaseDatabaseReferenceMainChild).child(uId)
-		
 		ref.observeSingleEvent(of: .value) { result in
-			
 			if result.exists() {
-				
 				let value = result.value as? NSDictionary
 				let data = value as? [String : String]
 				if data != nil {

@@ -33,8 +33,8 @@ final class ComicPageViewController: BaseViewController {
 	private var tableViewWriterList: [ComicModelItem]?
 	internal var selectedComic: ComicModelResult?
 	
-	override func viewDidLoad() {
-		super.viewDidLoad()
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(true)
 		SetImageViewTapRecognizer()
 		viewModel.loadComicAttiributes(comic: selectedComic)
 		if FirebaseAuthManager.shared.IsUserSignedIn() {
@@ -42,7 +42,6 @@ final class ComicPageViewController: BaseViewController {
 			   let userUid = FirebaseAuthManager.shared.GetUserUid() {
 				viewModel.ComicIsLiked(comicId: comicId, userUid: userUid)
 			}
-			
 		}
 	}
 	func SetImageViewTapRecognizer() {
@@ -61,7 +60,6 @@ extension ComicPageViewController: ComicPageViewModelDelegate {
 		tableViewWriter?.tag = ComicPageConstant.writersTableViewTag
 		tableViewCharacter?.tag = ComicPageConstant.charsTableViewTag
 	}
-	
 	func setupUI() {
 		if let imgName = selectedComic?.thumbnail?.path {
 			let urlImgStr = imgName.replacingOccurrences(of: "http", with: "https") + "/portrait_incredible.jpg"
@@ -97,15 +95,21 @@ extension ComicPageViewController: ComicPageViewModelDelegate {
 		let user = User(uId: userUid, comicResult: [comicId], characterResult: [])
 		viewModel.LikeComic(withComicId: comicId, user: user)
 	}
-	func ChangeLikedImageViewImage() {
+	func ChangeLikedImageViewImage(likeComic: Bool) {
 		// liked Function
 		DispatchQueue.main.async { [weak self] in			
-			if self?.imageViewLiked.tag == 0 {
+//			if self?.imageViewLiked.tag == 0 {
+//				self?.imageViewLiked.image = UIImage(systemName: "heart.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
+//				self?.imageViewLiked.tag = 1
+//			} else {
+//				self?.imageViewLiked.image = UIImage(systemName: "heart")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
+//				self?.imageViewLiked.tag = 0
+//			}
+			
+			if likeComic {
 				self?.imageViewLiked.image = UIImage(systemName: "heart.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
-				self?.imageViewLiked.tag = 1
 			} else {
 				self?.imageViewLiked.image = UIImage(systemName: "heart")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
-				self?.imageViewLiked.tag = 0
 			}
 		}
 	}
@@ -128,7 +132,6 @@ extension ComicPageViewController: UITableViewDataSource {
 		}
 		return 0
 	}
-	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		if tableView.tag == ComicPageConstant.charsTableViewTag {
 			let cell = tableView.dequeueReusableCell(withIdentifier: ComicPageConstant.tableViewCharIdentifier)!

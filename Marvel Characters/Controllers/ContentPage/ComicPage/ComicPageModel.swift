@@ -21,7 +21,7 @@ protocol ComicPageViewModelDelegate: AnyObject {
 	func setupTableViews()
 	func setupUI()
 	func reloadTableViews()
-	func ChangeLikedImageViewImage()
+	func ChangeLikedImageViewImage(likeComic: Bool)
 }
 
 // MARK: - ComicPageViewModel
@@ -29,9 +29,9 @@ final class ComicPageViewModel {
 	internal weak var delegate: ComicPageViewModelDelegate?
 	
 	func SetLikedComic(user: User) {
-		FireBaseDatabaseManager.shared.SetUserComics(user: user) {[weak self] success in
+		FireBaseDatabaseManager.shared.SetUserComics(user: user) { [weak self] success in
 			if success {
-				self?.delegate?.ChangeLikedImageViewImage()
+				self?.delegate?.ChangeLikedImageViewImage(likeComic: true)
 			}
 		}
 	}
@@ -44,22 +44,23 @@ extension ComicPageViewModel: ComicPageViewModelProtocol {
 			if success {
 				for res in result {
 					if res == comicId {
-						self?.delegate?.ChangeLikedImageViewImage()
+						self?.delegate?.ChangeLikedImageViewImage(likeComic: true)
 					}
 				}
+			} else if result.first == -1 {
+				self?.delegate?.ChangeLikedImageViewImage(likeComic: false)
 			}
 		}
 	}
-	
 	func LikeComic(withComicId: Int, user: User) {
-		FireBaseDatabaseManager.shared.GetUsersLikedComics(userUid: user.uid!) {[weak self] (success, result) in
+		FireBaseDatabaseManager.shared.GetUsersLikedComics(userUid: user.uid!) { [weak self] (success, result) in
 			if success {
 				var itIsLikedBefore = false
 				for i in 0..<result.count {
 					if result[i] == withComicId {
 						FireBaseDatabaseManager.shared.DeleteUserLikedComic(deletingId: withComicId) { success in }
 						itIsLikedBefore = true
-						self?.delegate?.ChangeLikedImageViewImage()
+						self?.delegate?.ChangeLikedImageViewImage(likeComic: false)
 						break
 					}
 				}
