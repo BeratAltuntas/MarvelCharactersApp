@@ -11,7 +11,7 @@ final class ComicsCollectionViewCell: UICollectionViewCell {
 	
 	@IBOutlet private weak var imageView: UIImageView!
 	@IBOutlet private weak var titleLabel: UILabel!
-	@IBOutlet weak var comicScoreLabel: UILabel!
+	@IBOutlet private weak var comicScoreLabel: UILabel!
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()

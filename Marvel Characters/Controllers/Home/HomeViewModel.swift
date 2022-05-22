@@ -26,7 +26,7 @@ protocol HomeViewModelDelegate: AnyObject {
 
 // MARK: - HomeViewModel
 final class HomeViewModel {
-	weak var delegate: HomeViewModelDelegate?
+	internal weak var delegate: HomeViewModelDelegate?
 	
 	private var comic: ComicModel?
 	private var comicList: [ComicModelResult]?

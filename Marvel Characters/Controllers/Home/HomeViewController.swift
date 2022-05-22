@@ -19,8 +19,8 @@ enum HomeConstant {
 final class HomeViewController: BaseViewController {
 	@IBOutlet private weak var forYouCollectionView: UICollectionView!
 	@IBOutlet private weak var trendsCollectionView: UICollectionView!
-	@IBOutlet weak var forYouIndicator: UIActivityIndicatorView!
-	@IBOutlet weak var trendsIndicator: UIActivityIndicatorView!
+	@IBOutlet private weak var forYouIndicator: UIActivityIndicatorView!
+	@IBOutlet private weak var trendsIndicator: UIActivityIndicatorView!
 	
 	lazy var indexOfSelectedCollectionCell: Int = 0
 	var viewModel: HomeViewModelProtocol! {
