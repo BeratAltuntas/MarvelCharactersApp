@@ -97,15 +97,7 @@ extension ComicPageViewController: ComicPageViewModelDelegate {
 	}
 	func ChangeLikedImageViewImage(likeComic: Bool) {
 		// liked Function
-		DispatchQueue.main.async { [weak self] in			
-//			if self?.imageViewLiked.tag == 0 {
-//				self?.imageViewLiked.image = UIImage(systemName: "heart.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
-//				self?.imageViewLiked.tag = 1
-//			} else {
-//				self?.imageViewLiked.image = UIImage(systemName: "heart")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
-//				self?.imageViewLiked.tag = 0
-//			}
-			
+		DispatchQueue.main.async { [weak self] in
 			if likeComic {
 				self?.imageViewLiked.image = UIImage(systemName: "heart.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
 			} else {
@@ -120,13 +112,11 @@ extension ComicPageViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if tableView.tag == ComicPageConstant.charsTableViewTag {
 			if let count = tableViewCharList?.count {
-				//tableView.heightAnchor.constraint(equalToConstant: CGFloat(count * 43)).isActive = true
 				return count
 			}
 			
 		} else if tableView.tag == ComicPageConstant.writersTableViewTag {
 			if let count = tableViewWriterList?.count {
-				//tableView.heightAnchor.constraint(equalToConstant: CGFloat(count * 43)).isActive = true
 				return count
 			}
 		}
