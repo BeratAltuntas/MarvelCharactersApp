@@ -16,11 +16,11 @@ I wrote this project paying attention to the MVVM design pattern and SOLID princ
 - [Register Page](#register-page)
 - [Login Page](#login-page)
 
-<table align=center>
+<table border=2>
   <tr align=center>
-    <td><h3>Home Page</h3><img src="https://user-images.githubusercontent.com/34661162/169144020-e6efd8c0-8e57-43c2-bd00-9dcd9d595bf7.png" alt="1" height=340px></td>
-    <td><h3>Comic Page</h3><img src="https://user-images.githubusercontent.com/34661162/169144446-d0b907ca-d4fb-471a-97cd-4f32bad4e8e1.png" alt="2" height=340px></td>
-    <td><h3>Character Page</h3><img src="https://user-images.githubusercontent.com/34661162/169144551-400b768e-a631-4a23-84ab-79dec24a041d.png" alt="3" height=340px></td>
+    <td><h3>Home Page</h3><img src="https://user-images.githubusercontent.com/34661162/169144020-e6efd8c0-8e57-43c2-bd00-9dcd9d595bf7.png" alt="1" height=380px width=240></td>
+    <td><h3>Comic Page</h3><img src="https://user-images.githubusercontent.com/34661162/169144446-d0b907ca-d4fb-471a-97cd-4f32bad4e8e1.png" alt="2" height=380px width=240></td>
+    <td><h3>Character Page</h3><img src="https://user-images.githubusercontent.com/34661162/169144551-400b768e-a631-4a23-84ab-79dec24a041d.png" alt="3" height=380px width=240></td>
   </tr>
   
   <tr align=center>
