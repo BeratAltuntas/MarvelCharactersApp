@@ -21,6 +21,7 @@ protocol FavoritesViewModelProtocol {
 protocol FavoritesViewModelDelegate: AnyObject {
 	func SetupUI()
 	func ReloadCollectionView()
+	func StartIndicator()
 	func StopIndicator()
 }
 
@@ -81,6 +82,7 @@ extension FavoritesViewModel: FavoritesViewModelProtocol {
 		charactersList
 	}
 	func LoadComicsChars() {
+		delegate?.StartIndicator()
 		ResetLists()
 		delegate?.ReloadCollectionView()
 		GetLikedComics()

@@ -102,22 +102,24 @@ extension HomeViewController: UICollectionViewDataSource {
 				cell.setupCell(imageName: image, title: viewModel.comics![indexPath.row].title, subtitle: "Fiyatı: \(String(price))$")
 			}
 		} else if collectionView.tag == HomeConstant.trendsCollectionViewTag {
-			let image = viewModel.characters![indexPath.row].thumbnail?.path!
-			let title = viewModel.characters![indexPath.row].name
-			var subtitle: String = ""
-			
-			if let items = viewModel.characters![indexPath.row].series?.items {
-				for (index,item) in items.enumerated() {
-					if index < 2 {
-						subtitle += " \(item.name!) \n"
+			if let image = viewModel.characters?[indexPath.row].thumbnail?.path!,
+			   let title = viewModel.characters![indexPath.row].name {
+				var subtitle: String = ""
+				
+				if let items = viewModel.characters![indexPath.row].series?.items {
+					for (index,item) in items.enumerated() {
+						if index < 2 {
+							subtitle += " \(item.name!) \n"
+						}
 					}
 				}
+				cell.setupCell(imageName: image, title: title, subtitle: subtitle)
 			}
-			cell.setupCell(imageName: image, title: title, subtitle: subtitle)
 		}
 		return cell
 	}
 }
+
 
 // MARK: - UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate {

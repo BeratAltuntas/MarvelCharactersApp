@@ -34,7 +34,7 @@ final class FavoritesViewController: BaseViewController {
 		viewModel.LoadScreen()
 	}
 	func SetIndicator() {
-		activityIndicator.startAnimating()
+		StartIndicator()
 		if #available(iOS 10.0, *) {
 			favoritesCollectionView.refreshControl = refreshControl
 		} else {
@@ -43,7 +43,7 @@ final class FavoritesViewController: BaseViewController {
 		refreshControl.addTarget(self, action: #selector(RefreshData(_:)), for: .valueChanged)
 	}
 	@objc func RefreshData(_ sender: Any) {
-		activityIndicator.startAnimating()
+		StartIndicator()
 		viewModel.LoadComicsChars()
 	}
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -76,12 +76,18 @@ extension FavoritesViewController: FavoritesViewModelDelegate {
 			self?.refreshControl.endRefreshing()
 		}
 	}
+	func StartIndicator() {
+		DispatchQueue.main.async { [weak self] in
+			self?.activityIndicator.startAnimating()
+		}
+	}
 	func StopIndicator() {
 		DispatchQueue.main.async {[weak self] in
 			self?.activityIndicator.stopAnimating()
 		}
 	}
 }
+// MARK: - Extension: FavoritesViewControllerCellDelegate
 extension FavoritesViewController: FavoritesViewControllerCellDelegate {
 	func ReloadCollectionViewForCell() {
 		viewModel.LoadComicsChars()
