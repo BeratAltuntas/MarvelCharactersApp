@@ -316,9 +316,9 @@
                         <outlet property="labelDescription" destination="onU-WI-Qpz" id="gHc-bk-qel"/>
                         <outlet property="labelSubtitleCharacter" destination="u9h-fC-zXf" id="g68-zb-kUX"/>
                         <outlet property="labelTitleCharacter" destination="BG7-QR-PSW" id="Ib7-KH-RtG"/>
-                        <outlet property="tableViewCharacterInComics" destination="lfi-dL-6a0" id="Pwy-xq-Ab3"/>
-                        <outlet property="tableViewCharacterInSeries" destination="caT-Q5-mJW" id="vss-ug-uZ7"/>
-                        <outlet property="tableViewCharacterInStories" destination="r8P-90-hpf" id="MUZ-Vh-TFK"/>
+                        <outlet property="tableViewCharacterInComics" destination="lfi-dL-6a0" id="IJk-7N-7ip"/>
+                        <outlet property="tableViewCharacterInSeries" destination="caT-Q5-mJW" id="gBY-iN-DfU"/>
+                        <outlet property="tableViewCharacterInStories" destination="r8P-90-hpf" id="8dP-oJ-rmw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nlf-Tm-KYY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

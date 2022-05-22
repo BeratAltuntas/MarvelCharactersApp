@@ -20,7 +20,7 @@ protocol CharacterPageViewModelDelegate: AnyObject {
 	func SetupTableViews()
 	func ReloadTableViews()
 	func SetPageAttiributes()
-	func ChangeLikedImageViewImage()
+	func ChangeLikedImageViewImage(likeChar: Bool)
 }
 
 // MARK: - CharacterPageViewModel
@@ -29,7 +29,7 @@ final class CharacterPageViewModel {
 	func SetLikedCharacter(user: User) {
 		FireBaseDatabaseManager.shared.SetUsersLikedCharacters(user: user) {[weak self] success in
 			if success {
-				self?.delegate?.ChangeLikedImageViewImage()
+				self?.delegate?.ChangeLikedImageViewImage(likeChar: true)
 			}
 		}
 	}
@@ -51,7 +51,7 @@ extension CharacterPageViewModel: CharacterPageViewModelProtocol {
 					if result[i] == withCharacterId {
 						FireBaseDatabaseManager.shared.DeleteUsersLikedCharacter(withCharId: withCharacterId) { _ in }
 						itIsLikedBefore = true
-						self?.delegate?.ChangeLikedImageViewImage()
+						self?.delegate?.ChangeLikedImageViewImage(likeChar: false)
 						break
 					}
 				}
@@ -71,9 +71,11 @@ extension CharacterPageViewModel: CharacterPageViewModelProtocol {
 			if success {
 				for res in result {
 					if res == comicId {
-						self?.delegate?.ChangeLikedImageViewImage()
+						self?.delegate?.ChangeLikedImageViewImage(likeChar: true)
 					}
 				}
+			} else if result.first == -1 {
+				self?.delegate?.ChangeLikedImageViewImage(likeChar: false)
 			}
 		}
 	}

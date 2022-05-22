@@ -15,19 +15,6 @@ private enum TableViewConstants {
 
 // MARK: - CharacterPageViewController
 final class CharacterPageViewController: BaseViewController {
-	internal var viewModel: CharacterPageViewModel! {
-		didSet {
-			viewModel.delegate = self
-		}
-	}
-	private let emptyChar: CharacterModelResult = CharacterModelResult(id: 0, name: "İsimsiz", resultDescription: "Krakter tanımlama bilgisi bulunmuyor.", modified: "", thumbnail: CharacterModelThumbnail.init(path: "", thumbnailExtension: ""), resourceURI: "", comics: CharacterModelComics.init(available: 1, collectionURI: "", items: [CharacterModelSeriesItem.init(resourceURI: "", name: "Çizgi roman bilgisi bulunmuyor.")], returned: 1), series: CharacterModelComics.init(available: 1, collectionURI: "", items: [CharacterModelSeriesItem.init(resourceURI: "", name: "Seri bilgisi bulunmuyor.")], returned: 1), stories: CharacterModelStories.init(available: 1, collectionURI: "", items: [CharacterModelStoriesItem.init(resourceURI: "", name: "Hikaye bilgisi bulunmuyor.", type: "")], returned: 1), events: CharacterModelComics.init(available: 0, collectionURI: "", items: [], returned: 0), urls: [])
-	
-	internal var selectedCharacter: CharacterModelResult?
-	
-	private var charInComicsList: [CharacterModelSeriesItem]?
-	private var charInSeriesList: [CharacterModelSeriesItem]?
-	private var charInStoriesList: [CharacterModelStoriesItem]?
-	
 	@IBOutlet private weak var imageViewLiked: UIImageView!
 	@IBOutlet private weak var imageViewBanner: UIImageView!
 	
@@ -40,8 +27,20 @@ final class CharacterPageViewController: BaseViewController {
 	@IBOutlet private weak var tableViewCharacterInSeries: UITableView!
 	@IBOutlet private weak var tableViewCharacterInStories: UITableView!
 	
-	override func viewDidLoad() {
-		super.viewDidLoad()
+	internal var viewModel: CharacterPageViewModel! {
+		didSet {
+			viewModel.delegate = self
+		}
+	}
+	private let emptyChar: CharacterModelResult = CharacterModelResult(id: 0, name: "İsimsiz", resultDescription: "Krakter tanımlama bilgisi bulunmuyor.", modified: "", thumbnail: CharacterModelThumbnail.init(path: "", thumbnailExtension: ""), resourceURI: "", comics: CharacterModelComics.init(available: 1, collectionURI: "", items: [CharacterModelSeriesItem.init(resourceURI: "", name: "Çizgi roman bilgisi bulunmuyor.")], returned: 1), series: CharacterModelComics.init(available: 1, collectionURI: "", items: [CharacterModelSeriesItem.init(resourceURI: "", name: "Seri bilgisi bulunmuyor.")], returned: 1), stories: CharacterModelStories.init(available: 1, collectionURI: "", items: [CharacterModelStoriesItem.init(resourceURI: "", name: "Hikaye bilgisi bulunmuyor.", type: "")], returned: 1), events: CharacterModelComics.init(available: 0, collectionURI: "", items: [], returned: 0), urls: [])
+	
+	internal var selectedCharacter: CharacterModelResult?
+	private var charInComicsList: [CharacterModelSeriesItem]?
+	private var charInSeriesList: [CharacterModelSeriesItem]?
+	private var charInStoriesList: [CharacterModelStoriesItem]?
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(true)
 		viewModel.Load()
 		SetImageViewTapRecognizer()
 		if FirebaseAuthManager.shared.IsUserSignedIn() {
@@ -94,14 +93,12 @@ extension CharacterPageViewController: CharacterPageViewModelDelegate {
 		let user = User(uId: userUid, comicResult: [], characterResult: [characterId])
 		viewModel.LikeCharacter(withCharacterId: characterId, user: user)
 	}
-	func ChangeLikedImageViewImage() {
+	func ChangeLikedImageViewImage(likeChar: Bool) {
 		DispatchQueue.main.async { [weak self] in
-			if self?.imageViewLiked.tag == 0 {
+			if likeChar {
 				self?.imageViewLiked.image = UIImage(systemName: "heart.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
-				self?.imageViewLiked.tag = 1
 			} else {
 				self?.imageViewLiked.image = UIImage(systemName: "heart")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
-				self?.imageViewLiked.tag = 0
 			}
 		}
 	}
