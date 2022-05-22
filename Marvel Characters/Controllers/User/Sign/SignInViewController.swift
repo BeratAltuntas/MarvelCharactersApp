@@ -9,18 +9,14 @@ import UIKit
 
 // MARK: - SignInViewController
 final class SignInViewController: BaseViewController {
-
-	var viewModel: SignInViewModelProtocol! {
+	@IBOutlet private weak var textFieldEmail: UITextField!
+	@IBOutlet private weak var textFieldPassword: UITextField!
+	
+	internal var viewModel: SignInViewModelProtocol! {
 		didSet {
 			viewModel.delegate = self
 		}
 	}
-	@IBOutlet weak var textFieldEmail: UITextField!
-	@IBOutlet weak var textFieldPassword: UITextField!
-	override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
 	@IBAction func SignIn_TUI(_ sender: Any) {
 		if let email = textFieldEmail.text,
 		   let password = textFieldPassword.text {

@@ -9,17 +9,18 @@ import UIKit
 
 // MARK: - SignUpViewController
 final class SignUpViewController: BaseViewController {
+	@IBOutlet private weak var imageViewUserProfile: UIImageView!
+	@IBOutlet private weak var textFieldNameSurname: UITextField!
+	@IBOutlet private weak var textFieldEmail: UITextField!
+	@IBOutlet private weak var textFieldPassword: UITextField!
 	
-	var viewModel: SignUpViewModelProtocol! {
+	internal var viewModel: SignUpViewModelProtocol! {
 		didSet {
 			viewModel.delegate = self
 		}
 	}
 	private var currentImage: UIImage!
-	@IBOutlet weak var imageViewUserProfile: UIImageView!
-	@IBOutlet weak var textFieldNameSurname: UITextField!
-	@IBOutlet weak var textFieldEmail: UITextField!
-	@IBOutlet weak var textFieldPassword: UITextField!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		let imageTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
@@ -29,18 +30,17 @@ final class SignUpViewController: BaseViewController {
 		let closeKeyboardGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(DissmissKeyboard))
 		view.addGestureRecognizer(closeKeyboardGestureRecognizer)
 	}
-	@objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-		OpenImagePicker()
-	}
-	@objc func DissmissKeyboard() {
-		view.endEditing(true)
-	}
-	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == UserViewConstants.signInViewControllerId {
 			let targetVC = segue.destination as! SignInViewController
 			targetVC.viewModel = SignInViewModel()
 		}
+	}
+	@objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+		OpenImagePicker()
+	}
+	@objc func DissmissKeyboard() {
+		view.endEditing(true)
 	}
 	@IBAction func SignUp_TUI(_ sender: Any) {
 		if let name = textFieldNameSurname.text,
@@ -62,9 +62,7 @@ extension SignUpViewController: SignUpViewModelDelegate {
 }
 
 // MARK: - Extension: UINavigationControllerDelegate
-extension SignUpViewController: UINavigationControllerDelegate {
-	
-}
+extension SignUpViewController: UINavigationControllerDelegate { }
 
 // MARK: - Extension: UIImagePickerControllerDelegate
 extension SignUpViewController: UIImagePickerControllerDelegate {
@@ -75,7 +73,6 @@ extension SignUpViewController: UIImagePickerControllerDelegate {
 		imagePicker.sourceType = .photoLibrary
 		present(imagePicker, animated: true)
 	}
-	
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 		// image is selected
 		dismiss(animated: true)

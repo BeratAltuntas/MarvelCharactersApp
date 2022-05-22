@@ -5,7 +5,7 @@
 //  Created by BERAT ALTUNTAŞ on 14.05.2022.
 //
 import Foundation
-import UIKit
+import UIKit.UIImage
 
 // MARK: - SignUpViewModelProtocol
 protocol SignUpViewModelProtocol {
@@ -24,12 +24,11 @@ protocol SignUpViewModelDelegate: AnyObject {
 
 // MARK: - SignUpViewModel
 final class SignUpViewModel {
-	weak var delegate: SignUpViewModelDelegate?
+	internal weak var delegate: SignUpViewModelDelegate?
 }
 
 // MARK: - Extension: SignUpViewModelProtocol
 extension SignUpViewModel: SignUpViewModelProtocol {
-	
 	func CreateUser(name: String, email: String, imageData: Data, password: String) {
 		FirebaseAuthManager.shared.CreateUser(email: email, password: password) { [weak self] (success, uId) in
 			if success {
@@ -42,7 +41,6 @@ extension SignUpViewModel: SignUpViewModelProtocol {
 			}
 		}
 	}
-	
 	func CreateUserInDatabase(user: User) {
 		FireBaseDatabaseManager.shared.CreateUserInDatabase(user: user) { [weak self] (success) in
 			if success {
@@ -50,7 +48,6 @@ extension SignUpViewModel: SignUpViewModelProtocol {
 			}
 		}
 	}
-	
 	func UploadUserImageInStorage(uId: String, imageData: Data, completion: @escaping CompletionStorage) {
 		FirebaseStorageManager.shared.UploadImageToFirebaseStorage(uId: uId, imageData: imageData) { result, imageStringPath in
 			completion(result, imageStringPath)

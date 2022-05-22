@@ -20,7 +20,7 @@ protocol SignInViewModelDelegate: AnyObject {
 
 // MARK: - SignInViewModel
 final class SignInViewModel {
-	weak var delegate: SignInViewModelDelegate?
+	internal weak var delegate: SignInViewModelDelegate?
 }
 
 // MARK: - Extension: SignInViewModelProtocol
@@ -31,7 +31,6 @@ extension SignInViewModel: SignInViewModelProtocol {
 				self?.delegate?.Dissmiss()
 			}
 		}
-		
 	}
 }
 
