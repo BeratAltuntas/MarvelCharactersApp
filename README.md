@@ -8,6 +8,7 @@ I wrote this project paying attention to the MVVM design pattern and SOLID princ
 - MVVM (Model - View - ViewModel)
 
 ## Libraries
+- URLSession
 - KingFisher
 - Firebase Database
 - Firebase Auth
